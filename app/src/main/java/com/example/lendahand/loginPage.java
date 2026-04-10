@@ -10,6 +10,17 @@ import androidx.core.view.WindowInsetsCompat;
 
 public class loginPage extends AppCompatActivity {
 
+    public void signUpClick(View v)  {
+        Intent intent = new Intent(this, SignUpPage.class);
+        startActivity(intent);
+    }
+
+    public void changePassClick(View v) {
+        Intent intent = new Intent(this, changePassword.class);
+        startActivity(intent);
+    }
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
