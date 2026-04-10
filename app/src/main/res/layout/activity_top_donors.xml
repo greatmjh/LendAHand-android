@@ -50,6 +50,6 @@
         android:background="?android:attr/listDivider"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/topDonorsHeader" />
+        app:layout_constraintTop_toBottomOf="@+id/viewProfileHeader" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
