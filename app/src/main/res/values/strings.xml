@@ -61,4 +61,21 @@
         vestibulum. Fusce dictum libero quis erat maximus, vitae volutpat diam dignissim.
     </string>
     <string name="profile_settings">Profile Settings</string>
+    <string name="users_name">Users Name</string>
+    <string name="number">+27 -- --- ----</string>
+    <string name="email_address_example">user@emailaddress.com</string>
+    <string name="bio_filler">bio</string>
+    <string name="edit_profile">Edit Profile</string>
+    <string name="my_profile">My Profile</string>
+    <string name="save_changes">Save Changes</string>
+    <string name="fulfilled">Fulfilled</string>
+    <string name="open">Open</string>
+    <string name="requests_received_info">Fulfill requests and see a history of what you have fulfilled in the past</string>
+    <string name="requested_items">Requested items</string>
+    <string name="manage_my_donations">Manage my Donations</string>
+    <string name="make_donation">Make donation</string>
+    <string name="make_a_donation">Make a Donation</string>
+    <string name="item_prompt_text">Enter a brief descriptor of the item you are donating</string>
+    <string name="item_name">Item name</string>
+    <string name="select_item_type">Select Item Type</string>
 </resources>

@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".makeDonation">
+
+    <TextView
+        android:id="@+id/viewProfileHeader"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="64dp"
+        android:text="@string/make_a_donation"
+        android:textSize="24sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageButton
+        android:id="@+id/backButton1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="36dp"
+        android:background="#FFFFFF"
+        android:onClick="backOnClick"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="?attr/actionModeCloseDrawable" />
+
+    <EditText
+        android:id="@+id/itemNameEntry"
+        android:layout_width="335dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="20dp"
+        android:background="#D9D9D9"
+        android:ems="10"
+        android:includeFontPadding="true"
+        android:inputType="text"
+        android:textAlignment="textStart"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.513"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/viewProfileHeader" />
+
+    <TextView
+        android:id="@+id/itemNameText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="4dp"
+        android:text="@string/item_name"
+        android:textSize="12sp"
+        app:layout_constraintStart_toStartOf="@+id/itemNameEntry"
+        app:layout_constraintTop_toTopOf="@+id/itemNameEntry" />
+
+    <TextView
+        android:id="@+id/itemPromptText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/item_prompt_text"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/itemNameEntry" />
+
+
+    <TextView
+        android:id="@+id/numOfItemsText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Quantity"
+        android:textSize="12sp"
+        tools:layout_editor_absoluteX="47dp"
+        tools:layout_editor_absoluteY="212dp" />
+
+    <TextView
+        android:id="@+id/quantityValText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:text="0"
+        app:layout_constraintStart_toEndOf="@+id/minusChip"
+        tools:layout_editor_absoluteY="253dp" />
+
+    <com.google.android.material.chip.Chip
+        android:id="@+id/minusChip"
+        android:layout_width="48dp"
+        android:layout_height="43dp"
+        android:layout_marginStart="58dp"
+        android:onClick="minusOnClick"
+        android:paddingLeft="0dp"
+        android:paddingRight="0dp"
+        android:text="-"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteY="240dp" />
+
+    <com.google.android.material.chip.Chip
+        android:id="@+id/plusChip"
+        android:layout_width="48dp"
+        android:layout_height="43dp"
+        android:layout_marginStart="12dp"
+        android:onClick="plusOnClick"
+        android:paddingLeft="0dp"
+        android:paddingRight="0dp"
+        android:text="+"
+        app:layout_constraintStart_toEndOf="@+id/quantityValText"
+        tools:layout_editor_absoluteY="240dp" />
+
+    <TextView
+        android:id="@+id/itemTypeText"
+        android:layout_width="335dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="158dp"
+        android:paddingStart="12dp"
+        android:paddingTop="12dp"
+        android:text="@string/select_item_type"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/itemNameEntry"
+        tools:ignore="RtlSymmetry" />
+
+    <ImageButton
+        android:id="@+id/selectButton"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_marginEnd="12dp"
+        android:backgroundTint="#FFFFFF"
+        android:onClick="selectItemOnClick"
+        android:src="@drawable/arrowleft"
+        app:layout_constraintBottom_toBottomOf="@+id/itemTypeText"
+        app:layout_constraintEnd_toEndOf="@+id/itemTypeText"
+        app:layout_constraintTop_toTopOf="@+id/itemTypeText" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

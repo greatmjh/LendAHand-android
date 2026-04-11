@@ -12,7 +12,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
-        android:text="My Profile"
+        android:text="@string/my_profile"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -26,9 +26,9 @@
         android:layout_marginTop="20dp"
         android:background="#FFFFFF"
         android:src="@android:drawable/ic_menu_sort_by_size"
-        android:tint="#020202"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:tint="#020202" />
 
     <ImageButton
         android:id="@+id/imageButton2"
@@ -37,9 +37,9 @@
         android:layout_marginTop="20dp"
         android:layout_marginEnd="12dp"
         android:background="#FFFFFF"
-        android:tint="#1A1A1A"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:tint="#1A1A1A"
         tools:src="@android:drawable/ic_menu_gallery" />
 
     <ImageView
@@ -58,7 +58,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="36dp"
         android:layout_marginTop="20dp"
-        android:text="Users Name"
+        android:text="@string/users_name"
         android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView" />
@@ -69,7 +69,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="36dp"
         android:layout_marginTop="14dp"
-        android:text="+27 -- --- ----"
+        android:text="@string/number"
         android:textSize="12sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/usersName" />
@@ -80,7 +80,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="36dp"
         android:layout_marginTop="10dp"
-        android:text="user@emailaddress.com"
+        android:text="@string/email_address_example"
         android:textSize="12sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/userPhoneNum" />
@@ -91,7 +91,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="36dp"
         android:layout_marginTop="10dp"
-        android:text="<bio> </bio>"
+        android:text="@string/bio_filler"
         android:textSize="12sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/userEmailAddress" />
@@ -103,7 +103,7 @@
         android:layout_marginEnd="36dp"
         android:layout_marginBottom="40dp"
         android:onClick="editProfileClick"
-        android:text="Edit Profile"
+        android:text="@string/edit_profile"
         android:textSize="12sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
