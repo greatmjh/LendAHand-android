@@ -82,4 +82,7 @@
     <string name="manage_my_requests">Manage my donation requests</string>
     <string name="make_general_request">Make a General Request</string>
     <string name="make_gen_request_bio">If you need something that is currently not being donated, request it here so that the donors can see that people need this. When it is made available, you will receive a notification.</string>
+    <string name="back_button">back button</string>
+    <string name="my_general_requests">My General Requests</string>
+    <string name="gen_requests_bio">View the requests you have made</string>
 </resources>

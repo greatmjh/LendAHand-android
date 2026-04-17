@@ -25,6 +25,7 @@
         android:layout_marginStart="24dp"
         android:layout_marginTop="36dp"
         android:background="#F6F5F5"
+        android:contentDescription="@string/back_button"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="?attr/actionModeCloseDrawable" />
@@ -39,42 +40,63 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/makeGeneralRequestHeader" />
 
-    <TextView
-        android:id="@+id/itemTypeText"
-        android:layout_width="335dp"
-        android:layout_height="48dp"
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/materialCardView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
         android:layout_marginTop="24dp"
-        android:paddingStart="12dp"
-        android:paddingTop="12dp"
-        android:text="@string/select_item_type"
-        app:layout_constraintEnd_toEndOf="parent"
-
-        app:layout_constraintStart_toStartOf="parent"
+        app:cardCornerRadius="12dp"
         app:layout_constraintTop_toBottomOf="@+id/makeGenRequestBio"
-        tools:ignore="RtlSymmetry" />
+        app:strokeColor="@color/black"
+        app:strokeWidth="2dp"
+        tools:layout_editor_absoluteX="38dp">
 
-    <ImageButton
-        android:id="@+id/selectButton"
-        android:layout_width="20dp"
-        android:layout_height="20dp"
-        android:layout_marginEnd="12dp"
-        android:backgroundTint="#FFFFFF"
-        android:onClick="selectItemOnClick"
-        android:src="@drawable/arrowleft"
-        app:layout_constraintBottom_toBottomOf="@+id/itemTypeText"
-        app:layout_constraintEnd_toEndOf="@+id/itemTypeText"
-        app:layout_constraintTop_toTopOf="@+id/itemTypeText" />
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="8dp">
+
+            <TextView
+                android:id="@+id/itemTypeText"
+                android:layout_width="335dp"
+                android:layout_height="48dp"
+                android:paddingStart="12dp"
+                android:paddingTop="12dp"
+                android:text="@string/select_item_type"
+                app:layout_constraintBottom_toBottomOf="parent"
+
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:ignore="RtlSymmetry" />
+
+            <ImageButton
+                android:id="@+id/selectButton"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_marginEnd="12dp"
+                android:backgroundTint="#FFFFFF"
+                android:onClick="selectItemOnClick"
+                android:src="@drawable/arrowleft"
+                app:layout_constraintBottom_toBottomOf="@+id/itemTypeText"
+                app:layout_constraintEnd_toEndOf="@+id/itemTypeText"
+                app:layout_constraintTop_toTopOf="@+id/itemTypeText" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </com.google.android.material.card.MaterialCardView>
+
 
     <TextView
         android:id="@+id/myGenRequestsHeader"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:text="My General Requests"
+        android:layout_marginTop="36dp"
+        android:text="@string/my_general_requests"
         android:textSize="34sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/itemTypeText" />
+        app:layout_constraintTop_toBottomOf="@+id/materialCardView" />
 
     <TextView
         android:id="@+id/myGenRequestsBio"
@@ -82,9 +104,18 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:layout_marginTop="12dp"
-        android:text="View the requests you have made"
+        android:text="@string/gen_requests_bio"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/myGenRequestsHeader" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView"
+        android:layout_width="360dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/myGenRequestsBio" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
