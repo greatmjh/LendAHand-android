@@ -78,4 +78,8 @@
     <string name="item_prompt_text">Enter a brief descriptor of the item you are donating</string>
     <string name="item_name">Item name</string>
     <string name="select_item_type">Select Item Type</string>
+    <string name="view_request">View Request</string>
+    <string name="manage_my_requests">Manage my donation requests</string>
+    <string name="make_general_request">Make a General Request</string>
+    <string name="make_gen_request_bio">If you need something that is currently not being donated, request it here so that the donors can see that people need this. When it is made available, you will receive a notification.</string>
 </resources>

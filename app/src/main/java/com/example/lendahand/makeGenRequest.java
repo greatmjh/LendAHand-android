@@ -1,6 +1,5 @@
 package com.example.lendahand;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
@@ -10,16 +9,10 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
-public class SignUpPage extends AppCompatActivity {
+public class makeGenRequest extends AppCompatActivity {
 
-    public void logInClick(View v)  {
-        Intent intent = new Intent(this, loginPage.class);
-        startActivity(intent);
-    }
+    public void selectItemOnClick(View v)   {
 
-    public void signUpClick(View v) {
-        Intent intent = new Intent(this, topDonors.class);
-        startActivity(intent);
     }
 
 
@@ -27,7 +20,7 @@ public class SignUpPage extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_sign_up_page);
+        setContentView(R.layout.activity_make_gen_request);
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);

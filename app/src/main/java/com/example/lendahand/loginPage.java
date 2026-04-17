@@ -22,6 +22,11 @@ public class loginPage extends AppCompatActivity {
         startActivity(intent);
     }
 
+    public void logInClick(View v)  {
+        Intent intent = new Intent(this, topDonors.class);
+        startActivity(intent);
+    }
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

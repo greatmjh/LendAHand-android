@@ -12,6 +12,15 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.LendAHand">
         <activity
+            android:name=".makeGenRequest"
+            android:exported="false" />
+        <activity
+            android:name=".manageRequests"
+            android:exported="false" />
+        <activity
+            android:name=".genRequests"
+            android:exported="false" />
+        <activity
             android:name=".makeDonation"
             android:exported="false" />
         <activity

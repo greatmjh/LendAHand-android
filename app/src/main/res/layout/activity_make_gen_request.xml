@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".makeGenRequest">
+
+    <TextView
+        android:id="@+id/makeGeneralRequestHeader"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="80dp"
+        android:text="@string/make_general_request"
+        android:textSize="34sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageButton
+        android:id="@+id/imageButton5"
+        android:layout_width="30dp"
+        android:layout_height="31dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="36dp"
+        android:background="#F6F5F5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="?attr/actionModeCloseDrawable" />
+
+    <TextView
+        android:id="@+id/makeGenRequestBio"
+        android:layout_width="349dp"
+        android:layout_height="80dp"
+        android:layout_marginTop="12dp"
+        android:text="@string/make_gen_request_bio"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/makeGeneralRequestHeader" />
+
+    <TextView
+        android:id="@+id/itemTypeText"
+        android:layout_width="335dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="24dp"
+        android:paddingStart="12dp"
+        android:paddingTop="12dp"
+        android:text="@string/select_item_type"
+        app:layout_constraintEnd_toEndOf="parent"
+
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/makeGenRequestBio"
+        tools:ignore="RtlSymmetry" />
+
+    <ImageButton
+        android:id="@+id/selectButton"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_marginEnd="12dp"
+        android:backgroundTint="#FFFFFF"
+        android:onClick="selectItemOnClick"
+        android:src="@drawable/arrowleft"
+        app:layout_constraintBottom_toBottomOf="@+id/itemTypeText"
+        app:layout_constraintEnd_toEndOf="@+id/itemTypeText"
+        app:layout_constraintTop_toTopOf="@+id/itemTypeText" />
+
+    <TextView
+        android:id="@+id/myGenRequestsHeader"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="My General Requests"
+        android:textSize="34sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/itemTypeText" />
+
+    <TextView
+        android:id="@+id/myGenRequestsBio"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="12dp"
+        android:text="View the requests you have made"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/myGenRequestsHeader" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
