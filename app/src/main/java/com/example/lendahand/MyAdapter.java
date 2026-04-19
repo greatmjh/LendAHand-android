@@ -1,0 +1,54 @@
+package com.example.lendahand;
+
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ImageButton;
+import android.widget.TextView;
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
+import java.util.ArrayList;
+
+
+public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
+    private ArrayList<genRequestItem> itemList;
+
+    public MyAdapter(ArrayList<genRequestItem> itemList){
+        this.itemList = itemList;
+    }
+
+    @NonNull
+    @Override
+    public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(parent.getContext())
+                .inflate(R.layout.item_card, parent, false);
+        return new MyViewHolder(view);
+    }
+
+    @Override
+    public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
+        genRequestItem requestItem = itemList.get(position);
+
+        holder.itemText.setText(requestItem.getItemName());
+        holder.selectButton.setImageResource(requestItem.getImage());
+    }
+
+    @Override
+    public int getItemCount() {
+        return itemList.size();
+    }
+
+    // ViewHolder class
+     public static class MyViewHolder extends RecyclerView.ViewHolder {
+        TextView itemText;
+        ImageButton selectButton;
+
+        public MyViewHolder(@NonNull View itemView) {
+
+            super(itemView);
+
+            itemText = itemView.findViewById(R.id.itemText);
+            selectButton = itemView.findViewById(R.id.selectButton);
+        }
+    }
+}
