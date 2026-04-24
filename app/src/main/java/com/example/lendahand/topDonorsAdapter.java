@@ -10,10 +10,10 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 
 
-public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
-    private ArrayList<genRequestItem> itemList;
+public class topDonorsAdapter extends RecyclerView.Adapter<topDonorsAdapter.MyViewHolder> {
+    private ArrayList<topDonorItem> itemList;
 
-    public MyAdapter(ArrayList<genRequestItem> itemList){
+    public topDonorsAdapter(ArrayList<topDonorItem> itemList){
         this.itemList = itemList;
     }
 
@@ -21,16 +21,17 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.item_card, parent, false);
+                .inflate(R.layout.top_donor_item, parent, false);
         return new MyViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-        genRequestItem requestItem = itemList.get(position);
+        topDonorItem requestItem = itemList.get(position);
 
-        holder.itemText.setText(requestItem.getItemName());
-        holder.selectButton.setImageResource(requestItem.getImage());
+        holder.nameText.setText(requestItem.getUserName());
+        holder.donatedText.setText(String.format("Donated %s item%s",
+                requestItem.getNumItemsDonated(), (requestItem.getNumItemsDonated() == 1 ? "" : "s")));
     }
 
     @Override
@@ -39,16 +40,16 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
     }
 
     // ViewHolder class
-     public static class MyViewHolder extends RecyclerView.ViewHolder {
-        TextView itemText;
-        ImageButton selectButton;
+    public static class MyViewHolder extends RecyclerView.ViewHolder {
+        TextView nameText, donatedText;
+
 
         public MyViewHolder(@NonNull View itemView) {
 
             super(itemView);
 
-            itemText = itemView.findViewById(R.id.itemText);
-            selectButton = itemView.findViewById(R.id.selectButton);
+            nameText = itemView.findViewById(R.id.donorName);
+            donatedText = itemView.findViewById(R.id.donated);
         }
     }
 }

@@ -40,7 +40,7 @@ public class makeGenRequest extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         // Set Adapter
-        MyAdapter adapter = new MyAdapter(itemList);
+        makeGenRequestAdapter adapter = new makeGenRequestAdapter(itemList);
         recyclerView.setAdapter(adapter);
     }
 }
