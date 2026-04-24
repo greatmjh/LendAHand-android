@@ -17,6 +17,10 @@ public class profileSettings extends AppCompatActivity {
         startActivity(intent);
     }
 
+    public void updateAddressClick(View v) {
+
+    }
+
     public void cancelClick(View v) {
         Intent intent = new Intent(this, viewProfile.class);
         startActivity(intent);
