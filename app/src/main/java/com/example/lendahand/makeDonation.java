@@ -10,16 +10,23 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
-public class SignUpPage extends AppCompatActivity {
+public class makeDonation extends AppCompatActivity {
 
-    public void logInClick(View v)  {
-        Intent intent = new Intent(this, loginPage.class);
+    public void backOnClick(View v) {
+        Intent intent = new Intent(this, manageMyDonations.class);
         startActivity(intent);
     }
 
-    public void signUpClick(View v) {
-        Intent intent = new Intent(this, topDonors.class);
-        startActivity(intent);
+    public void plusOnClick(View v){
+
+    }
+
+    public void minusOnClick(View v){
+
+    }
+
+    public void selectItemOnClick(View v)   {
+
     }
 
 
@@ -27,7 +34,7 @@ public class SignUpPage extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_sign_up_page);
+        setContentView(R.layout.activity_make_donation);
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);

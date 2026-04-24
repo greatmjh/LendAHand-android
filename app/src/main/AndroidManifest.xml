@@ -12,6 +12,31 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.LendAHand">
         <activity
+            android:name=".makeGenRequest"
+            android:exported="false" />
+        <activity
+            android:name=".manageRequests"
+            android:exported="false" />
+        <activity
+            android:name=".genRequests"
+            android:exported="false" />
+        <activity
+            android:name=".makeDonation"
+            android:exported="false" />
+        <activity
+            android:name=".manageMyDonations"
+            android:exported="false" />
+        <activity
+            android:name=".requestsReceived"
+            android:exported="false" />
+        <activity
+            android:name=".viewProfile"
+            android:exported="false" />
+        <activity
+            android:name=".profileSettings"
+            android:exported="false"
+            android:theme="@style/Theme.LendAHand" />
+        <activity
             android:name=".viewRequestDonor"
             android:exported="false" />
         <activity

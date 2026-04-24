@@ -1,6 +1,8 @@
 package com.example.lendahand;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -9,6 +11,16 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 public class MainActivity extends AppCompatActivity {
+
+    public void signUpClick(View v)  {
+        Intent intent = new Intent(this, SignUpPage.class);
+        startActivity(intent);
+    }
+
+    public void logInClick(View v)  {
+        Intent intent = new Intent(this, loginPage.class);
+        startActivity(intent);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

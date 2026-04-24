@@ -24,4 +24,4 @@ dependencyResolutionManagement {
 
 rootProject.name = "Lend a Hand"
 include(":app")
- 
+
