@@ -7,6 +7,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+import java.util.ArrayList;
 
 public class topDonors extends AppCompatActivity {
 
@@ -20,5 +24,19 @@ public class topDonors extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+
+        RecyclerView recyclerView = findViewById(R.id.recyclerViewTopDonors);
+        ArrayList<topDonorItem> itemList = new ArrayList<>();
+
+        //sample data
+        itemList.add(new topDonorItem("Mike Gibbons", 30));
+        itemList.add(new topDonorItem("Gavin Greef", 18));
+
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+        //set adapter
+        topDonorsAdapter adapter = new topDonorsAdapter(itemList);
+        recyclerView.setAdapter(adapter);
+
     }
 }
