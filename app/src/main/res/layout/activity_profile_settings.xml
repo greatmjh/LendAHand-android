@@ -162,6 +162,19 @@
         app:layout_constraintTop_toBottomOf="@+id/bioEntry" />
 
     <Button
+        android:id="@+id/updateHomeAddressButton"
+        android:layout_width="wrap_content"
+        android:layout_height="42dp"
+        android:layout_marginStart="36dp"
+        android:layout_marginTop="8dp"
+        android:onClick="updateAddressClick"
+        android:text="@string/update_home_address"
+        android:textColor="#FFFFFF"
+        android:textSize="12sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/forgotPassButton" />
+
+    <Button
         android:id="@+id/saveChangesButton"
         android:layout_width="wrap_content"
         android:layout_height="42dp"
