@@ -13,44 +13,44 @@
         android:theme="@style/Theme.LendAHand">
         <activity
             android:name=".makeGenRequest"
-            android:exported="false" />
+            android:exported="true" />
         <activity
             android:name=".manageRequests"
-            android:exported="false" />
+            android:exported="true" />
         <activity
             android:name=".genRequests"
-            android:exported="false" />
+            android:exported="true" />
         <activity
             android:name=".makeDonation"
-            android:exported="false" />
+            android:exported="true" />
         <activity
             android:name=".manageMyDonations"
-            android:exported="false" />
+            android:exported="true" />
         <activity
             android:name=".requestsReceived"
-            android:exported="false" />
+            android:exported="true" />
         <activity
             android:name=".viewProfile"
-            android:exported="false" />
+            android:exported="true" />
         <activity
             android:name=".profileSettings"
-            android:exported="false"
+            android:exported="true"
             android:theme="@style/Theme.LendAHand" />
         <activity
             android:name=".viewRequestDonor"
-            android:exported="false" />
+            android:exported="true" />
         <activity
             android:name=".topDonors"
-            android:exported="false" />
+            android:exported="true" />
         <activity
             android:name=".changePassword"
-            android:exported="false" />
+            android:exported="true" />
         <activity
             android:name=".loginPage"
-            android:exported="false" />
+            android:exported="true" />
         <activity
             android:name=".SignUpPage"
-            android:exported="false" />
+            android:exported="true" />
         <activity
             android:name=".MainActivity"
             android:exported="true">
