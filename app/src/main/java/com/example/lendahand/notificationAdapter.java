@@ -1,6 +1,10 @@
 package com.example.lendahand;
 
+import static android.content.ContentValues.TAG;
+
+import android.content.Intent;
 import android.graphics.Typeface;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -45,6 +49,10 @@ public class notificationAdapter extends RecyclerView.Adapter<notificationAdapte
         holder.notificationBody.setText(notifItem.getBody());
         holder.notificationTitle.setText(notifItem.getTitle());
         holder.notificationTime.setText(notifItem.getRelativeTime());
+
+        //handle onclicks
+        holder.onclick = notifItem.getOnclick();
+
     }
 
     @Override
@@ -55,7 +63,7 @@ public class notificationAdapter extends RecyclerView.Adapter<notificationAdapte
     // ViewHolder class
     public static class MyViewHolder extends RecyclerView.ViewHolder {
         TextView notificationTime, notificationTitle, notificationBody;
-
+        String onclick;
 
         public MyViewHolder(@NonNull View itemView) {
 
@@ -64,6 +72,23 @@ public class notificationAdapter extends RecyclerView.Adapter<notificationAdapte
             notificationTime = itemView.findViewById(R.id.notificationTime);
             notificationTitle = itemView.findViewById(R.id.notificationTitle);
             notificationBody = itemView.findViewById(R.id.notificationBody);
+
+            itemView.findViewById(R.id.notif_cardview).setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    switch (onclick) {
+                        case "outgoingRequests":
+                            Intent intentOut = new Intent(view.getContext(), manageRequests.class);
+                            view.getContext().startActivity(intentOut);
+                            break;
+
+                        case "incomingRequests":
+                            Intent intentIn = new Intent(view.getContext(), requestsReceived.class);
+                            view.getContext().startActivity(intentIn);
+                            break;
+                    }
+                }
+            });
         }
     }
 }

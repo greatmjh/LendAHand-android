@@ -33,19 +33,19 @@ public class notifications extends AppCompatActivity {
         sampleNotifs.add(new Notification(LocalDateTime.parse("2026-04-25T12:34:56"),
                 "Request accepted",
                 "Jenna Smith has accepted your request for Tinned tuna",
-                "",
+                "outgoingRequests",
                 false));
 
         sampleNotifs.add(new Notification(LocalDateTime.parse("2026-04-24T12:34:56"),
                 "Request received",
                 "Mark Gibbons would like 2 R12 airtime vouchers",
-                "",
+                "incomingRequests",
                 true));
 
         sampleNotifs.add(new Notification(LocalDateTime.parse("2026-03-07T12:34:56"),
                 "Request rejected",
                 "Gavin Greef rejected your request for Blanket",
-                "",
+                "incomingRequests",
                 true));
 
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
