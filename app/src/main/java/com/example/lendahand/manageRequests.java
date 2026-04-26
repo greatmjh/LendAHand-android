@@ -14,10 +14,11 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.google.android.material.chip.Chip;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 
 public class manageRequests extends AppCompatActivity {
 
-    ArrayList<OutgoingReq> openReqs, closedReqs;
+    LinkedList<OutgoingReq> openReqs, closedReqs;
     ManageRequestAdapter adapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,12 +31,12 @@ public class manageRequests extends AppCompatActivity {
             return insets;
         });
 
-        openReqs = new ArrayList<>();
+        openReqs = new LinkedList<>();
         openReqs.add(new OutgoingReq("Baked beans", "Greg Owen", "", "", "open"));
         openReqs.add(new OutgoingReq( "R12 Airtime Voucher","Mark Gibbons",  "", "", "open"));
         openReqs.add(new OutgoingReq( "Shirt", "Dirk Schutte","", "", "open"));
 
-        closedReqs = new ArrayList<>();
+        closedReqs = new LinkedList<>();
         closedReqs.add(new OutgoingReq( "Baked beans", "Greg Owen","+27 83 123 8718", "", "accepted"));
         closedReqs.add(new OutgoingReq( "R12 Airtime Voucher","Mark Gibbons", "", "", "rejected"));
         closedReqs.add(new OutgoingReq( "Shirt", "Dirk Schutte","+27 62 817 1281", "", "accepted"));

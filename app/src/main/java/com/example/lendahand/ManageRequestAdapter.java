@@ -11,16 +11,17 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
+import java.util.List;
 
 
 public class ManageRequestAdapter extends RecyclerView.Adapter<ManageRequestAdapter.MyViewHolder> {
-    private ArrayList<OutgoingReq> itemList;
+    private List<OutgoingReq> itemList;
 
-    public void setItemList(ArrayList<OutgoingReq> itemList) {
+    public void setItemList(List<OutgoingReq> itemList) {
         this.itemList = itemList;
     }
 
-    public ManageRequestAdapter(ArrayList<OutgoingReq> itemList){
+    public ManageRequestAdapter(List<OutgoingReq> itemList){
         this.itemList = itemList;
     }
 
@@ -42,7 +43,13 @@ public class ManageRequestAdapter extends RecyclerView.Adapter<ManageRequestAdap
         } else {
             holder.deleteButton.setVisibility(INVISIBLE);
         }
-
+        holder.deleteButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                itemList.remove(position);
+                ManageRequestAdapter.super.notifyDataSetChanged();
+            }
+        });
 
     }
 
