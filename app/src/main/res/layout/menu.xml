@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:id="@+id/main"
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     tools:content=".menuActivity">
@@ -20,176 +21,131 @@
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="?attr/actionModeCloseDrawable" />
 
-    <com.google.android.material.card.MaterialCardView
+    <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:cardCornerRadius="0dp"
-        app:strokeWidth="1dp"
-        android:onClick="menuClick">
+        android:layout_gravity="start"
+        android:backgroundTint="#FFFFFF"
+        android:maxLines="1"
+        android:onClick="menuClick"
+        android:paddingStart="20dp"
+        android:paddingTop="16dp"
+        android:paddingBottom="16dp"
+        android:paddingEnd="0dp"
+        android:text="@string/notifications"
+        android:textAlignment="viewStart"
+        android:textAppearance="@style/TextAppearance.AppCompat.Small"
+        android:textColor="@color/black"
+        android:id="@+id/notificationMenu"
+        android:textSize="14sp" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="41dp"
-            android:layout_marginTop="12dp"
-            android:layout_marginBottom="12dp"
-            android:layout_gravity="center">
-            <TextView
-                android:id="@+id/notificationMenu"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:maxLines="1"
-                android:text="@string/notifications"
-                android:textSize="14sp"
-                android:layout_gravity="center" />
-        </LinearLayout>
+    <Button
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:id="@+id/reqReceivedMenu"
+        android:layout_gravity="start"
+        android:textSize="14sp"
+        android:backgroundTint="#FFFFFF"
+        android:maxLines="1"
+        android:onClick="menuClick"
+        android:paddingStart="20dp"
+        android:paddingTop="16dp"
+        android:paddingBottom="16dp"
+        android:paddingEnd="0dp"
+        android:text="@string/requests_received"
+        android:textAlignment="viewStart"
+        android:textAppearance="@style/TextAppearance.AppCompat.Small"
+        android:textColor="@color/black"/>
 
-    </com.google.android.material.card.MaterialCardView>
-    <com.google.android.material.card.MaterialCardView
+    <Button
+        android:id="@+id/manageRequestsMenu"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:cardCornerRadius="0dp"
-        app:strokeWidth="0dp">
+        android:layout_gravity="start"
+        android:backgroundTint="#FFFFFF"
+        android:maxLines="1"
+        android:onClick="menuClick"
+        android:paddingStart="20dp"
+        android:paddingTop="16dp"
+        android:paddingBottom="16dp"
+        android:paddingEnd="0dp"
+        android:text="@string/requests_sent"
+        android:textAlignment="viewStart"
+        android:textAppearance="@style/TextAppearance.AppCompat.Small"
+        android:textColor="@color/black"
+        android:textSize="14sp" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="41dp"
-            android:layout_marginTop="12dp"
-            android:layout_marginBottom="12dp"
-            android:layout_gravity="center">
-            <TextView
-                android:id="@+id/reqReceivedMenu"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:maxLines="1"
-                android:text="@string/requests_received"
-                android:textSize="14sp"
-                android:layout_gravity="center" />
-        </LinearLayout>
-
-    </com.google.android.material.card.MaterialCardView>
-    <com.google.android.material.card.MaterialCardView
+    <Button
+        android:id="@+id/manageDonationsMenu"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:cardCornerRadius="0dp"
-        app:strokeWidth="1dp">
+        android:layout_gravity="start"
+        android:backgroundTint="#FFFFFF"
+        android:maxLines="1"
+        android:onClick="menuClick"
+        android:paddingStart="20dp"
+        android:paddingTop="16dp"
+        android:paddingBottom="16dp"
+        android:paddingEnd="0dp"
+        android:text="@string/manage_my_donations"
+        android:textAlignment="viewStart"
+        android:textAppearance="@style/TextAppearance.AppCompat.Small"
+        android:textColor="@color/black"
+        android:textSize="14sp" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="41dp"
-            android:layout_marginTop="12dp"
-            android:layout_marginBottom="12dp"
-            android:layout_gravity="center">
-            <TextView
-                android:id="@+id/manageRequestsMenu"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:maxLines="1"
-                android:text="@string/requests_sent"
-                android:textSize="14sp"
-                android:layout_gravity="center" />
-        </LinearLayout>
-
-    </com.google.android.material.card.MaterialCardView>
-    <com.google.android.material.card.MaterialCardView
+    <Button
+        android:id="@+id/findDonationsMenu"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:cardCornerRadius="0dp"
-        app:strokeWidth="0dp">
+        android:layout_gravity="start"
+        android:backgroundTint="#FFFFFF"
+        android:maxLines="1"
+        android:onClick="menuClick"
+        android:paddingStart="20dp"
+        android:paddingTop="16dp"
+        android:paddingBottom="16dp"
+        android:paddingEnd="0dp"
+        android:text="@string/find_donations"
+        android:textAlignment="viewStart"
+        android:textAppearance="@style/TextAppearance.AppCompat.Small"
+        android:textColor="@color/black"
+        android:textSize="14sp" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="41dp"
-            android:layout_marginTop="12dp"
-            android:layout_marginBottom="12dp"
-            android:layout_gravity="center">
-            <TextView
-                android:id="@+id/manageDonationsMenu"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:maxLines="1"
-                android:text="@string/manage_my_donations"
-                android:textSize="14sp"
-                android:layout_gravity="center" />
-        </LinearLayout>
-
-    </com.google.android.material.card.MaterialCardView>
-    <com.google.android.material.card.MaterialCardView
+    <Button
+        android:id="@+id/topDonorsMenu"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:cardCornerRadius="0dp"
-        app:strokeWidth="1dp">
+        android:layout_gravity="start"
+        android:backgroundTint="#FFFFFF"
+        android:maxLines="1"
+        android:onClick="menuClick"
+        android:paddingStart="20dp"
+        android:paddingTop="16dp"
+        android:paddingBottom="16dp"
+        android:paddingEnd="0dp"
+        android:text="@string/top_donors"
+        android:textAlignment="viewStart"
+        android:textAppearance="@style/TextAppearance.AppCompat.Small"
+        android:textColor="@color/black"
+        android:textSize="14sp" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="41dp"
-            android:layout_marginTop="12dp"
-            android:layout_marginBottom="12dp"
-            android:layout_gravity="center">
-            <TextView
-                android:id="@+id/findDonationsMenu"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:maxLines="1"
-                android:text="@string/find_donations"
-                android:textSize="14sp"
-                android:layout_gravity="center" />
-        </LinearLayout>
-
-    </com.google.android.material.card.MaterialCardView>
-    <com.google.android.material.card.MaterialCardView
+    <Button
+        android:id="@+id/logOutMenu"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:cardCornerRadius="0dp"
-        app:strokeWidth="0dp">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="41dp"
-            android:layout_marginTop="12dp"
-            android:layout_marginBottom="12dp"
-            android:layout_gravity="center">
-            <TextView
-                android:id="@+id/topDonorsMenu"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:maxLines="1"
-                android:text="@string/top_donors"
-                android:textSize="14sp"
-                android:layout_gravity="center" />
-        </LinearLayout>
-
-    </com.google.android.material.card.MaterialCardView>
-    <com.google.android.material.card.MaterialCardView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:cardCornerRadius="0dp"
-        app:strokeWidth="1dp">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="41dp"
-            android:layout_marginTop="12dp"
-            android:layout_marginBottom="12dp"
-            android:layout_gravity="center">
-
-            <TextView
-                android:id="@+id/logOutMenu"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginStart="20dp"
-                android:maxLines="1"
-                android:text="@string/log_out"
-                android:textSize="14sp"
-                android:textStyle="bold|italic" />
-        </LinearLayout>
-
-    </com.google.android.material.card.MaterialCardView>
+        android:layout_gravity="start"
+        android:backgroundTint="#FFFFFF"
+        android:maxLines="1"
+        android:onClick="menuClick"
+        android:paddingStart="20dp"
+        android:paddingTop="16dp"
+        android:paddingBottom="16dp"
+        android:paddingEnd="0dp"
+        android:text="@string/log_out"
+        android:textAlignment="viewStart"
+        android:textAppearance="@style/TextAppearance.AppCompat.Small"
+        android:textColor="@color/black"
+        android:textSize="14sp"
+        android:textStyle="bold|italic"/>
 
 </LinearLayout>
