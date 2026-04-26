@@ -13,6 +13,8 @@ import androidx.core.view.WindowInsetsCompat;
 public class findDonations extends AppCompatActivity {
 
     public void menuBtnClick(View v){
+        previousView.setPrevView(findDonations.class);
+
         Intent intent = new Intent(this, menuActivity.class);
         startActivity(intent);
     }

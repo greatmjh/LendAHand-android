@@ -17,6 +17,8 @@ import java.util.ArrayList;
 public class topDonors extends AppCompatActivity {
 
     public void menuBtnClick(View v){
+        previousView.setPrevView(topDonors.class);
+
         Intent intent = new Intent(this, menuActivity.class);
         startActivity(intent);
     }

@@ -34,8 +34,7 @@ public class menuActivity extends AppCompatActivity {
     }
 
     public void backOnClick(View view){
-        //TODO: save prev view before moving onto this page, then when you click back it takes you there
-        //openScreen(prevView);
+        openScreen(previousView.getPrevView());
     }
 
     public void menuClick(View view){

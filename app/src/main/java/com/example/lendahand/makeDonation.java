@@ -13,6 +13,8 @@ import androidx.core.view.WindowInsetsCompat;
 public class makeDonation extends AppCompatActivity {
 
     public void backOnClick(View v) {
+        previousView.setPrevView(makeDonation.class);
+
         Intent intent = new Intent(this, manageMyDonations.class);
         startActivity(intent);
     }

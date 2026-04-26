@@ -17,6 +17,13 @@ import java.util.ArrayList;
 
 public class notifications extends AppCompatActivity {
 
+    public void menuBtnClick(View v){
+        previousView.setPrevView(notifications.class);
+
+        Intent intent = new Intent(this, menuActivity.class);
+        startActivity(intent);
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,8 +62,5 @@ public class notifications extends AppCompatActivity {
         recyclerView.setAdapter(adapter);
     }
 
-    public void menuBtnClick(View v){
-        Intent intent = new Intent(this, menuActivity.class);
-        startActivity(intent);
-    }
+
 }

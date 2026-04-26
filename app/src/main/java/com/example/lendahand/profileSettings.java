@@ -13,6 +13,8 @@ import androidx.core.view.WindowInsetsCompat;
 public class profileSettings extends AppCompatActivity {
 
     public void changePassClick(View v) {
+        previousView.setPrevView(profileSettings.class);
+
         Intent intent = new Intent(this, changePassword.class);
         startActivity(intent);
     }
