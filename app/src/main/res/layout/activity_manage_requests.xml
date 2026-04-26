@@ -11,10 +11,10 @@
         android:id="@+id/manageRequestsHeader"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="80dp"
+        android:layout_marginTop="24dp"
         android:text="@string/manage_my_requests"
-        android:textSize="34sp"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -22,19 +22,33 @@
         android:id="@+id/imageButton5"
         android:layout_width="30dp"
         android:layout_height="31dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="36dp"
-        android:background="#F6F5F5"
+        android:layout_marginStart="12dp"
+        android:background="@color/white"
+        android:onClick="menuBtnClick"
+        android:src="@drawable/menu_icon"
+        app:layout_constraintBottom_toBottomOf="@+id/manageRequestsHeader"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="?attr/actionModeCloseDrawable" />
+        app:layout_constraintTop_toTopOf="@+id/manageRequestsHeader" />
+
+    <ImageButton
+        android:id="@+id/imageButton2"
+        android:layout_width="50dp"
+        android:layout_height="44dp"
+        android:layout_marginEnd="12dp"
+        android:background="#FFFFFF"
+
+        app:layout_constraintBottom_toBottomOf="@+id/manageRequestsHeader"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/manageRequestsHeader"
+        app:tint="#1A1A1A"
+        tools:src="@android:drawable/ic_menu_gallery" />
 
     <TextView
         android:id="@+id/manageRequestsBio"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
-        android:layout_marginTop="12dp"
+        android:layout_marginTop="36dp"
         android:text="View and cancel requests"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/manageRequestsHeader" />

@@ -1,5 +1,6 @@
 package com.example.lendahand;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
@@ -17,6 +18,11 @@ public class requestsReceived extends AppCompatActivity {
 
     public void fulfillOnClick(View v)  {
 
+    }
+
+    public void menuBtnClick(View v){
+        Intent intent = new Intent(this, menuActivity.class);
+        startActivity(intent);
     }
 
     @Override

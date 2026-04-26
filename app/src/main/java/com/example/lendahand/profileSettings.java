@@ -26,6 +26,11 @@ public class profileSettings extends AppCompatActivity {
         startActivity(intent);
     }
 
+    public void menuBtnClick(View v){
+        Intent intent = new Intent(this, menuActivity.class);
+        startActivity(intent);
+    }
+
     public void saveChangesClick(View v){
         //TODO: update user profile and reflect changes, then go back to view profile screen
 

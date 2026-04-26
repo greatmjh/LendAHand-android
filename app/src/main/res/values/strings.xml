@@ -80,7 +80,7 @@
     <string name="item_name">Item name</string>
     <string name="select_item_type">Select Item Type</string>
     <string name="view_request">View Request</string>
-    <string name="manage_my_requests">Manage my donation requests</string>
+    <string name="manage_my_requests">Manage my requests</string>
     <string name="make_general_request">Make a General Request</string>
     <string name="make_gen_request_bio">If you need something that is currently not being donated, request it here so that the donors can see that people need this. When it is made available, you will receive a notification.</string>
     <string name="back_button">back button</string>
@@ -88,4 +88,9 @@
     <string name="gen_requests_bio">View the requests you have made</string>
     <string name="requested_to">Requested to </string>
     <string name="notifications">Notifications</string>
+    <string name="requests_received">Requests received</string>
+    <string name="find_donations">Find donations</string>
+    <string name="log_out">Log out</string>
+    <string name="requests_sent">Requests sent</string>
+    <string name="find_donations_header">Find Donations</string>
 </resources>

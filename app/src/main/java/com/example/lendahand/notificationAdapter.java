@@ -1,14 +1,10 @@
 package com.example.lendahand;
 
-import static android.content.ContentValues.TAG;
-
 import android.content.Intent;
 import android.graphics.Typeface;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageButton;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -16,9 +12,9 @@ import java.util.ArrayList;
 
 
 public class notificationAdapter extends RecyclerView.Adapter<notificationAdapter.MyViewHolder> {
-    private ArrayList<Notification> itemList;
+    private ArrayList<notificationItem> itemList;
 
-    public notificationAdapter(ArrayList<Notification> itemList){
+    public notificationAdapter(ArrayList<notificationItem> itemList){
         this.itemList = itemList;
     }
 
@@ -32,7 +28,7 @@ public class notificationAdapter extends RecyclerView.Adapter<notificationAdapte
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-        Notification notifItem = itemList.get(position);
+        notificationItem notifItem = itemList.get(position);
 
         // handle bolding for unread
         if (notifItem.isRead()) {

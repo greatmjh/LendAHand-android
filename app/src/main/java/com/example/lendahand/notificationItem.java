@@ -5,7 +5,7 @@ import android.text.format.DateUtils;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 
-public class Notification {
+public class notificationItem {
     private LocalDateTime time;
     private String title;
     private String body;
@@ -13,7 +13,7 @@ public class Notification {
 
     boolean read;
 
-    public Notification(LocalDateTime time, String title, String body, String onclick, boolean read) {
+    public notificationItem(LocalDateTime time, String title, String body, String onclick, boolean read) {
         this.time = time;
         this.title = title;
         this.body = body;

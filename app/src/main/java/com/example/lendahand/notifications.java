@@ -1,6 +1,8 @@
 package com.example.lendahand;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -29,20 +31,20 @@ public class notifications extends AppCompatActivity {
         RecyclerView recyclerView = findViewById(R.id.recyclerViewNotifications);
 
         //Populate with test data
-        ArrayList<Notification> sampleNotifs = new ArrayList<>();
-        sampleNotifs.add(new Notification(LocalDateTime.parse("2026-04-25T12:34:56"),
+        ArrayList<notificationItem> sampleNotifs = new ArrayList<>();
+        sampleNotifs.add(new notificationItem(LocalDateTime.parse("2026-04-25T12:34:56"),
                 "Request accepted",
                 "Jenna Smith has accepted your request for Tinned tuna",
                 "outgoingRequests",
                 false));
 
-        sampleNotifs.add(new Notification(LocalDateTime.parse("2026-04-24T12:34:56"),
+        sampleNotifs.add(new notificationItem(LocalDateTime.parse("2026-04-24T12:34:56"),
                 "Request received",
                 "Mark Gibbons would like 2 R12 airtime vouchers",
                 "incomingRequests",
                 true));
 
-        sampleNotifs.add(new Notification(LocalDateTime.parse("2026-03-07T12:34:56"),
+        sampleNotifs.add(new notificationItem(LocalDateTime.parse("2026-03-07T12:34:56"),
                 "Request rejected",
                 "Gavin Greef rejected your request for Blanket",
                 "incomingRequests",
@@ -51,5 +53,10 @@ public class notifications extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         notificationAdapter adapter = new notificationAdapter(sampleNotifs);
         recyclerView.setAdapter(adapter);
+    }
+
+    public void menuBtnClick(View v){
+        Intent intent = new Intent(this, menuActivity.class);
+        startActivity(intent);
     }
 }
