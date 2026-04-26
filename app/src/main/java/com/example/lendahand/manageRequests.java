@@ -1,15 +1,24 @@
 package com.example.lendahand;
 
 import android.os.Bundle;
+import android.view.View;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+import com.google.android.material.chip.Chip;
+
+import java.util.ArrayList;
 
 public class manageRequests extends AppCompatActivity {
 
+    ArrayList<OutgoingReq> openReqs, closedReqs;
+    ManageRequestAdapter adapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -20,5 +29,37 @@ public class manageRequests extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+
+        openReqs = new ArrayList<>();
+        openReqs.add(new OutgoingReq("Baked beans", "Greg Owen", "", "", "open"));
+        openReqs.add(new OutgoingReq( "R12 Airtime Voucher","Mark Gibbons",  "", "", "open"));
+        openReqs.add(new OutgoingReq( "Shirt", "Dirk Schutte","", "", "open"));
+
+        closedReqs = new ArrayList<>();
+        closedReqs.add(new OutgoingReq( "Baked beans", "Greg Owen","+27 83 123 8718", "", "accepted"));
+        closedReqs.add(new OutgoingReq( "R12 Airtime Voucher","Mark Gibbons", "", "", "rejected"));
+        closedReqs.add(new OutgoingReq( "Shirt", "Dirk Schutte","+27 62 817 1281", "", "accepted"));
+
+        Chip openChip = findViewById(R.id.chipOpen);
+        if (openChip.isChecked()) {
+            adapter = new ManageRequestAdapter(openReqs);
+        } else {
+            adapter = new ManageRequestAdapter(closedReqs);
+        }
+
+        RecyclerView rv = findViewById(R.id.recyclerViewManageRequests);
+        rv.setLayoutManager(new LinearLayoutManager(this));
+        rv.setAdapter(adapter);
+        adapter.notifyDataSetChanged();
+    }
+
+    public void onOpenClick(View v) {
+        adapter.setItemList(openReqs);
+        adapter.notifyDataSetChanged();
+    }
+
+    public void onCloseClick(View v) {
+        adapter.setItemList(closedReqs);
+        adapter.notifyDataSetChanged();
     }
 }

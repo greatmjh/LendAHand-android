@@ -30,7 +30,7 @@
                 tools:ignore="RtlSymmetry" />
 
             <ImageButton
-                android:id="@+id/selectButton"
+                android:id="@+id/deleteButton"
                 android:layout_width="20dp"
                 android:layout_height="20dp"
                 android:layout_marginEnd="12dp"

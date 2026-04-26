@@ -88,4 +88,5 @@
     <string name="gen_requests_bio">View the requests you have made</string>
     <string name="requested_to">Requested to </string>
     <string name="notifications">Notifications</string>
+    <string name="closed">Closed</string>
 </resources>

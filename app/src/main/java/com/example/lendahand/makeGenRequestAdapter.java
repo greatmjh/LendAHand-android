@@ -48,7 +48,7 @@ public class makeGenRequestAdapter extends RecyclerView.Adapter<makeGenRequestAd
             super(itemView);
 
             itemText = itemView.findViewById(R.id.itemText);
-            selectButton = itemView.findViewById(R.id.selectButton);
+            selectButton = itemView.findViewById(R.id.deleteButton);
         }
     }
 }
