@@ -3,6 +3,7 @@ package com.example.lendahand;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -28,7 +29,18 @@ public class makeDonation extends AppCompatActivity {
     }
 
     public void selectItemOnClick(View v)   {
-
+        TextView itemTypeText = findViewById(R.id.itemTypeText);
+        ItemPickerUI.chooseFromScreen(this, new ItemPickerUI.ItemPickerCallback() {
+            @Override
+            public void onComplete(ItemCategory result) {
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        itemTypeText.setText(result.getItemName());
+                    }
+                });
+            }
+        });
     }
 
 
