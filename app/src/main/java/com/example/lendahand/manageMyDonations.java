@@ -53,4 +53,7 @@ public class manageMyDonations extends AppCompatActivity {
         Intent intent = new Intent(this, makeDonation.class);
         startActivity(intent);
     }
+    public void viewWhatPeopleNeedClick(View v) {
+        startActivity(new Intent(this, HighlyRequestedItems.class));
+    }
 }

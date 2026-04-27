@@ -12,6 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.LendAHand">
         <activity
+            android:name=".HighlyRequestedItems"
+            android:exported="true" />
+        <activity
             android:name=".findDonations"
             android:exported="false" />
         <activity
@@ -59,7 +62,7 @@
             android:exported="true" />
         <activity
             android:name=".menuActivity"
-            android:exported="true"/>
+            android:exported="true" />
         <activity
             android:name=".MainActivity"
             android:exported="true">
