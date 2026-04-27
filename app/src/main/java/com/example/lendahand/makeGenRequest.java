@@ -21,12 +21,7 @@ public class makeGenRequest extends AppCompatActivity {
         ItemPickerUI.chooseFromScreen(this, new ItemPickerUI.ItemPickerCallback() {
             @Override
             public void onComplete(ItemCategory result) {
-                runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        itemTypeText.setText(result.getItemName());
-                    }
-                });
+                itemTypeText.setText(result.getItemName());
             }
         });
     }
