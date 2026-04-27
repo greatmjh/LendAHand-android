@@ -21,7 +21,7 @@ public class ItemPickerUI {
             options[i] = roots.get(i).getItemName();
         }
         //Base category picker
-        final int[] resultIndex = {0}; //sneaky trick to let us modify from inside the onclick
+        final int[] resultIndex = {-1}; //sneaky trick to let us modify from inside the onclick
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
         builder.setTitle("Select item category");
         builder.setSingleChoiceItems(options, -1, new DialogInterface.OnClickListener() {
@@ -32,8 +32,12 @@ public class ItemPickerUI {
             }
         });
         builder.setOnDismissListener(dialog -> {
-            ItemCategory next = roots.get(resultIndex[0]);
-            internalCallback.run(context, callback, next);
+            //only go down if the user actually clicked something
+            if (resultIndex[0] != -1) {
+                ItemCategory next = roots.get(resultIndex[0]);
+                internalCallback.run(context, callback, next);
+            }
+
         });
         AlertDialog alert = builder.create();
         alert.show();
