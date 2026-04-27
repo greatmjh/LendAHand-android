@@ -1,6 +1,8 @@
 package com.example.lendahand;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -9,6 +11,13 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 public class manageMyDonations extends AppCompatActivity {
+
+    public void menuBtnClick(View v){
+        previousView.setPrevView(manageMyDonations.class);
+
+        Intent intent = new Intent(this, menuActivity.class);
+        startActivity(intent);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

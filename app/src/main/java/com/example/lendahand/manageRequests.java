@@ -1,5 +1,6 @@
 package com.example.lendahand;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
@@ -20,6 +21,13 @@ public class manageRequests extends AppCompatActivity {
 
     LinkedList<OutgoingReq> openReqs, closedReqs;
     ManageRequestAdapter adapter;
+    public void menuBtnClick(View v){
+        previousView.setPrevView(manageRequests.class);
+
+        Intent intent = new Intent(this, menuActivity.class);
+        startActivity(intent);
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

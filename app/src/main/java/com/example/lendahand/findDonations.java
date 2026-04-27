@@ -10,18 +10,10 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
-public class requestsReceived extends AppCompatActivity {
-
-    public void openOnClick(View v)  {
-
-    }
-
-    public void fulfillOnClick(View v)  {
-
-    }
+public class findDonations extends AppCompatActivity {
 
     public void menuBtnClick(View v){
-        previousView.setPrevView(requestsReceived.class);
+        previousView.setPrevView(findDonations.class);
 
         Intent intent = new Intent(this, menuActivity.class);
         startActivity(intent);
@@ -31,7 +23,7 @@ public class requestsReceived extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_requests_received);
+        setContentView(R.layout.activity_find_donations);
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);

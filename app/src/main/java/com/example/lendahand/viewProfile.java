@@ -12,6 +12,13 @@ import androidx.core.view.WindowInsetsCompat;
 
 public class viewProfile extends AppCompatActivity {
 
+    public void menuBtnClick(View v){
+        previousView.setPrevView(viewProfile.class);
+
+        Intent intent = new Intent(this, menuActivity.class);
+        startActivity(intent);
+    }
+
     public void editProfileClick(View v)    {
         Intent intent = new Intent(this, profileSettings.class);
         startActivity(intent);

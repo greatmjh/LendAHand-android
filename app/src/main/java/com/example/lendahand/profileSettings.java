@@ -13,6 +13,8 @@ import androidx.core.view.WindowInsetsCompat;
 public class profileSettings extends AppCompatActivity {
 
     public void changePassClick(View v) {
+        previousView.setPrevView(profileSettings.class);
+
         Intent intent = new Intent(this, changePassword.class);
         startActivity(intent);
     }
@@ -23,6 +25,11 @@ public class profileSettings extends AppCompatActivity {
 
     public void cancelClick(View v) {
         Intent intent = new Intent(this, viewProfile.class);
+        startActivity(intent);
+    }
+
+    public void menuBtnClick(View v){
+        Intent intent = new Intent(this, menuActivity.class);
         startActivity(intent);
     }
 
