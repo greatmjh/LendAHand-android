@@ -9,6 +9,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+import java.util.ArrayList;
 
 public class manageMyDonations extends AppCompatActivity {
 
@@ -29,5 +33,19 @@ public class manageMyDonations extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+
+
+        RecyclerView recyclerView = findViewById(R.id.recyclerViewManageDonations);
+        ArrayList<manageMyDonationsItem> itemList = new ArrayList<>();
+
+        //sample data
+        itemList.add(new manageMyDonationsItem("Baked beans", 3));
+        itemList.add(new manageMyDonationsItem("Shirt", 1));
+
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+        //set adapter
+        manageMyDonationsAdapter adapter = new manageMyDonationsAdapter(itemList);
+        recyclerView.setAdapter(adapter);
     }
 }
