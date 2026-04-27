@@ -22,57 +22,57 @@
         app:srcCompat="?attr/actionModeCloseDrawable" />
 
     <Button
+        android:id="@+id/notificationMenu"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="start"
-        android:backgroundTint="#FFFFFF"
+        android:background="@android:color/transparent"
         android:maxLines="1"
         android:onClick="menuClick"
         android:paddingStart="20dp"
         android:paddingTop="16dp"
-        android:paddingBottom="16dp"
         android:paddingEnd="0dp"
+        android:paddingBottom="16dp"
         android:text="@string/notifications"
         android:textAlignment="viewStart"
         android:textAppearance="@style/TextAppearance.AppCompat.Small"
-        android:textColor="@color/black"
-        android:id="@+id/notificationMenu"
+        android:textColor="?android:attr/textColorPrimary"
         android:textSize="14sp" />
 
     <Button
-        android:layout_height="wrap_content"
-        android:layout_width="match_parent"
         android:id="@+id/reqReceivedMenu"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_gravity="start"
-        android:textSize="14sp"
-        android:backgroundTint="#FFFFFF"
+        android:background="@android:color/transparent"
         android:maxLines="1"
         android:onClick="menuClick"
         android:paddingStart="20dp"
         android:paddingTop="16dp"
-        android:paddingBottom="16dp"
         android:paddingEnd="0dp"
+        android:paddingBottom="16dp"
         android:text="@string/requests_received"
         android:textAlignment="viewStart"
         android:textAppearance="@style/TextAppearance.AppCompat.Small"
-        android:textColor="@color/black"/>
+        android:textColor="?android:attr/textColorPrimary"
+        android:textSize="14sp" />
 
     <Button
         android:id="@+id/manageRequestsMenu"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="start"
-        android:backgroundTint="#FFFFFF"
+        android:background="@android:color/transparent"
         android:maxLines="1"
         android:onClick="menuClick"
         android:paddingStart="20dp"
         android:paddingTop="16dp"
-        android:paddingBottom="16dp"
         android:paddingEnd="0dp"
+        android:paddingBottom="16dp"
         android:text="@string/requests_sent"
         android:textAlignment="viewStart"
         android:textAppearance="@style/TextAppearance.AppCompat.Small"
-        android:textColor="@color/black"
+        android:textColor="?android:attr/textColorPrimary"
         android:textSize="14sp" />
 
     <Button
@@ -80,17 +80,17 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="start"
-        android:backgroundTint="#FFFFFF"
+        android:background="@android:color/transparent"
         android:maxLines="1"
         android:onClick="menuClick"
         android:paddingStart="20dp"
         android:paddingTop="16dp"
-        android:paddingBottom="16dp"
         android:paddingEnd="0dp"
+        android:paddingBottom="16dp"
         android:text="@string/manage_my_donations"
         android:textAlignment="viewStart"
         android:textAppearance="@style/TextAppearance.AppCompat.Small"
-        android:textColor="@color/black"
+        android:textColor="?android:attr/textColorPrimary"
         android:textSize="14sp" />
 
     <Button
@@ -98,17 +98,17 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="start"
-        android:backgroundTint="#FFFFFF"
+        android:background="@android:color/transparent"
         android:maxLines="1"
         android:onClick="menuClick"
         android:paddingStart="20dp"
         android:paddingTop="16dp"
-        android:paddingBottom="16dp"
         android:paddingEnd="0dp"
+        android:paddingBottom="16dp"
         android:text="@string/find_donations"
         android:textAlignment="viewStart"
         android:textAppearance="@style/TextAppearance.AppCompat.Small"
-        android:textColor="@color/black"
+        android:textColor="?android:attr/textColorPrimary"
         android:textSize="14sp" />
 
     <Button
@@ -116,17 +116,17 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="start"
-        android:backgroundTint="#FFFFFF"
+        android:background="@android:color/transparent"
         android:maxLines="1"
         android:onClick="menuClick"
         android:paddingStart="20dp"
         android:paddingTop="16dp"
-        android:paddingBottom="16dp"
         android:paddingEnd="0dp"
+        android:paddingBottom="16dp"
         android:text="@string/top_donors"
         android:textAlignment="viewStart"
         android:textAppearance="@style/TextAppearance.AppCompat.Small"
-        android:textColor="@color/black"
+        android:textColor="?android:attr/textColorPrimary"
         android:textSize="14sp" />
 
     <Button
@@ -134,18 +134,18 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="start"
-        android:backgroundTint="#FFFFFF"
+        android:background="@android:color/transparent"
         android:maxLines="1"
         android:onClick="menuClick"
         android:paddingStart="20dp"
         android:paddingTop="16dp"
-        android:paddingBottom="16dp"
         android:paddingEnd="0dp"
+        android:paddingBottom="16dp"
         android:text="@string/log_out"
         android:textAlignment="viewStart"
         android:textAppearance="@style/TextAppearance.AppCompat.Small"
-        android:textColor="@color/black"
+        android:textColor="?android:attr/textColorPrimary"
         android:textSize="14sp"
-        android:textStyle="bold|italic"/>
+        android:textStyle="bold|italic" />
 
 </LinearLayout>
