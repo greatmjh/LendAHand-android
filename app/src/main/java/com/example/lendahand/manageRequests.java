@@ -40,9 +40,9 @@ public class manageRequests extends AppCompatActivity {
         });
 
         openReqs = new LinkedList<>();
-        openReqs.add(new OutgoingReq("Baked beans", "Greg Owen", "", "", "open"));
-        openReqs.add(new OutgoingReq( "R12 Airtime Voucher","Mark Gibbons",  "", "", "open"));
-        openReqs.add(new OutgoingReq( "Shirt", "Dirk Schutte","", "", "open"));
+        openReqs.add(new OutgoingReqItem("Baked beans", "Greg Owen", "", "", "open"));
+        openReqs.add(new OutgoingReqItem( "R12 Airtime Voucher","Mark Gibbons",  "", "", "open"));
+        openReqs.add(new OutgoingReqItem( "Shirt", "Dirk Schutte","", "", "open"));
 
         closedReqs = new LinkedList<>();
         closedReqs.add(new OutgoingReq( "Baked beans", "Greg Owen","+27 83 123 8718", "", "accepted"));
