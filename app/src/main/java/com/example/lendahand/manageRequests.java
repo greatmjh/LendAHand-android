@@ -45,9 +45,9 @@ public class manageRequests extends AppCompatActivity {
         openReqs.add(new OutgoingReqItem( "Shirt", "Dirk Schutte","", "", "open"));
 
         closedReqs = new LinkedList<>();
-        closedReqs.add(new OutgoingReq( "Baked beans", "Greg Owen","+27 83 123 8718", "", "accepted"));
-        closedReqs.add(new OutgoingReq( "R12 Airtime Voucher","Mark Gibbons", "", "", "rejected"));
-        closedReqs.add(new OutgoingReq( "Shirt", "Dirk Schutte","+27 62 817 1281", "", "accepted"));
+        closedReqs.add(new OutgoingReqItem( "Baked beans", "Greg Owen","+27 83 123 8718", "", "accepted"));
+        closedReqs.add(new OutgoingReqItem( "R12 Airtime Voucher","Mark Gibbons", "", "", "rejected"));
+        closedReqs.add(new OutgoingReqItem( "Shirt", "Dirk Schutte","+27 62 817 1281", "", "accepted"));
 
         Chip openChip = findViewById(R.id.chipOpen);
         if (openChip.isChecked()) {
