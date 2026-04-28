@@ -48,4 +48,12 @@ public class manageMyDonations extends AppCompatActivity {
         manageMyDonationsAdapter adapter = new manageMyDonationsAdapter(itemList);
         recyclerView.setAdapter(adapter);
     }
+
+    public void newDonationButtonClick(View v) {
+        Intent intent = new Intent(this, makeDonation.class);
+        startActivity(intent);
+    }
+    public void viewWhatPeopleNeedClick(View v) {
+        startActivity(new Intent(this, HighlyRequestedItems.class));
+    }
 }

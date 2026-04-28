@@ -1,8 +1,6 @@
 package com.example.lendahand;
 
 import android.os.Bundle;
-import android.view.View;
-import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -14,40 +12,29 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 
-public class makeGenRequest extends AppCompatActivity {
-
-    public void selectItemOnClick(View v)   {
-        TextView itemTypeText = findViewById(R.id.itemTypeText);
-        ItemPickerUI.chooseFromScreen(this, new ItemPickerUI.ItemPickerCallback() {
-            @Override
-            public void onComplete(ItemCategory result) {
-                itemTypeText.setText(result.getItemName());
-            }
-        });
-    }
+public class HighlyRequestedItems extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_make_gen_request);
+        setContentView(R.layout.activity_highly_requested_items);
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
 
-        RecyclerView recyclerView = findViewById(R.id.recyclerViewOnMakeGenRequest);
-        ArrayList<genRequestItem> itemList = new ArrayList<>();
-
-        //sample data
-        itemList.add(new genRequestItem("Baked beans"));
-
+        RecyclerView recyclerView = findViewById(R.id.recyclerViewHighlyReq);
+        ArrayList<HighlyRequestedItem> sampleData = new ArrayList<>();
+        sampleData.add(new HighlyRequestedItem("Tinned Tuna", 18));
+        sampleData.add(new HighlyRequestedItem("R12 Airtime voucher", 15));
+        sampleData.add(new HighlyRequestedItem("Blanket", 10));
 
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        // Set Adapter
-        makeGenRequestAdapter adapter = new makeGenRequestAdapter(itemList);
+        //set adapter
+        HighlyRequestedItemsAdapter adapter = new HighlyRequestedItemsAdapter(sampleData);
         recyclerView.setAdapter(adapter);
     }
 }

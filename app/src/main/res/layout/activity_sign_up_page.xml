@@ -19,12 +19,25 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/bioEntry"
-        android:layout_width="0dp"
+        android:id="@+id/fullNameEntry"
+        android:layout_width="335dp"
         android:layout_height="48dp"
-        android:layout_marginStart="36dp"
+        android:layout_marginTop="100dp"
+        android:background="#D9D9D9"
+        android:ems="10"
+        android:includeFontPadding="true"
+        android:inputType="text"
+        android:textAlignment="textStart"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/bioEntry"
+        android:layout_width="335dp"
+        android:layout_height="48dp"
         android:layout_marginTop="20dp"
-        android:layout_marginEnd="36dp"
         android:background="#D9D9D9"
         android:ems="10"
         android:includeFontPadding="true"
@@ -37,11 +50,9 @@
 
     <EditText
         android:id="@+id/passwordEntry"
-        android:layout_width="0dp"
+        android:layout_width="335dp"
         android:layout_height="48dp"
-        android:layout_marginStart="36dp"
         android:layout_marginTop="20dp"
-        android:layout_marginEnd="36dp"
         android:background="#D9D9D9"
         android:ems="10"
         android:includeFontPadding="true"
@@ -54,11 +65,9 @@
 
     <EditText
         android:id="@+id/confirmPasswordEntry"
-        android:layout_width="0dp"
+        android:layout_width="335dp"
         android:layout_height="48dp"
-        android:layout_marginStart="36dp"
         android:layout_marginTop="20dp"
-        android:layout_marginEnd="36dp"
         android:background="#D9D9D9"
         android:ems="10"
         android:includeFontPadding="true"
@@ -71,11 +80,9 @@
 
     <EditText
         android:id="@+id/emailEntry"
-        android:layout_width="0dp"
+        android:layout_width="335dp"
         android:layout_height="48dp"
-        android:layout_marginStart="36dp"
         android:layout_marginTop="20dp"
-        android:layout_marginEnd="36dp"
         android:background="#D9D9D9"
         android:ems="10"
         android:includeFontPadding="true"
@@ -84,15 +91,13 @@
         android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textInputLayout" />
+        app:layout_constraintTop_toBottomOf="@+id/fullNameEntry" />
 
     <EditText
         android:id="@+id/phoneEntry"
-        android:layout_width="0dp"
+        android:layout_width="335dp"
         android:layout_height="48dp"
-        android:layout_marginStart="36dp"
         android:layout_marginTop="20dp"
-        android:layout_marginEnd="36dp"
         android:background="#D9D9D9"
         android:ems="10"
         android:includeFontPadding="true"
@@ -185,21 +190,14 @@
         app:layout_constraintStart_toStartOf="@+id/emailEntry"
         app:layout_constraintTop_toTopOf="@+id/emailEntry" />
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/textInputLayout"
-        android:layout_width="0dp"
+    <TextView
+        android:id="@+id/nameText"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="36dp"
-        android:layout_marginTop="100dp"
-        android:layout_marginEnd="36dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/fullNameEntry"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/full_name" />
-    </com.google.android.material.textfield.TextInputLayout>
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="4dp"
+        android:text="@string/full_name"
+        android:textSize="12sp"
+        app:layout_constraintStart_toStartOf="@+id/fullNameEntry"
+        app:layout_constraintTop_toTopOf="@+id/fullNameEntry" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -71,10 +71,12 @@
         android:id="@+id/numOfItemsText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="44dp"
+        android:layout_marginTop="28dp"
         android:text="Quantity"
         android:textSize="12sp"
-        tools:layout_editor_absoluteX="47dp"
-        tools:layout_editor_absoluteY="212dp" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/itemPromptText" />
 
     <TextView
         android:id="@+id/quantityValText"
@@ -117,6 +119,7 @@
         android:layout_width="335dp"
         android:layout_height="48dp"
         android:layout_marginTop="158dp"
+        android:onClick="selectItemOnClick"
         android:paddingStart="12dp"
         android:paddingTop="12dp"
         android:text="@string/select_item_type"
@@ -126,7 +129,7 @@
         tools:ignore="RtlSymmetry" />
 
     <ImageButton
-        android:id="@+id/deleteButton"
+        android:id="@+id/selectItemButton"
         android:layout_width="20dp"
         android:layout_height="20dp"
         android:layout_marginEnd="12dp"
