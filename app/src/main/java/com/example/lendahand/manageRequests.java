@@ -19,7 +19,7 @@ import java.util.LinkedList;
 
 public class manageRequests extends AppCompatActivity {
 
-    LinkedList<OutgoingReq> openReqs, closedReqs;
+    LinkedList<OutgoingReqItem> openReqs, closedReqs;
     ManageRequestAdapter adapter;
     public void menuBtnClick(View v){
         previousView.setPrevView(manageRequests.class);
