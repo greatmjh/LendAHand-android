@@ -55,41 +55,48 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
-        android:id="@+id/openReqButton"
-        android:layout_width="60dp"
-        android:layout_height="42dp"
-        android:layout_marginStart="30dp"
-        android:layout_marginTop="14dp"
-        android:backgroundTint="#D9D9D9"
-        android:onClick="openOnClick"
-        android:paddingLeft="10dp"
-        android:paddingRight="10dp"
-        android:text="@string/open"
-        android:textColor="#313131"
-        android:textSize="12sp"
-        app:cornerRadius="10dp"
-        app:iconPadding="8dp"
+    <com.google.android.material.chip.ChipGroup
+        android:id="@+id/chipGroup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="12dp"
+        app:checkedChip="@id/chipOpen"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/reqRecievedInfo" />
+        app:layout_constraintTop_toBottomOf="@+id/reqRecievedInfo"
+        app:selectionRequired="true"
+        app:singleSelection="true"
+        android:backgroundTint="#FFFFFF">
 
-    <Button
-        android:id="@+id/fulfillReqButton"
-        android:layout_width="80dp"
-        android:layout_height="42dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="14dp"
-        android:backgroundTint="#D9D9D9"
-        android:onClick="fulfillOnClick"
-        android:paddingLeft="10dp"
-        android:paddingRight="10dp"
+        <com.google.android.material.chip.Chip
+            android:id="@+id/chipOpen"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checkable="true"
+            android:onClick="openOnClick"
+            android:text="@string/open" />
 
-        android:text="@string/fulfilled"
-        android:textColor="#313131"
-        android:textSize="12sp"
-        app:cornerRadius="10dp"
-        app:layout_constraintStart_toEndOf="@+id/openReqButton"
-        app:layout_constraintTop_toBottomOf="@+id/reqRecievedInfo" />
+        <com.google.android.material.chip.Chip
+            android:id="@+id/chipFulfill"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checkable="true"
+            android:onClick="fulfillOnClick"
+            android:text="@string/fulfilled" />
+    </com.google.android.material.chip.ChipGroup>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerViewRequestsReceived"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="#FFFFFF"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginBottom="2dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/chipGroup" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
