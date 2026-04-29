@@ -11,17 +11,18 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
+
 import java.util.List;
 
 
 public class ManageRequestAdapter extends RecyclerView.Adapter<ManageRequestAdapter.MyViewHolder> {
-    private List<OutgoingReq> itemList;
+    private List<OutgoingReqItem> itemList;
 
-    public void setItemList(List<OutgoingReq> itemList) {
+    public void setItemList(List<OutgoingReqItem> itemList) {
         this.itemList = itemList;
     }
 
-    public ManageRequestAdapter(List<OutgoingReq> itemList){
+    public ManageRequestAdapter(List<OutgoingReqItem> itemList){
         this.itemList = itemList;
     }
 
@@ -35,7 +36,7 @@ public class ManageRequestAdapter extends RecyclerView.Adapter<ManageRequestAdap
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-        OutgoingReq requestItem = itemList.get(position);
+        OutgoingReqItem requestItem = itemList.get(position);
         holder.mainText.setText(requestItem.getItemName());
         holder.subText.setText(requestItem.getSubtext());
         if (requestItem.isOpen()) {
