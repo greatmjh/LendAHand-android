@@ -53,19 +53,19 @@ public class requestsReceived extends AppCompatActivity {
 
         openReqs = new LinkedList<>();
         openReqs.add(new IncomingReqItem("Baked beans", "Greg Owen",
-                "", "", 1.5,true));
+                "+27 83 123 8718", "looking for Xander", "", 1.5,true));
         openReqs.add(new IncomingReqItem( "R12 Airtime Voucher","Mark Gibbons",
-                "", "", 3,true));
+                "+27 83 571 1291", "people also call me Plank", "", 3,true));
         openReqs.add(new IncomingReqItem( "Shirt", "Dirk Schutte",
-                "", "", 4,true));
+                "+27 62 817 1281", "hier vir die bier", "", 4,true));
 
         fulfilledReqs = new LinkedList<>();
         fulfilledReqs.add(new IncomingReqItem( "Baked beans", "Greg Owen",
-                "+27 83 123 8718", "", 5,false));
+                "+27 83 123 8718", "looking for Xander", "" , 5,false));
         fulfilledReqs.add(new IncomingReqItem( "R12 Airtime Voucher","Mark Gibbons",
-                "", "", 1,false));
+                "+27 83 571 1291", "people also call me Plank", "" , 1,false));
         fulfilledReqs.add(new IncomingReqItem( "Shirt", "Dirk Schutte",
-                "+27 62 817 1281", "", 0.5,false));
+                "+27 62 817 1281", "hier vir die bier", "" , 0.5,false));
 
         Chip openChip = findViewById(R.id.chipOpen);
         if (openChip.isChecked()) {
