@@ -94,7 +94,7 @@
         android:layout_marginStart="36dp"
         android:layout_marginTop="8dp"
         android:backgroundTint="#D9D9D9"
-        android:onClick="changePassClick"
+        android:onClick="forgotPassClick"
         android:text="@string/forgot_password"
         android:textColor="#313131"
         android:textSize="12sp"

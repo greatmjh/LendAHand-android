@@ -1,10 +1,12 @@
 package com.example.lendahand;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
 import androidx.activity.EdgeToEdge;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
@@ -17,9 +19,17 @@ public class loginPage extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void changePassClick(View v) {
-        Intent intent = new Intent(this, changePassword.class);
-        startActivity(intent);
+    public void forgotPassClick(View v) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Forgot password");
+        builder.setMessage("If you forgot your password, please contact our team for assistance at 2955114@students.wits.ac.za");
+        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+            }
+        });
+        builder.show();
     }
 
     public void logInClick(View v)  {
