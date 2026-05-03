@@ -54,7 +54,7 @@ public class menuActivity extends AppCompatActivity {
             openScreen(topDonors.class);
         }else if (id  ==  R.id.logOutMenu) {
             //TODO: log user out
-            openScreen(MainActivity.class);
+            openScreen(WelcomePage.class);
         }
     }
 
