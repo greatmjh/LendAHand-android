@@ -10,8 +10,8 @@ public class AppLauncher extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        SessionState sessionState = SessionState.getInstance(this);
-        if (sessionState.isLoggedIn()) {
+        DataManager dataManager = DataManager.getInstance(this);
+        if (dataManager.isLoggedIn()) {
             startActivity(new Intent(this, topDonors.class));
         } else {
             startActivity(new Intent(this, WelcomePage.class));

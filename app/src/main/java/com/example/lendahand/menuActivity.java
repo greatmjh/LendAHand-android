@@ -2,9 +2,6 @@ package com.example.lendahand;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 
 import androidx.activity.EdgeToEdge;
@@ -53,7 +50,7 @@ public class menuActivity extends AppCompatActivity {
         }else if (id  ==  R.id.topDonorsMenu) {
             openScreen(topDonors.class);
         }else if (id  ==  R.id.logOutMenu) {
-            //TODO: log user out
+            DataManager.getInstance(this).logOut();
             openScreen(WelcomePage.class);
         }
     }
