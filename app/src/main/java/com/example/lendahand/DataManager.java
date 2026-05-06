@@ -16,6 +16,9 @@ import com.example.lendahand.apiclasses.ProfileInfo;
 import com.example.lendahand.apiclasses.RegisterRequest;
 import com.google.gson.Gson;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.IOException;
 
 import okhttp3.Call;
@@ -113,7 +116,7 @@ public class DataManager {
         });
     }
 
-    //Log in endpoint -- callback with no parameters
+    //Log in endpoint -- callback with no parameters (called on success)
     public void APILogin(LoginRequest req, Runnable callback) {
         String payloadJson = gson.toJson(req);
 
@@ -153,6 +156,69 @@ public class DataManager {
                 }
             }
         });
+    }
+
+    //Change password endpoint -- callback with no parameters called on success
+    public void APIChangePassword(String oldPassword, String newPassword, Runnable callback) {
+        try {
+            //encode data
+            JSONObject jsonObj = new JSONObject();
+            jsonObj.put("sessionKey", getSessionKey());
+            jsonObj.put("oldPassword", oldPassword);
+            jsonObj.put("newPassword", newPassword);
+
+            String payloadJson = jsonObj.toString();
+
+            //Create OkHttp Request
+            OkHttpClient client = new OkHttpClient();
+            RequestBody body = RequestBody.create(payloadJson, MediaType.parse("application/json"));
+            Request signUpRequest = new Request.Builder()
+                    .url(HttpUrl.parse(applicationContext.getString(R.string.apiServerAddr)).newBuilder().
+                            addPathSegment("change_password.php").build())
+                    .post(body)
+                    .build();
+
+            //Run the request
+            client.newCall(signUpRequest).enqueue(new Callback() {
+                @Override
+                public void onFailure(@NonNull Call call, @NonNull IOException e) {
+                    e.printStackTrace();
+                    toast("Please check your internet connection");
+
+                }
+
+                @Override
+                public void onResponse(@NonNull Call call, @NonNull Response response) throws IOException {
+                    try {
+                        String responseBody = response.body().string();
+                        //Handle errors from server
+                        if (!response.isSuccessful()) {
+                            handleHttpError(response, responseBody);
+                        }
+                        //Deserialise our response
+                        LogInResponse decodedResponse = gson.fromJson(responseBody, LogInResponse.class);
+
+                        //Check success
+                        if (decodedResponse.success) {
+                            //save the new session key we got
+                            sessionKey = decodedResponse.sessionKey;
+                            updatePrefs();
+                            callback.run();
+                        } else {
+                            //display the error
+                            toast(decodedResponse.errorMessage);
+                        }
+                    } catch (IOException e) { //shouldn't really happen the way we are doing this
+                        e.printStackTrace();
+                    }
+                }
+            });
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+
     }
 
     //==== Class internals ====
@@ -196,6 +262,9 @@ public class DataManager {
             toast("Internal server error");
         } else if (response.code() == 400) {
             toast("Bad input: " + responseBody);
+        } else if (response.code() == 401) {
+            toast("You have been logged out.");
+            logOut();
         }
         else {
             toast("Unexpected HTTP error:" + response.code());

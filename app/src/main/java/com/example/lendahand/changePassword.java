@@ -1,6 +1,9 @@
 package com.example.lendahand;
 
 import android.os.Bundle;
+import android.view.View;
+import android.widget.EditText;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -20,5 +23,31 @@ public class changePassword extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+    }
+
+    public void onChangePasswordClick(View v) {
+        EditText etCurrPass = findViewById(R.id.currPass);
+        EditText etNewPass = findViewById(R.id.newPass);
+        EditText etConfirmPass = findViewById(R.id.confirmNewPass);
+        String currPass = etCurrPass.getText().toString();
+        String newPass = etNewPass.getText().toString();
+        String confirmPass = etConfirmPass.getText().toString();
+
+        if (newPass.equals(confirmPass)) {
+            //Do the password change
+            DataManager.getInstance(this).APIChangePassword(currPass, newPass, new Runnable() {
+                @Override
+                public void run() {
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            finish();
+                        }
+                    });
+                }
+            });
+        } else {
+            Toast.makeText(this, "Passwords do not match!", Toast.LENGTH_SHORT).show();
+        }
     }
 }
