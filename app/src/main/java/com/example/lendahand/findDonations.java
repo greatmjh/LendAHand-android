@@ -9,8 +9,35 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import kotlin.collections.ArrayDeque;
 
 public class findDonations extends AppCompatActivity {
+
+    List<String> essentialSubcategories;
+    List<String> nonEssentialSubcategories;
+
+    List<String> visibleSubcategories;
+
+    ArrayList<findDonationsItem> itemList; //TODO: receive available items from server
+    ArrayList<findDonationsItem> filteredItemList;
+
+
+    public void essentialsOnClick(View v)   {
+        essentialList();
+        visibleSubcategories = essentialSubcategories;
+    }
+
+    public void nonEssentialsOnClick(View v) {
+        nonEssentialList();
+        visibleSubcategories = nonEssentialSubcategories;
+    }
+
 
     public void menuBtnClick(View v){
         previousView.setPrevView(findDonations.class);
@@ -29,5 +56,73 @@ public class findDonations extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+
+                //SUBCATEGORIES RECYCLERVIEW
+        RecyclerView recyclerView = findViewById(R.id.subcategoryRecyclerView);
+        //make view horizontal
+        recyclerView.setLayoutManager(
+                new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
+        );
+
+        findDonationsSubcategoryAdapter adapter = new findDonationsSubcategoryAdapter(visibleSubcategories);
+
+        //set on click listener
+        adapter.setOnSubcategoryClickListener(this::updateMainItemList);
+
+        recyclerView.setAdapter(adapter);
+                //--------------------------
+
+                //ITEM LIST RECYCLERVIEW
+        RecyclerView itemRecyclerView = findViewById(R.id.findDonationsRecyclerView);
+
+        //add sample data
+        {
+            itemList.add(new findDonationsItem("Baked Beans", "Food",3,5));
+            itemList.add(new findDonationsItem("T-shirt", "Clothes",1,2));
+            itemList.add(new findDonationsItem("Toothbrush", "Hygiene",3,5));
+            itemList.add(new findDonationsItem("Chair", "Furniture",3,5));
+            itemList.add(new findDonationsItem("Kettle", "Appliances",3,5));
+
+        }
+
+        findDonationsAdapter adapterItems = new findDonationsAdapter(itemList);
+
+        itemRecyclerView.setAdapter(adapterItems);
+                //----------------------------
+
     }
+
+    public void essentialList() {
+        essentialSubcategories = new ArrayList<>();
+
+        essentialSubcategories.add("Food");
+        essentialSubcategories.add("Clothes");
+        essentialSubcategories.add("Hygiene");
+        essentialSubcategories.add("Furniture");
+        essentialSubcategories.add("Appliances");
+    }
+
+    public void nonEssentialList()  {
+        nonEssentialSubcategories = new ArrayList<>();
+
+        nonEssentialSubcategories.add("Data");
+        nonEssentialSubcategories.add("Airtime");
+        nonEssentialSubcategories.add("Recreation + Sports");
+        nonEssentialSubcategories.add("Decor");
+        nonEssentialSubcategories.add("Electronics");
+    }
+
+    public void updateMainItemList(String subcategory){ //TODO: make the vert recyclerview display items that fit the selected categories
+        filteredItemList.clear();
+
+        for (findDonationsItem item:itemList){
+            if (item.getSubcategory().equals(subcategory)){
+                filteredItemList.add(item);
+            }
+        }
+
+        //TODO: adapter.updateData(filteredItemList)
+    }
+
+
 }
