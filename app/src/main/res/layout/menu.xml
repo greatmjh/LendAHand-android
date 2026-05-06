@@ -22,6 +22,24 @@
         app:srcCompat="?attr/actionModeCloseDrawable" />
 
     <Button
+        android:id="@+id/viewProfileMenu"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="start"
+        android:background="@android:color/transparent"
+        android:maxLines="1"
+        android:onClick="menuClick"
+        android:paddingStart="20dp"
+        android:paddingTop="16dp"
+        android:paddingEnd="0dp"
+        android:paddingBottom="16dp"
+        android:text="@string/my_profile"
+        android:textAlignment="viewStart"
+        android:textAppearance="@style/TextAppearance.AppCompat.Small"
+        android:textColor="?android:attr/textColorPrimary"
+        android:textSize="14sp" />
+
+    <Button
         android:id="@+id/notificationMenu"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
