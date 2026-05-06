@@ -5,8 +5,10 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@android:color/transparent"
     android:isScrollContainer="false"
-    tools:context=".findDonations">
+    tools:context=".findDonations"
+    android:backgroundTint="@null">
 
     <TextView
         android:id="@+id/findDonationsHeader"
@@ -24,7 +26,7 @@
         android:layout_width="50dp"
         android:layout_height="44dp"
         android:layout_marginStart="12dp"
-        android:background="#FFFFFF"
+        android:background="@color/white"
         android:onClick="menuBtnClick"
         android:src="@drawable/menu_icon"
         app:layout_constraintBottom_toBottomOf="@+id/findDonationsHeader"
@@ -36,7 +38,7 @@
         android:layout_width="50dp"
         android:layout_height="44dp"
         android:layout_marginEnd="12dp"
-        android:background="#FFFFFF"
+        android:background="@color/white"
         app:layout_constraintBottom_toBottomOf="@+id/findDonationsHeader"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/findDonationsHeader"
@@ -50,6 +52,8 @@
         android:layout_marginStart="20dp"
         android:layout_marginTop="36dp"
         app:checkedChip="@+id/essentialsChip"
+        app:checkedIcon="@drawable/bg_subcategory"
+        app:closeIcon="@drawable/bg_subcategory"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/findDonationsHeader"
         app:selectionRequired="true"
@@ -61,7 +65,9 @@
             android:layout_height="wrap_content"
             android:checkable="true"
             android:onClick="essentialsOnClick"
-            android:text="@string/essentials" />
+            android:text="@string/essentials"
+            app:checkedIcon="@drawable/bg_subcategory"
+            app:closeIcon="@drawable/bg_subcategory" />
 
         <com.google.android.material.chip.Chip
             android:id="@+id/nonEssentialsChip"
@@ -69,19 +75,22 @@
             android:layout_height="wrap_content"
             android:checkable="true"
             android:onClick="nonEssentialsOnClick"
-            android:text="@string/non_essentials" />
+            android:text="@string/non_essentials"
+            app:checkedIcon="@drawable/bg_subcategory"
+            app:closeIcon="@drawable/bg_subcategory" />
     </com.google.android.material.chip.ChipGroup>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/subcategoryRecyclerView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:background="@color/white"
         android:overScrollMode="never"
         android:scrollbars="none"
-        android:layout_marginTop="8dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginEnd="20dp"
-        app:layout_constraintTop_toBottomOf="@+id/essentialsChipGroup">
+        app:layout_constraintTop_toBottomOf="@+id/essentialsChipGroup"
+        tools:layout_editor_absoluteX="20dp">
+
     </androidx.recyclerview.widget.RecyclerView>
 
     <androidx.recyclerview.widget.RecyclerView
@@ -90,13 +99,12 @@
         android:layout_height="0dp"
         android:layout_marginTop="8dp"
         android:layout_marginBottom="8dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginEnd="20dp"
+        android:background="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/subcategoryRecyclerView">
+        app:layout_constraintTop_toBottomOf="@+id/subcategoryRecyclerView"
+        tools:layout_editor_absoluteX="20dp">
 
     </androidx.recyclerview.widget.RecyclerView>
-
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

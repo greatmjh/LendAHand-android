@@ -8,11 +8,12 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class findDonationsSubcategoryAdapter extends RecyclerView.Adapter<findDonationsSubcategoryAdapter.MyViewHolder>{
 
-    private List<String> subcategories;
+    private ArrayList<String> subcategories;
     private OnSubcategoryClickListener listener;
     private int selectedPosition = -1;
 
@@ -20,7 +21,7 @@ public class findDonationsSubcategoryAdapter extends RecyclerView.Adapter<findDo
         void onClick(String subcategory);
     }
 
-    public findDonationsSubcategoryAdapter(List<String> subcategories){
+    public findDonationsSubcategoryAdapter(ArrayList<String> subcategories){
         this.subcategories = subcategories;
     }
 
@@ -42,12 +43,22 @@ public class findDonationsSubcategoryAdapter extends RecyclerView.Adapter<findDo
         holder.textView.setText(filterName);
 
         holder.itemView.setOnClickListener(v -> {
+            int previousPosition = selectedPosition;
+            selectedPosition = holder.getAbsoluteAdapterPosition();
+
+            notifyItemChanged(previousPosition);
+            notifyItemChanged(selectedPosition);
+
             if (listener != null){
-                selectedPosition = holder.getAbsoluteAdapterPosition();
-                notifyDataSetChanged();
                 listener.onClick(filterName);
             }
         });
+
+        if (position == selectedPosition) {
+            holder.textView.setBackgroundResource(R.drawable.bg_subcategory_onclick);
+        } else {
+            holder.textView.setBackgroundResource(R.drawable.bg_subcategory);
+        }
     }
 
     @Override
@@ -65,5 +76,9 @@ public class findDonationsSubcategoryAdapter extends RecyclerView.Adapter<findDo
         }
     }
 
+    public void updateData(ArrayList<String> newList){
+        this.subcategories = newList;
+        notifyDataSetChanged();
+    }
 
 }

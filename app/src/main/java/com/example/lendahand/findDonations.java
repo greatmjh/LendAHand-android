@@ -3,6 +3,7 @@ package com.example.lendahand;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -12,6 +13,9 @@ import androidx.core.view.WindowInsetsCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.material.chip.Chip;
+import com.google.android.material.chip.ChipGroup;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,23 +23,27 @@ import kotlin.collections.ArrayDeque;
 
 public class findDonations extends AppCompatActivity {
 
-    List<String> essentialSubcategories;
-    List<String> nonEssentialSubcategories;
+    ArrayList<String> essentialSubcategories;
+    ArrayList<String> nonEssentialSubcategories;
 
-    List<String> visibleSubcategories;
+    ArrayList<String> visibleSubcategories;
 
-    ArrayList<findDonationsItem> itemList; //TODO: receive available items from server
-    ArrayList<findDonationsItem> filteredItemList;
+    ArrayList<findDonationsItem> itemList = new ArrayList<>();; //TODO: receive available items from server
+    ArrayList<findDonationsItem> filteredItemList = new ArrayList<>();  ;
 
+    findDonationsSubcategoryAdapter adapter;
+    findDonationsAdapter adapterItems;
 
     public void essentialsOnClick(View v)   {
         essentialList();
         visibleSubcategories = essentialSubcategories;
+        adapter.updateData(visibleSubcategories);
     }
 
     public void nonEssentialsOnClick(View v) {
         nonEssentialList();
         visibleSubcategories = nonEssentialSubcategories;
+        adapter.updateData(visibleSubcategories);
     }
 
 
@@ -57,6 +65,9 @@ public class findDonations extends AppCompatActivity {
             return insets;
         });
 
+        essentialList();
+        visibleSubcategories = essentialSubcategories;
+
                 //SUBCATEGORIES RECYCLERVIEW
         RecyclerView recyclerView = findViewById(R.id.subcategoryRecyclerView);
         //make view horizontal
@@ -64,7 +75,8 @@ public class findDonations extends AppCompatActivity {
                 new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
         );
 
-        findDonationsSubcategoryAdapter adapter = new findDonationsSubcategoryAdapter(visibleSubcategories);
+
+        adapter = new findDonationsSubcategoryAdapter(visibleSubcategories);
 
         //set on click listener
         adapter.setOnSubcategoryClickListener(this::updateMainItemList);
@@ -74,6 +86,7 @@ public class findDonations extends AppCompatActivity {
 
                 //ITEM LIST RECYCLERVIEW
         RecyclerView itemRecyclerView = findViewById(R.id.findDonationsRecyclerView);
+        itemRecyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         //add sample data
         {
@@ -82,10 +95,9 @@ public class findDonations extends AppCompatActivity {
             itemList.add(new findDonationsItem("Toothbrush", "Hygiene",3,5));
             itemList.add(new findDonationsItem("Chair", "Furniture",3,5));
             itemList.add(new findDonationsItem("Kettle", "Appliances",3,5));
-
         }
 
-        findDonationsAdapter adapterItems = new findDonationsAdapter(itemList);
+        adapterItems = new findDonationsAdapter(itemList);
 
         itemRecyclerView.setAdapter(adapterItems);
                 //----------------------------
@@ -121,7 +133,7 @@ public class findDonations extends AppCompatActivity {
             }
         }
 
-        //TODO: adapter.updateData(filteredItemList)
+        adapterItems.updateData(filteredItemList);
     }
 
 

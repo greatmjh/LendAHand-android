@@ -49,7 +49,7 @@ public class menuActivity extends AppCompatActivity {
         }else if (id  ==  R.id.manageDonationsMenu) {
             openScreen(manageMyDonations.class);
         }else if (id  ==  R.id.findDonationsMenu) {
-            //TODO: make find donations page and link here
+            openScreen(findDonations.class);
         }else if (id  ==  R.id.topDonorsMenu) {
             openScreen(topDonors.class);
         }else if (id  ==  R.id.logOutMenu) {
