@@ -24,7 +24,7 @@
         android:layout_width="335dp"
         android:layout_height="48dp"
         android:layout_marginTop="100dp"
-        android:background="#D9D9D9"
+        android:background="@color/md_theme_surfaceDim"
         android:ems="10"
         android:includeFontPadding="true"
         android:inputType="text|textEmailAddress"
@@ -39,7 +39,7 @@
         android:layout_width="335dp"
         android:layout_height="48dp"
         android:layout_marginTop="20dp"
-        android:background="#D9D9D9"
+        android:background="@color/md_theme_surfaceDim"
         android:ems="10"
         android:includeFontPadding="true"
         android:inputType="text|textPassword"
@@ -58,7 +58,7 @@
         android:layout_marginTop="4dp"
         android:text="@string/password"
         android:textSize="12sp"
-        app:layout_constraintStart_toStartOf="@+id/itemNameEntry"
+        android:textColor="@color/md_theme_onSurfaceVariant"        app:layout_constraintStart_toStartOf="@+id/itemNameEntry"
         app:layout_constraintTop_toTopOf="@+id/itemNameEntry" />
 
     <Button
@@ -79,10 +79,10 @@
         android:layout_height="42dp"
         android:layout_marginStart="12dp"
         android:layout_marginTop="14dp"
-        android:backgroundTint="#D9D9D9"
+        android:backgroundTint="@color/md_theme_surfaceDim"
         android:onClick="signUpClick"
         android:text="@string/don_t_have_an_account_sign_up"
-        android:textColor="#313131"
+        android:textColor="@color/md_theme_scrim"
         android:textSize="12sp"
         app:layout_constraintStart_toEndOf="@+id/loginButton"
         app:layout_constraintTop_toBottomOf="@+id/itemNameEntry" />
@@ -93,10 +93,10 @@
         android:layout_height="42dp"
         android:layout_marginStart="36dp"
         android:layout_marginTop="8dp"
-        android:backgroundTint="#D9D9D9"
+        android:backgroundTint="@color/md_theme_surfaceDim"
         android:onClick="changePassClick"
         android:text="@string/forgot_password"
-        android:textColor="#313131"
+        android:textColor="@color/md_theme_scrim"
         android:textSize="12sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/loginButton" />
@@ -105,10 +105,10 @@
         android:id="@+id/emailAddText2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="4dp"
+        android:layout_marginStart="8dp"
         android:layout_marginTop="4dp"
         android:text="@string/email_address"
-        android:textSize="12sp"
+        android:textColor="@color/md_theme_onSurfaceVariant"        android:textSize="12sp"
         app:layout_constraintStart_toStartOf="@+id/emailEntryLogin"
         app:layout_constraintTop_toTopOf="@+id/emailEntryLogin" />
 </androidx.constraintlayout.widget.ConstraintLayout>

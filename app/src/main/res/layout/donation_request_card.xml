@@ -21,7 +21,7 @@
                 android:id="@+id/deleteButton"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:backgroundTint="#FFFFFF"
+                android:backgroundTint="@android:color/transparent"
                 android:onClick="deleteItem"
                 android:src="@drawable/delete"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -37,7 +37,8 @@
                 android:textSize="12sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/mainText" />
+                app:layout_constraintTop_toBottomOf="@+id/mainText"
+                tools:ignore="HardcodedText" />
 
             <TextView
                 android:id="@+id/mainText"

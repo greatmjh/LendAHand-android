@@ -11,7 +11,7 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="54dp"
+            android:layout_height="wrap_content"
             android:layout_marginTop="12dp"
             android:layout_marginBottom="12dp">
 
@@ -24,7 +24,8 @@
                 android:text="@string/item_name"
                 android:textSize="14sp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                android:textAppearance="@style/TextAppearance.Material3.LabelMedium"/>
 
             <TextView
                 android:id="@+id/numAvailable"
@@ -46,7 +47,7 @@
                 android:backgroundTint="@color/white"
                 android:onClick="deleteItem"
                 android:src="@drawable/delete"
-                app:layout_constraintBottom_toTopOf="@+id/requestedTo"
+                app:layout_constraintBottom_toBottomOf="@+id/itemName"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/itemName" />
 

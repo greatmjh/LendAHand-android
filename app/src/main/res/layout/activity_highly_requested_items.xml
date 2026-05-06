@@ -25,7 +25,8 @@
         android:layout_height="31dp"
         android:layout_marginStart="24dp"
         android:layout_marginTop="36dp"
-        android:background="#F6F5F5"
+        android:background="@android:color/transparent"
+        android:onClick="goBacktoManage"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="?attr/actionModeCloseDrawable" />
@@ -39,4 +40,5 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/highlyRequestedItemsHeader" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

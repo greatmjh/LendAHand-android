@@ -23,11 +23,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
+                android:layout_marginBottom="4dp"
                 android:maxLines="1"
                 android:text="Donor name"
+                android:textAppearance="@style/TextAppearance.Material3.LabelLarge"
                 android:textSize="14sp"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent" />
+                app:layout_constraintStart_toStartOf="parent"
+                tools:ignore="HardcodedText" />
 
             <TextView
                 android:id="@+id/donated"
@@ -37,13 +40,9 @@
                 android:text="Donated x items"
                 android:textSize="12sp"
                 app:layout_constraintStart_toStartOf="@+id/donorName"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                tools:ignore="HardcodedText" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
-
-
     </com.google.android.material.card.MaterialCardView>
-
-
-
 </RelativeLayout>

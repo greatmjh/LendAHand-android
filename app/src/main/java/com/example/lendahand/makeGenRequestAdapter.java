@@ -21,7 +21,7 @@ public class makeGenRequestAdapter extends RecyclerView.Adapter<makeGenRequestAd
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.item_card, parent, false);
+                .inflate(R.layout.gen_request_item, parent, false);
         return new MyViewHolder(view);
     }
 
@@ -30,7 +30,12 @@ public class makeGenRequestAdapter extends RecyclerView.Adapter<makeGenRequestAd
         genRequestItem requestItem = itemList.get(position);
 
         holder.itemText.setText(requestItem.getItemName());
-        holder.selectButton.setImageResource(requestItem.getImage());
+        holder.deleteButton.setImageResource(requestItem.getImage());
+
+        holder.deleteButton.setOnClickListener(v -> {
+            itemList.remove(position);
+            makeGenRequestAdapter.super.notifyDataSetChanged();
+        });
     }
 
     @Override
@@ -41,14 +46,14 @@ public class makeGenRequestAdapter extends RecyclerView.Adapter<makeGenRequestAd
     // ViewHolder class
      public static class MyViewHolder extends RecyclerView.ViewHolder {
         TextView itemText;
-        ImageButton selectButton;
+        ImageButton deleteButton;
 
         public MyViewHolder(@NonNull View itemView) {
 
             super(itemView);
 
             itemText = itemView.findViewById(R.id.itemText);
-            selectButton = itemView.findViewById(R.id.deleteButton);
+            deleteButton = itemView.findViewById(R.id.deleteButton);
         }
     }
 }

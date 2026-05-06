@@ -1,5 +1,6 @@
 package com.example.lendahand;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
@@ -24,6 +25,11 @@ public class makeGenRequest extends AppCompatActivity {
                 itemTypeText.setText(result.getItemName());
             }
         });
+    }
+
+    public void backOnClick(View view) {
+        Intent intent = new Intent(this, manageRequests.class);
+        startActivity(intent);
     }
 
     @Override

@@ -31,7 +31,7 @@ public class findDonationsAdapter extends RecyclerView.Adapter<findDonationsAdap
         findDonationsItem donationItem = itemList.get(position);
 
         holder.itemText.setText(donationItem.getItemName());
-        holder.numText.setText(String.format("%s units", donationItem.getNumUnits()));
+        holder.numText.setText(String.format("%s unit%s", donationItem.getNumUnits(), (donationItem.getNumUnits() == 1 ? "" : "s")));
         holder.distText.setText(String.format("%s km away", donationItem.getDistance()));
     }
 

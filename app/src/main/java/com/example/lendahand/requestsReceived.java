@@ -39,12 +39,6 @@ public class requestsReceived extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void menuBtnClick(View v){
-        previousView.setPrevView(requestsReceived.class);
-
-        Intent intent = new Intent(this, menuActivity.class);
-        startActivity(intent);
-    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

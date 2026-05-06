@@ -14,7 +14,7 @@
         android:layout_marginStart="24dp"
         android:layout_marginTop="80dp"
         android:text="@string/view_request"
-        android:textSize="34sp"
+        android:textSize="28sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -24,7 +24,8 @@
         android:layout_height="31dp"
         android:layout_marginStart="24dp"
         android:layout_marginTop="36dp"
-        android:background="#F6F5F5"
+        android:onClick="backOnClick"
+        android:background="@android:color/transparent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="?attr/actionModeCloseDrawable" />
@@ -35,8 +36,9 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
         android:layout_marginTop="14dp"
-        android:backgroundTint="#4CAF50"
-        android:text="Accept"
+        android:backgroundTint="@color/md_theme_secondaryContainer"
+        android:textColor="@color/md_theme_scrim"
+        android:text="@string/accept"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/viewReqSubtitle" />
 
@@ -46,8 +48,9 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
         android:layout_marginTop="14dp"
-        android:backgroundTint="#F44336"
-        android:text="Reject"
+        android:backgroundTint="@color/md_theme_secondaryContainer_highContrast"
+
+        android:text="@string/reject"
         app:layout_constraintStart_toEndOf="@+id/acceptDoneeButton"
         app:layout_constraintTop_toBottomOf="@+id/viewReqSubtitle" />
 
@@ -65,9 +68,10 @@
         android:id="@+id/viewReqSubtitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
         android:text="Person person would like thing thing"
-        tools:layout_editor_absoluteX="24dp"
-        tools:layout_editor_absoluteY="135dp" />
+        app:layout_constraintStart_toStartOf="@+id/viewRequestHeader"
+        app:layout_constraintTop_toBottomOf="@+id/viewRequestHeader" />
 
     <ScrollView
         android:layout_width="0dp"
