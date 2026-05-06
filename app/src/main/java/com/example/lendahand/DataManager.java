@@ -11,6 +11,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 
 import com.example.lendahand.apiclasses.LogInResponse;
+import com.example.lendahand.apiclasses.LoginRequest;
 import com.example.lendahand.apiclasses.ProfileInfo;
 import com.example.lendahand.apiclasses.RegisterRequest;
 import com.google.gson.Gson;
@@ -64,7 +65,7 @@ public class DataManager {
     Note that these callbacks aren't on the UI thread so you have to do that before updating elements onscreen.
      */
 
-    //Sign-up endpoint -- callback with no parameters
+    //Sign-up endpoint -- callback with no parameters (called on success)
     public void APIRegister(RegisterRequest req, Runnable callback) {
         //Convert input into JSON
         String payloadJson = gson.toJson(req);
@@ -107,9 +108,48 @@ public class DataManager {
 
             }
         });
+    }
 
+    //Log in endpoint -- callback with no parameters
+    public void APILogin(LoginRequest req, Runnable callback) {
+        String payloadJson = gson.toJson(req);
 
+        //Create OkHttp Request
+        OkHttpClient client = new OkHttpClient();
+        RequestBody body = RequestBody.create(payloadJson, MediaType.parse("application/json"));
+        Request signUpRequest = new Request.Builder()
+                .url(HttpUrl.parse(applicationContext.getString(R.string.apiServerAddr)).newBuilder().
+                        addPathSegment("login.php").build())
+                .post(body)
+                .build();
 
+        //Run the request
+        client.newCall(signUpRequest).enqueue(new Callback() {
+            @Override
+            public void onFailure(@NonNull Call call, @NonNull IOException e) {
+                e.printStackTrace();
+                toast("Please check your internet connection");
+
+            }
+
+            @Override
+            public void onResponse(@NonNull Call call, @NonNull Response response) throws IOException {
+                try {
+                    String responseBody = response.body().string();
+                    //Handle errors from server
+                    if (!response.isSuccessful()) {
+                        handleHttpError(response, responseBody);
+                    }
+                    //Deserialise our response
+                    LogInResponse decodedResponse = gson.fromJson(responseBody, LogInResponse.class);
+
+                    //Log in
+                    handleLogInResponse(decodedResponse, callback);
+                } catch (IOException e) { //shouldn't really happen the way we are doing this
+                    e.printStackTrace();
+                }
+            }
+        });
     }
 
     //==== Class internals ====
