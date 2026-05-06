@@ -2,13 +2,17 @@ package com.example.lendahand;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.provider.ContactsContract;
 import android.view.View;
+import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+
+import com.example.lendahand.apiclasses.ProfileInfo;
 
 public class viewProfile extends AppCompatActivity {
 
@@ -33,6 +37,27 @@ public class viewProfile extends AppCompatActivity {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
+        });
+
+        //Load profile info from server
+        DataManager.getInstance(this).APIGetProfileInfo(new DataManager.APIProfileInfoCallback() {
+            @Override
+            public void success(ProfileInfo p) {
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        TextView usersName = findViewById(R.id.usersName);
+                        TextView usersBio = findViewById(R.id.userBio);
+                        TextView usersEmail = findViewById(R.id.userEmailAddress);
+                        TextView usersPhone = findViewById(R.id.userPhoneNum);
+
+                        usersName.setText(p.fullName);
+                        usersBio.setText(p.bio);
+                        usersEmail.setText(p.email);
+                        usersPhone.setText(p.phoneNumber);
+                    }
+                });
+            }
         });
     }
 }

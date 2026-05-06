@@ -79,14 +79,14 @@ public class DataManager {
         //Create OkHttp Request
         OkHttpClient client = new OkHttpClient();
         RequestBody body = RequestBody.create(payloadJson, MediaType.parse("application/json"));
-        Request signUpRequest = new Request.Builder()
+        Request httpReq = new Request.Builder()
                 .url(HttpUrl.parse(applicationContext.getString(R.string.apiServerAddr)).newBuilder().
                         addPathSegment("register.php").build())
                 .post(body)
                 .build();
 
         //Run the request
-        client.newCall(signUpRequest).enqueue(new Callback() {
+        client.newCall(httpReq).enqueue(new Callback() {
             @Override
             public void onFailure(@NonNull Call call, @NonNull IOException e) {
                 e.printStackTrace();
@@ -123,14 +123,14 @@ public class DataManager {
         //Create OkHttp Request
         OkHttpClient client = new OkHttpClient();
         RequestBody body = RequestBody.create(payloadJson, MediaType.parse("application/json"));
-        Request signUpRequest = new Request.Builder()
+        Request httpReq = new Request.Builder()
                 .url(HttpUrl.parse(applicationContext.getString(R.string.apiServerAddr)).newBuilder().
                         addPathSegment("login.php").build())
                 .post(body)
                 .build();
 
         //Run the request
-        client.newCall(signUpRequest).enqueue(new Callback() {
+        client.newCall(httpReq).enqueue(new Callback() {
             @Override
             public void onFailure(@NonNull Call call, @NonNull IOException e) {
                 e.printStackTrace();
@@ -172,14 +172,14 @@ public class DataManager {
             //Create OkHttp Request
             OkHttpClient client = new OkHttpClient();
             RequestBody body = RequestBody.create(payloadJson, MediaType.parse("application/json"));
-            Request signUpRequest = new Request.Builder()
+            Request httpReq = new Request.Builder()
                     .url(HttpUrl.parse(applicationContext.getString(R.string.apiServerAddr)).newBuilder().
                             addPathSegment("change_password.php").build())
                     .post(body)
                     .build();
 
             //Run the request
-            client.newCall(signUpRequest).enqueue(new Callback() {
+            client.newCall(httpReq).enqueue(new Callback() {
                 @Override
                 public void onFailure(@NonNull Call call, @NonNull IOException e) {
                     e.printStackTrace();
@@ -217,8 +217,50 @@ public class DataManager {
         } catch (JSONException e) {
             e.printStackTrace();
         }
+    }
 
+    public void APIGetProfileInfo(APIProfileInfoCallback callback) {
+        String payloadJson = getAuthenticatedRequestJSON();
+        //Create OkHttp Request
+        OkHttpClient client = new OkHttpClient();
+        RequestBody body = RequestBody.create(payloadJson, MediaType.parse("application/json"));
+        Request httpReq = new Request.Builder()
+                .url(HttpUrl.parse(applicationContext.getString(R.string.apiServerAddr)).newBuilder().
+                        addPathSegment("get_profile.php").build())
+                .post(body)
+                .build();
 
+        //Run the request
+        client.newCall(httpReq).enqueue(new Callback() {
+            @Override
+            public void onFailure(@NonNull Call call, @NonNull IOException e) {
+                e.printStackTrace();
+                toast("Please check your internet connection");
+
+            }
+
+            @Override
+            public void onResponse(@NonNull Call call, @NonNull Response response) throws IOException {
+                try {
+                    String responseBody = response.body().string();
+                    //Handle errors from server
+                    if (!response.isSuccessful()) {
+                        handleHttpError(response, responseBody);
+                    }
+                    //Deserialise our response
+                    ProfileInfo decodedResponse = gson.fromJson(responseBody, ProfileInfo.class);
+
+                    //Return our response to the callback
+                    callback.success(decodedResponse);
+                } catch (IOException e) { //shouldn't really happen the way we are doing this
+                    e.printStackTrace();
+                }
+            }
+        });
+    }
+
+    public interface APIProfileInfoCallback{
+        public void success(ProfileInfo p);
     }
 
     //==== Class internals ====
@@ -280,6 +322,17 @@ public class DataManager {
             //Update session key store and then log in!
             logIn(decodedResponse.sessionKey);
             callback.run();
+        }
+    }
+
+    private String getAuthenticatedRequestJSON() {
+        try {
+            JSONObject jsonObj = new JSONObject();
+            jsonObj.put("sessionKey", getSessionKey());
+            return jsonObj.toString();
+        } catch (JSONException e) {
+            e.printStackTrace();
+            return "";
         }
     }
 
