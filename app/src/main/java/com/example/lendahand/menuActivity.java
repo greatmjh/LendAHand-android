@@ -53,7 +53,6 @@ public class menuActivity extends AppCompatActivity {
             openScreen(viewProfile.class);
         } else if (id  ==  R.id.logOutMenu) {
             DataManager.getInstance(this).logOut();
-            openScreen(WelcomePage.class);
         }
     }
 

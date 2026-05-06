@@ -57,6 +57,9 @@ public class DataManager {
         sessionKey = "";
         loggedIn = false;
         updatePrefs();
+        Intent intent = new Intent(applicationContext, WelcomePage.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        applicationContext.startActivity(intent);
     }
 
     //==== API functions ====
