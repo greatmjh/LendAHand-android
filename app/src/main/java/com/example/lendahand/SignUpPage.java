@@ -70,6 +70,7 @@ public class SignUpPage extends AppCompatActivity {
                     public void run() {
                         Intent intent = new Intent(parent, topDonors.class);
                         parent.startActivity(intent);
+                        finish();
                     }
                 });
             }
