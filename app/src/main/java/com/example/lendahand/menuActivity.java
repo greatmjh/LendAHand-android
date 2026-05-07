@@ -34,7 +34,7 @@ public class menuActivity extends AppCompatActivity {
     }
 
     public void backOnClick(View view){
-        openScreen(previousView.getPrevView());
+        finish();
     }
 
     public void menuClick(View view){

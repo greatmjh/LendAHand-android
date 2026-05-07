@@ -2,7 +2,9 @@ package com.example.lendahand;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
+import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -13,8 +15,9 @@ import androidx.core.view.WindowInsetsCompat;
 public class viewRequestDonor extends AppCompatActivity {
 
     public void backOnClick (View v)    {
-        Intent intent = new Intent(this, requestsReceived.class);
-        startActivity(intent);
+        //Intent intent = new Intent(this, requestsReceived.class);
+        //startActivity(intent);
+        finish();
     }
 
     @Override
@@ -27,5 +30,25 @@ public class viewRequestDonor extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+
+        //load the request data that was passed by the previous screen
+        try {
+            IncomingReqItem reqData = getIntent().getExtras().getParcelable("reqData");
+            //set all the fields we need to set
+            TextView viewRequestSubtitle = findViewById(R.id.viewReqSubtitle);
+            TextView aboutDoneeHeader = findViewById(R.id.aboutDoneeHeader);
+            TextView doneeBio = findViewById(R.id.doneeBio);
+            TextView doneeDistance = findViewById(R.id.doneeDistance);
+            TextView doneePhone = findViewById(R.id.doneePhone);
+
+            viewRequestSubtitle.setText(String.format(getString(R.string.view_request_top_line), reqData.getDoneeName(), reqData.getItemName()));
+            aboutDoneeHeader.setText((String.format(getString(R.string.view_request_about_donee), reqData.getDoneeName())));
+            doneeBio.setText(reqData.getDoneeBio());
+            doneeDistance.setText(String.format(getString(R.string.view_request_distance), reqData.getDoneeDistance()));
+            doneePhone.setText(reqData.getDoneePhone());
+        } catch (NullPointerException e) {
+            Log.e("viewRequestDonor", "Unable to get data from intent");
+            //just leave the screen as default if we can't get the data
+        }
     }
 }

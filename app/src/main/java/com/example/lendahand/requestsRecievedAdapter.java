@@ -4,6 +4,7 @@ import static android.view.View.INVISIBLE;
 import static android.view.View.VISIBLE;
 
 import android.content.Intent;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -47,7 +48,10 @@ public class requestsRecievedAdapter extends RecyclerView.Adapter<requestsReciev
         holder.threeButtons.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //open the view request screen
                 Intent intent = new Intent(v.getContext(), viewRequestDonor.class);
+                //send this incoming request class to the screen
+                intent.putExtra("reqData", requestItem);
                 v.getContext().startActivity(intent);
             }
         });

@@ -19,7 +19,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageButton
-        android:id="@+id/imageButton5"
+        android:id="@+id/backButton"
         android:layout_width="30dp"
         android:layout_height="31dp"
         android:layout_marginStart="24dp"
@@ -49,7 +49,6 @@
         android:layout_marginStart="24dp"
         android:layout_marginTop="14dp"
         android:backgroundTint="@color/md_theme_secondaryContainer_highContrast"
-
         android:text="@string/reject"
         app:layout_constraintStart_toEndOf="@+id/acceptDoneeButton"
         app:layout_constraintTop_toBottomOf="@+id/viewReqSubtitle" />
@@ -69,7 +68,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
-        android:text="Person person would like thing thing"
+        android:text="@string/view_request_top_line"
         app:layout_constraintStart_toStartOf="@+id/viewRequestHeader"
         app:layout_constraintTop_toBottomOf="@+id/viewRequestHeader" />
 
@@ -106,7 +105,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="24dp"
                 android:layout_marginTop="24dp"
-                android:text="About Person Person"
+                android:text="@string/view_request_about_donee"
                 android:textSize="24sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -117,7 +116,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="24dp"
                 android:layout_marginTop="16dp"
-                android:text="x.xkm away"
+                android:text="@string/view_request_distance"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/doneeBio" />
 
