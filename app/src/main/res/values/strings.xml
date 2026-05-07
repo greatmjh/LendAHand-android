@@ -107,4 +107,6 @@
     <string name="welcome_to">welcome to</string>
     <string name="add_donation">Add Donation</string>
     <string name="request_something_else">Request something else</string>
+    <string name="help_a_friend_help_a_neighbour_help_a_stranger">help a friend, help a neighbour, help a stranger</string>
+    <string name="create_general_request">Create General Request</string>
 </resources>

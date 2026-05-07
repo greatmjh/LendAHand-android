@@ -81,4 +81,9 @@ public class findDonationsSubcategoryAdapter extends RecyclerView.Adapter<findDo
         notifyDataSetChanged();
     }
 
+    public void resetPosition(){
+        selectedPosition = -1;
+        notifyItemChanged(selectedPosition);
+    }
+
 }

@@ -3,7 +3,6 @@ package com.example.lendahand;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -13,13 +12,7 @@ import androidx.core.view.WindowInsetsCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.google.android.material.chip.Chip;
-import com.google.android.material.chip.ChipGroup;
-
 import java.util.ArrayList;
-import java.util.List;
-
-import kotlin.collections.ArrayDeque;
 
 public class findDonations extends AppCompatActivity {
 
@@ -36,14 +29,18 @@ public class findDonations extends AppCompatActivity {
 
     public void essentialsOnClick(View v)   {
         essentialList();
-        visibleSubcategories = essentialSubcategories;
-        adapter.updateData(visibleSubcategories);
+        adapter.updateData(essentialSubcategories);
+        adapter.resetPosition();
+        //also reset item filter
+        updateMainCategoryItemList("Essential");
     }
 
     public void nonEssentialsOnClick(View v) {
         nonEssentialList();
-        visibleSubcategories = nonEssentialSubcategories;
-        adapter.updateData(visibleSubcategories);
+        adapter.updateData(nonEssentialSubcategories);
+        adapter.resetPosition();
+        //also reset item filter
+        updateMainCategoryItemList("NonEssential");
     }
 
 
@@ -51,6 +48,11 @@ public class findDonations extends AppCompatActivity {
         previousView.setPrevView(findDonations.class);
 
         Intent intent = new Intent(this, menuActivity.class);
+        startActivity(intent);
+    }
+
+    public void viewProfileOnClick(View v){
+        Intent intent = new Intent(this, viewProfile.class);
         startActivity(intent);
     }
 
@@ -79,7 +81,7 @@ public class findDonations extends AppCompatActivity {
         adapter = new findDonationsSubcategoryAdapter(visibleSubcategories);
 
         //set on click listener
-        adapter.setOnSubcategoryClickListener(this::updateMainItemList);
+        adapter.setOnSubcategoryClickListener(this::updateSubcategoryItemList);
 
         recyclerView.setAdapter(adapter);
                 //--------------------------
@@ -90,11 +92,12 @@ public class findDonations extends AppCompatActivity {
 
         //add sample data
         {
-            itemList.add(new findDonationsItem("Baked Beans", "Food",3,5));
-            itemList.add(new findDonationsItem("T-shirt", "Clothes",1,2));
-            itemList.add(new findDonationsItem("Toothbrush", "Hygiene",3,5));
-            itemList.add(new findDonationsItem("Chair", "Furniture",3,5));
-            itemList.add(new findDonationsItem("Kettle", "Appliances",3,5));
+            itemList.add(new findDonationsItem("Baked Beans", "Essential", "Food",3,5));
+            itemList.add(new findDonationsItem("T-shirt", "Essential", "Clothes",1,2));
+            itemList.add(new findDonationsItem("Toothbrush","Essential", "Hygiene",3,5));
+            itemList.add(new findDonationsItem("Chair", "Essential", "Furniture",3,5));
+            itemList.add(new findDonationsItem("Kettle","Essential", "Appliances",3,5));
+            itemList.add(new findDonationsItem("Airtime Voucher","NonEssential", "Airtime",1,5));
         }
 
         adapterItems = new findDonationsAdapter(itemList);
@@ -124,7 +127,7 @@ public class findDonations extends AppCompatActivity {
         nonEssentialSubcategories.add("Electronics");
     }
 
-    public void updateMainItemList(String subcategory){ //TODO: make the vert recyclerview display items that fit the selected categories
+    public void updateSubcategoryItemList(String subcategory){
         filteredItemList.clear();
 
         for (findDonationsItem item:itemList){
@@ -135,6 +138,20 @@ public class findDonations extends AppCompatActivity {
 
         adapterItems.updateData(filteredItemList);
     }
+
+    public void updateMainCategoryItemList(String mainCategory){
+        filteredItemList.clear();
+
+        for (findDonationsItem item:itemList){
+            if (item.getMainCategory().equals(mainCategory)){
+                filteredItemList.add(item);
+            }
+        }
+
+        adapterItems.updateData(filteredItemList);
+    }
+
+
 
 
 }

@@ -57,6 +57,17 @@
         app:layout_constraintTop_toBottomOf="@+id/makeGenRequestBio"
         tools:ignore="RtlSymmetry" />
 
+
+    <Button
+        android:id="@+id/createGenRequestButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/create_general_request"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="12dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/itemTypeText" />
+
     <ImageButton
         android:id="@+id/selectItemButton"
         android:layout_width="20dp"
@@ -74,11 +85,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
-        android:layout_marginTop="3dp"
+        android:layout_marginTop="12dp"
         android:text="@string/my_general_requests"
         android:textSize="28sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/itemTypeText" />
+        app:layout_constraintTop_toBottomOf="@+id/createGenRequestButton" />
 
     <TextView
         android:id="@+id/myGenRequestsBio"
