@@ -21,8 +21,8 @@ public class findDonations extends AppCompatActivity {
 
     ArrayList<String> visibleSubcategories;
 
-    ArrayList<findDonationsItem> itemList = new ArrayList<>();; //TODO: receive available items from server
-    ArrayList<findDonationsItem> filteredItemList = new ArrayList<>();  ;
+    ArrayList<findDonationsItem> itemList = new ArrayList<>(); //TODO: receive available items from server
+    ArrayList<findDonationsItem> filteredItemList = new ArrayList<>();
 
     findDonationsSubcategoryAdapter adapter;
     findDonationsAdapter adapterItems;

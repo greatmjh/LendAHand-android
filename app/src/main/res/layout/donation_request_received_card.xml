@@ -23,8 +23,8 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:backgroundTint="@android:color/transparent"
-                app:tint="@color/md_theme_scrim_highContrast"
                 android:src="@drawable/threebuttons"
+                app:tint="@color/md_theme_scrim_highContrast"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -38,7 +38,8 @@
                 android:textSize="12sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/mainText" />
+                app:layout_constraintTop_toBottomOf="@+id/mainText"
+                tools:ignore="HardcodedText" />
 
             <TextView
                 android:id="@+id/mainText"
