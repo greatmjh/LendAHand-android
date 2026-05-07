@@ -1,8 +1,11 @@
 package com.example.lendahand;
 
+import android.Manifest;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.location.Location;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
@@ -11,6 +14,8 @@ import android.widget.Toast;
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
@@ -18,6 +23,9 @@ import androidx.core.view.WindowInsetsCompat;
 import com.example.lendahand.apiclasses.LogInResponse;
 import com.example.lendahand.apiclasses.ProfileInfo;
 import com.example.lendahand.apiclasses.RegisterRequest;
+import com.google.android.gms.location.FusedLocationProviderClient;
+import com.google.android.gms.location.LocationServices;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.gson.Gson;
 
 import java.io.IOException;
@@ -56,25 +64,45 @@ public class SignUpPage extends AppCompatActivity {
 
         //TODO: input validation confirm password checking
 
-        //Build the JSON request
-        //TODO: gps coordinates
-        RegisterRequest payloadData = new RegisterRequest(new ProfileInfo(fullName, email, phone, bio, 0.1, 0.1), password);
-
         Activity parent = this; //so we can do intents from the callback
-        //Run the request
-        DataManager.getInstance(this).APIRegister(payloadData, new Runnable() {
-            @Override
-            public void run() {
-                runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        Intent intent = new Intent(parent, topDonors.class);
-                        parent.startActivity(intent);
-                        finish();
-                    }
-                });
-            }
-        });
+        //Make a request to get location
+        //Check if we have location perms (and request them if we don't)
+        if (!requestLocationPermission()) {
+            //don't have location permission
+            Toast.makeText(this, "Please enable location permission.", Toast.LENGTH_SHORT).show();
+            return; //when the user clicks the button next we should have permission if they said yes
+        }
+
+        FusedLocationProviderClient fusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
+        try {
+            fusedLocationClient.getLastLocation().addOnSuccessListener(this, new OnSuccessListener<Location>() {
+                @Override
+                public void onSuccess(Location location) {
+                    //Now that we have location, proceed
+                    RegisterRequest payloadData = new RegisterRequest(new ProfileInfo(fullName, email, phone, bio, location.getLatitude(), location.getLongitude()), password);
+                    //Run the request
+                    DataManager.getInstance(parent).APIRegister(payloadData, new Runnable() {
+                        @Override
+                        public void run() {
+                            runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    Intent intent = new Intent(parent, topDonors.class);
+                                    parent.startActivity(intent);
+                                    finish();
+                                }
+                            });
+                        }
+                    });
+                }
+            });
+        } catch (SecurityException e) {
+            e.printStackTrace();
+            Toast.makeText(this, "Please enable location permission.", Toast.LENGTH_SHORT).show();
+        }
+
+
+
 
     }
 
@@ -89,5 +117,22 @@ public class SignUpPage extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+    }
+
+    private boolean requestLocationPermission() {
+        // Check if permissions are already granted
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION)
+                == PackageManager.PERMISSION_GRANTED) {
+            // Permission is already granted, so return true
+            return true;
+        } else {
+            // Request Coarse location (Recommended for Android 12+)
+            ActivityCompat.requestPermissions(this,
+                    new String[]{
+                            Manifest.permission.ACCESS_COARSE_LOCATION
+                    },
+                    100);
+            return false;
+        }
     }
 }
