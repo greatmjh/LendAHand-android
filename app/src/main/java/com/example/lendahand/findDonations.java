@@ -30,6 +30,7 @@ public class findDonations extends AppCompatActivity {
     public void essentialsOnClick(View v)   {
         essentialList();
         adapter.updateData(essentialSubcategories);
+        //"deselect" subcategories
         adapter.resetPosition();
         //also reset item filter
         updateMainCategoryItemList("Essential");
@@ -38,6 +39,7 @@ public class findDonations extends AppCompatActivity {
     public void nonEssentialsOnClick(View v) {
         nonEssentialList();
         adapter.updateData(nonEssentialSubcategories);
+        //"deselect" subcategories
         adapter.resetPosition();
         //also reset item filter
         updateMainCategoryItemList("NonEssential");
@@ -70,7 +72,7 @@ public class findDonations extends AppCompatActivity {
         essentialList();
         visibleSubcategories = essentialSubcategories;
 
-                //SUBCATEGORIES RECYCLERVIEW
+        //SUBCATEGORIES RECYCLERVIEW
         RecyclerView recyclerView = findViewById(R.id.subcategoryRecyclerView);
         //make view horizontal
         recyclerView.setLayoutManager(
@@ -84,9 +86,9 @@ public class findDonations extends AppCompatActivity {
         adapter.setOnSubcategoryClickListener(this::updateSubcategoryItemList);
 
         recyclerView.setAdapter(adapter);
-                //--------------------------
+        //--------------------------
 
-                //ITEM LIST RECYCLERVIEW
+        //ITEM LIST RECYCLERVIEW
         RecyclerView itemRecyclerView = findViewById(R.id.findDonationsRecyclerView);
         itemRecyclerView.setLayoutManager(new LinearLayoutManager(this));
 
@@ -103,7 +105,7 @@ public class findDonations extends AppCompatActivity {
         adapterItems = new findDonationsAdapter(itemList);
 
         itemRecyclerView.setAdapter(adapterItems);
-                //----------------------------
+        //----------------------------
 
     }
 
@@ -150,8 +152,6 @@ public class findDonations extends AppCompatActivity {
 
         adapterItems.updateData(filteredItemList);
     }
-
-
 
 
 }
