@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.os.Bundle;
+import android.telephony.PhoneNumberFormattingTextWatcher;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -27,8 +28,12 @@ import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.gson.Gson;
+import com.google.i18n.phonenumbers.NumberParseException;
+import com.google.i18n.phonenumbers.PhoneNumberUtil;
+import com.google.i18n.phonenumbers.Phonenumber;
 
 import java.io.IOException;
+import java.util.Locale;
 
 import okhttp3.Call;
 import okhttp3.Callback;
@@ -57,12 +62,22 @@ public class SignUpPage extends AppCompatActivity {
         EditText confirmPasswordInput = findViewById(R.id.confirmPasswordEntry);
         String fullName = fullNameInput.getText().toString();
         String email = emailInput.getText().toString();
-        String phone = phoneInput.getText().toString();
+        String phoneUnformatted = phoneInput.getText().toString();
         String bio = bioInput.getText().toString();
         String password = passwordInput.getText().toString();
         String confirmPassword = confirmPasswordInput.getText().toString();
 
         //TODO: input validation confirm password checking
+
+        //Reformat phone number
+        PhoneNumberUtil phoneUtil = PhoneNumberUtil.getInstance();
+        String phoneFormatted = "";
+        try {
+            Phonenumber.PhoneNumber parsed = phoneUtil.parse(phoneUnformatted, Locale.getDefault().getCountry());
+            phoneFormatted = phoneUtil.format(parsed, PhoneNumberUtil.PhoneNumberFormat.E164);
+        } catch (NumberParseException e) {
+            Toast.makeText(this, "Phone number incorrectly formatted", Toast.LENGTH_SHORT).show();
+        }
 
         Activity parent = this; //so we can do intents from the callback
         //Make a request to get location
@@ -75,11 +90,12 @@ public class SignUpPage extends AppCompatActivity {
 
         FusedLocationProviderClient fusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
         try {
+            String finalPhoneFormatted = phoneFormatted;
             fusedLocationClient.getLastLocation().addOnSuccessListener(this, new OnSuccessListener<Location>() {
                 @Override
                 public void onSuccess(Location location) {
                     //Now that we have location, proceed
-                    RegisterRequest payloadData = new RegisterRequest(new ProfileInfo(fullName, email, phone, bio, location.getLatitude(), location.getLongitude()), password);
+                    RegisterRequest payloadData = new RegisterRequest(new ProfileInfo(fullName, email, finalPhoneFormatted, bio, location.getLatitude(), location.getLongitude()), password);
                     //Run the request
                     DataManager.getInstance(parent).APIRegister(payloadData, new Runnable() {
                         @Override
@@ -117,6 +133,10 @@ public class SignUpPage extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+
+        //Phone number formatting as you type
+        EditText phoneNumberField = findViewById(R.id.phoneEntry);
+        phoneNumberField.addTextChangedListener(new PhoneNumberFormattingTextWatcher()); //i know it's deprecated but it does what we want
     }
 
     private boolean requestLocationPermission() {
