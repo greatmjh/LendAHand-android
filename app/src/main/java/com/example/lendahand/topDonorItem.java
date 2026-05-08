@@ -2,15 +2,15 @@ package com.example.lendahand;
 
 public class topDonorItem {
 
-    private String userName;
-    private int numItemsDonated;
+    private String name;
+    private int itemCount;
 
-    public topDonorItem(String userName, int numItemsDonated){
-        this.userName = userName;
-        this.numItemsDonated = numItemsDonated;
+    public topDonorItem(String name, int itemCount){
+        this.name = name;
+        this.itemCount = itemCount;
     }
 
-    public String getUserName(){ return userName; }
+    public String getName(){ return name; }
 
-    public int getNumItemsDonated() { return numItemsDonated; }
+    public int getItemCount() { return itemCount; }
 }

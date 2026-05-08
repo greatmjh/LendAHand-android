@@ -17,11 +17,15 @@ import com.example.lendahand.apiclasses.RegisterRequest;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
+import com.google.gson.reflect.TypeToken;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.lang.reflect.Type;
+import java.util.ArrayList;
+import java.util.List;
 
 import okhttp3.Call;
 import okhttp3.Callback;
@@ -137,6 +141,7 @@ public class DataManager {
         }
     }
 
+    //get profile info endpoint
     public void APIGetProfileInfo(APIProfileInfoCallback callback) {
         makeApiRequest(getAuthenticatedRequestJSON(), "get_profile.php", new ApiRequestCallback() {
             @Override
@@ -150,7 +155,7 @@ public class DataManager {
         });
     }
 
-    //No callback as no data comes back with it
+    //Update profile endpoint -- No callback as no data comes back with it
     public void APIUpdateProfileInfo(ProfileInfo newProfileInfo) {
         JsonObject jsonObject = new JsonObject();
         jsonObject.add("sessionKey", JsonParser.parseString(sessionKey));
@@ -166,6 +171,22 @@ public class DataManager {
 
     public interface APIProfileInfoCallback{
         public void success(ProfileInfo p);
+    }
+
+    //Get top donors endpoint
+    public void APIGetTopDonors(TopDonorsCallback callback) {
+        makeApiRequest(getAuthenticatedRequestJSON(), "top_donors.php", new ApiRequestCallback() {
+            @Override
+            public void onSuccessfulResponse(String responseBody) {
+                //Deserialise
+                Type listType = new TypeToken<ArrayList<topDonorItem>>(){}.getType();
+                List<topDonorItem> decodedResponse = gson.fromJson(responseBody, listType);
+                callback.onSuccess(decodedResponse);
+            }
+        });
+    }
+    public interface TopDonorsCallback {
+        public void onSuccess(List<topDonorItem> items);
     }
 
     //==== Class internals ====

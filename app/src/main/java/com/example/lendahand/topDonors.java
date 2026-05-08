@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class topDonors extends AppCompatActivity {
 
@@ -35,17 +36,25 @@ public class topDonors extends AppCompatActivity {
         });
 
         RecyclerView recyclerView = findViewById(R.id.recyclerViewTopDonors);
-        ArrayList<topDonorItem> itemList = new ArrayList<>();
+        //Load items from server
+        DataManager.getInstance(this).APIGetTopDonors(new DataManager.TopDonorsCallback() {
+            @Override
+            public void onSuccess(List<topDonorItem> items) {
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        //set adapter
+                        topDonorsAdapter adapter = new topDonorsAdapter(items);
+                        recyclerView.setAdapter(adapter);
+                    }
+                });
 
-        //sample data
-        itemList.add(new topDonorItem("Mike Gibbons", 30));
-        itemList.add(new topDonorItem("Gavin Greef", 18));
-
+            }
+        });
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        //set adapter
-        topDonorsAdapter adapter = new topDonorsAdapter(itemList);
-        recyclerView.setAdapter(adapter);
+
+
 
     }
 

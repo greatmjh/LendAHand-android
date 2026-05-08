@@ -3,17 +3,17 @@ package com.example.lendahand;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageButton;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-import java.util.ArrayList;
+
+import java.util.List;
 
 
 public class topDonorsAdapter extends RecyclerView.Adapter<topDonorsAdapter.MyViewHolder> {
-    private ArrayList<topDonorItem> itemList;
+    private List<topDonorItem> itemList;
 
-    public topDonorsAdapter(ArrayList<topDonorItem> itemList){
+    public topDonorsAdapter(List<topDonorItem> itemList){
         this.itemList = itemList;
     }
 
@@ -29,9 +29,9 @@ public class topDonorsAdapter extends RecyclerView.Adapter<topDonorsAdapter.MyVi
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         topDonorItem requestItem = itemList.get(position);
 
-        holder.nameText.setText(requestItem.getUserName());
+        holder.nameText.setText(requestItem.getName());
         holder.donatedText.setText(String.format("Donated %s item%s",
-                requestItem.getNumItemsDonated(), (requestItem.getNumItemsDonated() == 1 ? "" : "s")));
+                requestItem.getItemCount(), (requestItem.getItemCount() == 1 ? "" : "s")));
     }
 
     @Override
