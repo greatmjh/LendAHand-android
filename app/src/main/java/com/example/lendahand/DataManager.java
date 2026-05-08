@@ -284,9 +284,15 @@ public class DataManager {
     }
 
     private void updatePrefs() {
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putString("sessionKey", sessionKey);
-        editor.apply();
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.putString("sessionKey", sessionKey);
+                editor.commit(); //for some reason apply doesn't work in all cases so this works in its own thread
+            }
+        }).start();
+
     }
 
     //Show a toast when not on UI thread
@@ -306,7 +312,14 @@ public class DataManager {
             toast("Bad input: " + responseBody);
         } else if (response.code() == 401) {
             toast("You have been logged out.");
-            logOut();
+            //run logout on a new thread as to not break okhttp
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    logOut();
+                }
+            }).start();
+
         }
         else {
             toast("Unexpected HTTP error:" + response.code());
