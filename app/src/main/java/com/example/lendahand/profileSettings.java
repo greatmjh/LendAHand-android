@@ -1,6 +1,7 @@
 package com.example.lendahand;
 
 import android.Manifest;
+import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Location;
@@ -10,6 +11,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import androidx.activity.ActivityViewModelLazyKt;
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
@@ -23,9 +25,15 @@ import com.example.lendahand.apiclasses.RegisterRequest;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.i18n.phonenumbers.NumberParseException;
+import com.google.i18n.phonenumbers.PhoneNumberUtil;
+import com.google.i18n.phonenumbers.Phonenumber;
+
+import java.util.Locale;
 
 public class profileSettings extends AppCompatActivity {
 
+    ProfileInfo serverSideProfile;
     public void changePassClick(View v) {
         previousView.setPrevView(profileSettings.class);
 
@@ -41,13 +49,21 @@ public class profileSettings extends AppCompatActivity {
             return; //when the user clicks the button next we should have permission if they said yes
         }
 
+        Activity parent = this; //for callback
         FusedLocationProviderClient fusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
         try {
             fusedLocationClient.getLastLocation().addOnSuccessListener(this, new OnSuccessListener<Location>() {
                 @Override
                 public void onSuccess(Location location) {
                     //Now that we have location, proceed
-                    //TODO: implement update profile endpoint
+                    try {
+                        ProfileInfo newProfile = new ProfileInfo(serverSideProfile.fullName, serverSideProfile.email, serverSideProfile.phoneNumber, serverSideProfile.bio, location.getLatitude(), location.getLongitude());
+                        DataManager.getInstance(parent).APIUpdateProfileInfo(newProfile);
+                    } catch (NullPointerException e) {
+                        e.printStackTrace();
+                        Toast.makeText(parent, "Please check your internet connection", Toast.LENGTH_SHORT).show();
+                    }
+
                 }
             });
         } catch (SecurityException e) {
@@ -67,8 +83,39 @@ public class profileSettings extends AppCompatActivity {
     }
 
     public void saveChangesClick(View v){
-        //TODO: update user profile and reflect changes, then go back to view profile screen
+        //get stuff from screen
+        EditText fullNameInput = findViewById(R.id.fullNameEntry);
+        EditText emailInput = findViewById(R.id.emailEntry);
+        EditText phoneInput = findViewById(R.id.phoneEntry);
+        EditText bioInput = findViewById(R.id.bioEntry);
 
+        String fullName = fullNameInput.getText().toString();
+        String email = emailInput.getText().toString();
+        String phoneUnformatted = phoneInput.getText().toString();
+        String bio = bioInput.getText().toString();
+
+        //Reformat phone number
+        PhoneNumberUtil phoneUtil = PhoneNumberUtil.getInstance();
+        String phoneFormatted = "";
+        try {
+            Phonenumber.PhoneNumber parsed = phoneUtil.parse(phoneUnformatted, Locale.getDefault().getCountry());
+            phoneFormatted = phoneUtil.format(parsed, PhoneNumberUtil.PhoneNumberFormat.E164);
+        } catch (NumberParseException e) {
+            Toast.makeText(this, "Phone number incorrectly formatted", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        try {
+            ProfileInfo newProfile = new ProfileInfo(fullName, email, phoneFormatted, bio, serverSideProfile.homeLat, serverSideProfile.homeLong);
+            DataManager.getInstance(this).APIUpdateProfileInfo(newProfile);
+        } catch (NullPointerException e) {
+            e.printStackTrace();
+            Toast.makeText(this, "Please check your internet connection", Toast.LENGTH_SHORT).show();
+        }
+        //make the previous screen update with the new data
+        Intent intent = new Intent(this, viewProfile.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(intent);
         finish();
     }
 
@@ -90,6 +137,7 @@ public class profileSettings extends AppCompatActivity {
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
+                        serverSideProfile = p;
                         ((EditText)findViewById(R.id.fullNameEntry)).setText(p.fullName);
                         ((EditText)findViewById(R.id.emailEntry)).setText(p.email);
                         ((EditText)findViewById(R.id.phoneEntry)).setText(p.phoneNumber);

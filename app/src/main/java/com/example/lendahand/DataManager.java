@@ -15,6 +15,8 @@ import com.example.lendahand.apiclasses.LoginRequest;
 import com.example.lendahand.apiclasses.ProfileInfo;
 import com.example.lendahand.apiclasses.RegisterRequest;
 import com.google.gson.Gson;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -145,6 +147,20 @@ public class DataManager {
                 //Return our response to the callback
                 callback.success(decodedResponse);
             }
+        });
+    }
+
+    //No callback as no data comes back with it
+    public void APIUpdateProfileInfo(ProfileInfo newProfileInfo) {
+        JsonObject jsonObject = new JsonObject();
+        jsonObject.add("sessionKey", JsonParser.parseString(sessionKey));
+        jsonObject.add("profileInfo", gson.toJsonTree(newProfileInfo));
+
+        String payloadJson = jsonObject.toString();
+
+        makeApiRequest(payloadJson, "update_profile.php", new ApiRequestCallback() {
+            @Override
+            public void onSuccessfulResponse(String responseBody) {} //needs to be here even if we don't use it
         });
     }
 

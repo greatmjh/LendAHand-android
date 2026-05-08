@@ -77,6 +77,7 @@ public class SignUpPage extends AppCompatActivity {
             phoneFormatted = phoneUtil.format(parsed, PhoneNumberUtil.PhoneNumberFormat.E164);
         } catch (NumberParseException e) {
             Toast.makeText(this, "Phone number incorrectly formatted", Toast.LENGTH_SHORT).show();
+            return;
         }
 
         Activity parent = this; //so we can do intents from the callback
