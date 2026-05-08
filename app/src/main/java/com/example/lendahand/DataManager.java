@@ -241,6 +241,20 @@ public class DataManager {
         });
     }
 
+    //Load global item tree
+    public void APILoadItemTree(ItemTreeCallback callback) {
+        makeApiRequest(getAuthenticatedRequestJSON(), "load_global_items.php", new ApiRequestCallback() {
+            @Override
+            public void onSuccessfulResponse(String responseBody) {
+                ItemCategory[] decodedResponse = gson.fromJson(responseBody, ItemCategory[].class);
+                callback.onSuccess(decodedResponse);
+            }
+        });
+    }
+    public interface ItemTreeCallback {
+        void onSuccess(ItemCategory[] roots);
+    }
+
     //==== Class internals ====
     static DataManager instance;
     final SharedPreferences sharedPreferences;

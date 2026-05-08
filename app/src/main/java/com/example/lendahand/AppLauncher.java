@@ -16,6 +16,8 @@ public class AppLauncher extends AppCompatActivity {
         } else {
             startActivity(new Intent(this, WelcomePage.class));
         }
+        DataManager.getInstance(this); //make sure data manager is up
+        ItemCategory.getRoots(); // load these from server so we have them when necessary
         finish();
     }
 }

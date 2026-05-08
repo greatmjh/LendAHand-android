@@ -1,39 +1,32 @@
 package com.example.lendahand;
 
-import android.app.AlertDialog;
-import android.content.ClipData;
-import android.content.Context;
-import android.content.DialogInterface;
-
-import java.util.ArrayList;
 import java.util.UUID;
 
 public class ItemCategory {
-    private UUID itemId;
+    private UUID itemID;
     private String itemName;
-    private ArrayList<ItemCategory> children;
+    private ItemCategory[] itemChildren;
 
-    private ItemCategory(UUID itemId, String itemName) {
-        this.itemId = itemId;
+    private ItemCategory(UUID itemID, String itemName) {
+        this.itemID = itemID;
         this.itemName = itemName;
-        children = new ArrayList<>();
     }
 
-    public UUID getItemId() {
-        return itemId;
+    public UUID getItemID() {
+        return itemID;
     }
 
     public String getItemName() {
         return itemName;
     }
 
-    public ArrayList<ItemCategory> getChildren() {
-        return children;
+    public ItemCategory[] getItemChildren() {
+        return itemChildren;
     }
 
-    static ArrayList<ItemCategory> roots = null;
+    static ItemCategory[] roots = null;
 
-    public static ArrayList<ItemCategory> getRoots() {
+    public static ItemCategory[] getRoots() {
         if (roots == null) {
             loadTreeFromServer();
         }
@@ -41,19 +34,12 @@ public class ItemCategory {
     }
 
     private static void loadTreeFromServer() {
-        //TODO: actually load it from the server instead of hardcoding lol
-        roots = new ArrayList<>();
-        ItemCategory essential = new ItemCategory(UUID.randomUUID(), "Essential");
-        ItemCategory food = new ItemCategory(UUID.randomUUID(), "Food");
-        ItemCategory clothes = new ItemCategory(UUID.randomUUID(), "Clothes");
-        essential.children.add(food);
-        essential.children.add(clothes);
-        ItemCategory nonessential = new ItemCategory(UUID.randomUUID(), "Non essential");
-        ItemCategory mobileData = new ItemCategory(UUID.randomUUID(), "Mobile data");
-        nonessential.children.add(mobileData);
-
-        roots.add(essential);
-        roots.add(nonessential);
+        DataManager.getInstance(null).APILoadItemTree(new DataManager.ItemTreeCallback() {
+            @Override
+            public void onSuccess(ItemCategory[] response) {
+                roots = response;
+            }
+        });
     }
 
 

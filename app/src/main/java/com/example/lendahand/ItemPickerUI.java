@@ -15,10 +15,10 @@ public class ItemPickerUI {
     //function called by user
     public static void chooseFromScreen(Context context, ItemPickerCallback callback) {
         //build list of options
-        ArrayList<ItemCategory> roots = ItemCategory.getRoots();
-        String[] options = new String[roots.size()];
-        for (int i = 0; i < roots.size(); i++) {
-            options[i] = roots.get(i).getItemName();
+        ItemCategory[] roots = ItemCategory.getRoots();
+        String[] options = new String[roots.length];
+        for (int i = 0; i < roots.length; i++) {
+            options[i] = roots[i].getItemName();
         }
         //Base category picker
         final int[] resultIndex = {-1}; //sneaky trick to let us modify from inside the onclick
@@ -34,7 +34,7 @@ public class ItemPickerUI {
         builder.setOnDismissListener(dialog -> {
             //only go down if the user actually clicked something
             if (resultIndex[0] != -1) {
-                ItemCategory next = roots.get(resultIndex[0]);
+                ItemCategory next = roots[resultIndex[0]];
                 internalCallback.run(context, callback, next);
             }
 
@@ -57,11 +57,11 @@ public class ItemPickerUI {
 
     private static void chooseFromScreenRec(Context context, ItemCategory parent, ItemPickerCallback finalCallback) {
         //build list of options
-        String[] options = new String[parent.getChildren().size()+1];
-        for (int i = 0; i < parent.getChildren().size(); i++) {
-            options[i] = parent.getChildren().get(i).getItemName();
+        String[] options = new String[parent.getItemChildren().length+1];
+        for (int i = 0; i < parent.getItemChildren().length; i++) {
+            options[i] = parent.getItemChildren()[i].getItemName();
         }
-        options[parent.getChildren().size()] = "No subcategory";
+        options[parent.getItemChildren().length] = "No subcategory";
 
         //Base category picker
         final int[] resultIndex = {-1}; //sneaky trick to let us modify from inside the onclick
@@ -76,15 +76,15 @@ public class ItemPickerUI {
         });
         builder.setOnDismissListener(dialog -> {
 
-            if (resultIndex[0] == -1 || resultIndex[0] == parent.getChildren().size()) {
+            if (resultIndex[0] == -1 || resultIndex[0] == parent.getItemChildren().length) {
                 //Exit case 1: user clicked no subcategory or they clicked nothing
                 finalCallback.onComplete(parent);
-            } else if (parent.getChildren().get(resultIndex[0]).getChildren().isEmpty()){
+            } else if (parent.getItemChildren()[resultIndex[0]].getItemChildren().length == 0){
                 //Exit case 2: user clicked on a leaf
-                finalCallback.onComplete(parent.getChildren().get(resultIndex[0]));
+                finalCallback.onComplete(parent.getItemChildren()[resultIndex[0]]);
             } else {
                 //Recurse deeper
-                internalCallback.run(context, finalCallback, parent);
+                internalCallback.run(context, finalCallback, parent.getItemChildren()[resultIndex[0]]);
             }
 
         });
