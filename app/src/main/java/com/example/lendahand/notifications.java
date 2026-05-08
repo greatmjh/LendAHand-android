@@ -2,6 +2,7 @@ package com.example.lendahand;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.provider.ContactsContract;
 import android.view.View;
 
 import androidx.activity.EdgeToEdge;
@@ -14,6 +15,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.UUID;
 
 public class notifications extends AppCompatActivity {
 
@@ -37,29 +40,24 @@ public class notifications extends AppCompatActivity {
 
         RecyclerView recyclerView = findViewById(R.id.recyclerViewNotifications);
 
-        //Populate with test data
-        ArrayList<notificationItem> sampleNotifs = new ArrayList<>();
-        sampleNotifs.add(new notificationItem(LocalDateTime.parse("2026-04-25T12:34:56"),
-                "Request accepted",
-                "Jenna Smith has accepted your request for Tinned tuna",
-                "outgoingRequests",
-                false));
 
-        sampleNotifs.add(new notificationItem(LocalDateTime.parse("2026-04-24T12:34:56"),
-                "Request received",
-                "Mark Gibbons would like 2 R12 airtime vouchers",
-                "incomingRequests",
-                true));
+        //Load data from server
+        DataManager.getInstance(this).APIGetNotifications(new DataManager.NotificationsCallback() {
+            @Override
+            public void onSuccess(List<notificationItem> items) {
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
 
-        sampleNotifs.add(new notificationItem(LocalDateTime.parse("2026-03-07T12:34:56"),
-                "Request rejected",
-                "Gavin Greef rejected your request for Blanket",
-                "incomingRequests",
-                true));
-
+                        notificationAdapter adapter = new notificationAdapter(items);
+                        recyclerView.setAdapter(adapter);
+                    }
+                });
+            }
+        });
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        notificationAdapter adapter = new notificationAdapter(sampleNotifs);
-        recyclerView.setAdapter(adapter);
+
+
     }
 
 

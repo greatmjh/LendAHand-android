@@ -4,6 +4,7 @@ import android.text.format.DateUtils;
 
 import java.time.LocalDateTime;
 import java.time.ZoneId;
+import java.util.UUID;
 
 public class notificationItem {
     private LocalDateTime time;
@@ -11,9 +12,10 @@ public class notificationItem {
     private String body;
     private String onclick;
 
+    private UUID uuid;
     boolean read;
 
-    public notificationItem(LocalDateTime time, String title, String body, String onclick, boolean read) {
+    public notificationItem(UUID id, LocalDateTime time, String title, String body, String onclick, boolean read) {
         this.time = time;
         this.title = title;
         this.body = body;

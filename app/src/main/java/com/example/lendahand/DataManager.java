@@ -1,6 +1,5 @@
 package com.example.lendahand;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -13,6 +12,7 @@ import androidx.annotation.NonNull;
 import com.example.lendahand.apiclasses.LogInResponse;
 import com.example.lendahand.apiclasses.LoginRequest;
 import com.example.lendahand.apiclasses.ProfileInfo;
+import com.example.lendahand.apiclasses.RawApiNotification;
 import com.example.lendahand.apiclasses.RegisterRequest;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
@@ -24,8 +24,11 @@ import org.json.JSONObject;
 
 import java.io.IOException;
 import java.lang.reflect.Type;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 import okhttp3.Call;
 import okhttp3.Callback;
@@ -187,6 +190,27 @@ public class DataManager {
     }
     public interface TopDonorsCallback {
         public void onSuccess(List<topDonorItem> items);
+    }
+
+    //Load incoming notifications
+    public void APIGetNotifications(NotificationsCallback callback) {
+        makeApiRequest(getAuthenticatedRequestJSON(), "load_notifications.php", new ApiRequestCallback() {
+            @Override
+            public void onSuccessfulResponse(String responseBody) {
+                //Deserialise into array of raw notifications
+                RawApiNotification[] decodedResponse = gson.fromJson(responseBody, RawApiNotification[].class);
+                //Go through and properly construct notification items
+                ArrayList<notificationItem> result = new ArrayList<>();
+                for (RawApiNotification n : decodedResponse) {
+                    result.add(new notificationItem(UUID.fromString(n.id) ,LocalDateTime.parse(n.time, DateTimeFormatter.ISO_DATE_TIME), n.heading, n.text, n.onClick, n.isRead));
+                }
+                //Return the result
+                callback.onSuccess(result);
+            }
+        });
+    }
+    public interface NotificationsCallback {
+        public void onSuccess(List<notificationItem> items);
     }
 
     //==== Class internals ====
