@@ -75,6 +75,8 @@ public class loginPage extends AppCompatActivity {
                     @Override
                     public void run() {
                         Intent intent = new Intent(parent, topDonors.class);
+                        //make it so you can't go back from here
+                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                         parent.startActivity(intent);
                         finish();
                     }
