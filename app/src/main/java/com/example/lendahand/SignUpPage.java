@@ -2,7 +2,6 @@ package com.example.lendahand;
 
 import android.Manifest;
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Location;
@@ -11,38 +10,22 @@ import android.telephony.PhoneNumberFormattingTextWatcher;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
-
 import androidx.activity.EdgeToEdge;
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
-
-import com.example.lendahand.apiclasses.LogInResponse;
 import com.example.lendahand.apiclasses.ProfileInfo;
 import com.example.lendahand.apiclasses.RegisterRequest;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.gson.Gson;
 import com.google.i18n.phonenumbers.NumberParseException;
 import com.google.i18n.phonenumbers.PhoneNumberUtil;
 import com.google.i18n.phonenumbers.Phonenumber;
-
-import java.io.IOException;
 import java.util.Locale;
-
-import okhttp3.Call;
-import okhttp3.Callback;
-import okhttp3.HttpUrl;
-import okhttp3.MediaType;
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.RequestBody;
-import okhttp3.Response;
 
 public class SignUpPage extends AppCompatActivity {
 
@@ -52,7 +35,6 @@ public class SignUpPage extends AppCompatActivity {
     }
 
     public void signUpClick(View v) {
-        final Gson gson = new Gson();
         //Load data from screen
         EditText fullNameInput = findViewById(R.id.fullNameEntry);
         EditText emailInput = findViewById(R.id.emailEntry);

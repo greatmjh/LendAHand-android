@@ -41,9 +41,6 @@
             android:name=".manageRequests"
             android:exported="true" />
         <activity
-            android:name=".genRequests"
-            android:exported="true" />
-        <activity
             android:name=".makeDonation"
             android:exported="true" />
         <activity

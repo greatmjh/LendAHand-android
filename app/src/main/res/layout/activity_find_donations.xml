@@ -5,10 +5,13 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".findDonations">
+    android:background="@android:color/transparent"
+    android:isScrollContainer="false"
+    tools:context=".findDonations"
+    android:backgroundTint="@null">
 
     <TextView
-        android:id="@+id/topDonorsHeader"
+        android:id="@+id/findDonationsHeader"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
@@ -23,23 +26,80 @@
         android:layout_width="50dp"
         android:layout_height="44dp"
         android:layout_marginStart="12dp"
-        android:background="#FFFFFF"
+        android:background="@android:color/transparent"
         android:onClick="menuBtnClick"
         android:src="@drawable/menu_icon"
-        app:layout_constraintBottom_toBottomOf="@+id/topDonorsHeader"
+        app:layout_constraintBottom_toBottomOf="@+id/findDonationsHeader"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/topDonorsHeader" />
+        app:layout_constraintTop_toTopOf="@+id/findDonationsHeader" />
 
     <ImageButton
         android:id="@+id/imageButton2"
         android:layout_width="50dp"
         android:layout_height="44dp"
         android:layout_marginEnd="12dp"
-        android:background="#FFFFFF"
-        app:layout_constraintBottom_toBottomOf="@+id/topDonorsHeader"
+        android:background="@android:color/transparent"
+        android:onClick="viewProfileOnClick"
+        app:layout_constraintBottom_toBottomOf="@+id/findDonationsHeader"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/topDonorsHeader"
-        app:tint="#1A1A1A"
-        tools:src="@android:drawable/ic_menu_gallery" />
+        app:layout_constraintTop_toTopOf="@+id/findDonationsHeader"
+        android:src="@drawable/defaultprofilepicture" />
+
+    <com.google.android.material.chip.ChipGroup
+        android:id="@+id/essentialsChipGroup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="32dp"
+        app:checkedChip="@+id/essentialsChip"
+        app:checkedIcon="@drawable/bg_subcategory"
+        app:closeIcon="@drawable/bg_subcategory"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/findDonationsHeader"
+        app:selectionRequired="true"
+        app:singleSelection="true">
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/essentialsChip"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checkable="true"
+            android:onClick="essentialsOnClick"
+            android:text="@string/essentials" />
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/nonEssentialsChip"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checkable="true"
+            android:onClick="nonEssentialsOnClick"
+            android:text="@string/non_essentials" />
+    </com.google.android.material.chip.ChipGroup>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/subcategoryRecyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:overScrollMode="never"
+        android:scrollbars="none"
+        app:layout_constraintTop_toBottomOf="@+id/essentialsChipGroup"
+        android:layout_marginStart="20dp"
+        tools:layout_editor_absoluteX="20dp">
+
+    </androidx.recyclerview.widget.RecyclerView>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/findDonationsRecyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/subcategoryRecyclerView"
+        tools:layout_editor_absoluteX="20dp">
+
+    </androidx.recyclerview.widget.RecyclerView>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

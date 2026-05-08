@@ -23,7 +23,7 @@
         android:layout_width="50dp"
         android:layout_height="44dp"
         android:layout_marginStart="12dp"
-        android:background="#FFFFFF"
+        android:background="@android:color/transparent"
         android:onClick="menuBtnClick"
         android:src="@drawable/menu_icon"
         app:layout_constraintBottom_toBottomOf="@+id/topDonorsHeader"
@@ -35,21 +35,30 @@
         android:layout_width="50dp"
         android:layout_height="44dp"
         android:layout_marginEnd="12dp"
-        android:background="#FFFFFF"
+        android:background="@android:color/transparent"
+        android:onClick="viewProfileOnClick"
         app:layout_constraintBottom_toBottomOf="@+id/topDonorsHeader"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/topDonorsHeader"
-        app:tint="#1A1A1A"
-        tools:src="@android:drawable/ic_menu_gallery" />
+        android:src="@drawable/defaultprofilepicture" />
+
+    <View
+        android:id="@+id/dividerTopDonor"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="20dp"
+        android:background="@android:color/transparent"
+        app:layout_constraintTop_toBottomOf="@+id/topDonorsHeader"
+        tools:layout_editor_absoluteX="1dp" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerViewTopDonors"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginTop="36dp"
+        android:layout_marginTop="24dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/topDonorsHeader" />
+        app:layout_constraintTop_toBottomOf="@+id/dividerTopDonor" />
 </androidx.constraintlayout.widget.ConstraintLayout>

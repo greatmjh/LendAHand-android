@@ -8,35 +8,74 @@
     tools:context=".WelcomePage">
 
     <TextView
-        android:id="@+id/landing_page1"
-        android:layout_width="341dp"
-        android:layout_height="117dp"
-        android:layout_marginTop="28dp"
-        android:text="@string/welcome_to_lend_a_hand"
+        android:id="@+id/landingPageHeader"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="@string/lend_a_hand"
+        android:textAlignment="center"
+        android:textColor="@color/md_theme_onSurface"
         android:textSize="34sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/landingPageupper"
+        tools:layout_editor_absoluteX="16dp" />
+
+    <TextView
+        android:id="@+id/landingPageupper"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="276dp"
+        android:text="@string/welcome_to"
+        android:textAlignment="center"
+        android:textSize="14sp"
+        android:textStyle="italic"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_editor_absoluteX="16dp" />
+
+    <TextView
+        android:id="@+id/landingPagelower"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="30dp"
+        android:text="@string/help_a_friend_help_a_neighbour_help_a_stranger"
+        android:textAlignment="center"
+        android:textSize="14sp"
+        android:textStyle="italic"
+        app:layout_constraintBottom_toTopOf="@+id/signUpButton" />
 
     <Button
-        android:id="@+id/button"
-        android:layout_width="106dp"
-        android:layout_height="42dp"
-        android:layout_marginStart="18dp"
-        android:layout_marginTop="14dp"
+        android:id="@+id/signUpButton"
+        android:layout_width="match_parent"
+        android:layout_height="44dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginBottom="12dp"
         android:onClick="signUpClick"
         android:text="@string/sign_up"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/landing_page1" />
+        app:layout_constraintBottom_toTopOf="@+id/loginButton"
+        app:layout_constraintEnd_toStartOf="@+id/loginButton"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
-        android:id="@+id/button2"
-        android:layout_width="106dp"
-        android:layout_height="42dp"
-        android:layout_marginStart="14dp"
-        android:layout_marginTop="14dp"
+        android:id="@+id/loginButton"
+        android:layout_width="match_parent"
+        android:layout_height="44dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginBottom="62dp"
         android:onClick="logInClick"
         android:text="@string/log_in"
-        app:layout_constraintStart_toEndOf="@+id/button"
-        app:layout_constraintTop_toBottomOf="@+id/landing_page1" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="127dp"
+        android:layout_height="130dp"
+        android:layout_marginBottom="4dp"
+        app:layout_constraintBottom_toTopOf="@+id/landingPageupper"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/landingpageicon"
+        app:tint="@color/md_theme_primary" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Widget.MyApp.Chip" parent="Widget.Material3.Chip.Assist">
+        <item name="chipStyle">@drawable/chip_bg</item>
+        <item name="android:textColor">?attr/colorOnSurfaceVariant</item>
+    </style>
+</resources>

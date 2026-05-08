@@ -1,6 +1,8 @@
 package com.example.lendahand;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -13,6 +15,11 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 
 public class HighlyRequestedItems extends AppCompatActivity {
+
+    public void goBacktoManage(View v)  {
+        Intent intent = new Intent(this, manageMyDonations.class);
+        startActivity(intent);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,4 +44,5 @@ public class HighlyRequestedItems extends AppCompatActivity {
         HighlyRequestedItemsAdapter adapter = new HighlyRequestedItemsAdapter(sampleData);
         recyclerView.setAdapter(adapter);
     }
+
 }

@@ -24,8 +24,6 @@ public class IncomingReqItem implements Parcelable {
         this.distAway = distAway;
     }
 
-
-
     public String getItemName() {
         return itemName;
     }

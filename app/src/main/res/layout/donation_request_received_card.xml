@@ -22,8 +22,9 @@
                 android:id="@+id/threeButtons"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:backgroundTint="@color/white"
+                android:backgroundTint="@android:color/transparent"
                 android:src="@drawable/threebuttons"
+                app:tint="@color/md_theme_scrim_highContrast"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -37,7 +38,8 @@
                 android:textSize="12sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/mainText" />
+                app:layout_constraintTop_toBottomOf="@+id/mainText"
+                tools:ignore="HardcodedText" />
 
             <TextView
                 android:id="@+id/mainText"
@@ -45,6 +47,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:text="@string/item_name"
+                android:textAppearance="@style/TextAppearance.Material3.LabelLarge"
+
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 

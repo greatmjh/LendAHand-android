@@ -19,30 +19,37 @@
             android:layout_marginBottom="12dp">
 
             <TextView
-                android:id="@+id/donorName"
+                android:id="@+id/numUnitsText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginBottom="4dp"
-                android:maxLines="1"
-                android:text="Donor name"
-                android:textAppearance="@style/TextAppearance.Material3.LabelLarge"
-                android:textSize="14sp"
-                app:layout_constraintBottom_toBottomOf="parent"
+                android:layout_marginStart="24dp"
+                android:text="@string/x_units"
+                android:textColor="#454545"
+                app:layout_constraintBottom_toTopOf="@+id/itemNameText"
                 app:layout_constraintStart_toStartOf="parent"
-                tools:ignore="HardcodedText" />
+                app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/donated"
+                android:id="@+id/itemNameText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:maxLines="1"
-                android:text="Donated x items"
-                android:textSize="12sp"
-                app:layout_constraintStart_toStartOf="@+id/donorName"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:ignore="HardcodedText" />
+                android:layout_marginStart="24dp"
+                android:text="@string/item_name"
+                android:textAppearance="@style/TextAppearance.Material3.LabelLarge"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
 
+            <TextView
+                android:id="@+id/distText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="15dp"
+                android:text="15km away"
+                android:textSize="12sp"
+                app:layout_constraintBottom_toTopOf="@+id/itemNameText"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/numUnitsText" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </com.google.android.material.card.MaterialCardView>
+
 </RelativeLayout>

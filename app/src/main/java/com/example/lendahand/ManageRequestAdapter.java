@@ -3,6 +3,7 @@ package com.example.lendahand;
 import static android.view.View.INVISIBLE;
 import static android.view.View.VISIBLE;
 
+import android.annotation.SuppressLint;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -35,7 +36,7 @@ public class ManageRequestAdapter extends RecyclerView.Adapter<ManageRequestAdap
     }
 
     @Override
-    public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull MyViewHolder holder, @SuppressLint("RecyclerView") int position) {
         OutgoingReqItem requestItem = itemList.get(position);
         holder.mainText.setText(requestItem.getItemName());
         holder.subText.setText(requestItem.getSubtext());

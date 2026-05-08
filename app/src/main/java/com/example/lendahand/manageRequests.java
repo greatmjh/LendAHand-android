@@ -28,6 +28,16 @@ public class manageRequests extends AppCompatActivity {
         startActivity(intent);
     }
 
+    public void makeGenRequestButton(View v){
+        Intent intent = new Intent(this, makeGenRequest.class);
+        startActivity(intent);
+    }
+
+    public void viewProfileOnClick(View v){
+        Intent intent = new Intent(this, viewProfile.class);
+        startActivity(intent);
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

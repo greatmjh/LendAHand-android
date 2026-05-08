@@ -21,9 +21,9 @@
     <EditText
         android:id="@+id/fullNameEntry"
         android:layout_width="335dp"
-        android:layout_height="48dp"
+        android:layout_height="52dp"
         android:layout_marginTop="100dp"
-        android:background="#D9D9D9"
+        android:background="@color/md_theme_surfaceDim"
         android:ems="10"
         android:includeFontPadding="true"
         android:inputType="text"
@@ -36,9 +36,9 @@
     <EditText
         android:id="@+id/bioEntry"
         android:layout_width="335dp"
-        android:layout_height="48dp"
+        android:layout_height="52dp"
         android:layout_marginTop="20dp"
-        android:background="#D9D9D9"
+        android:background="@color/md_theme_surfaceDim"
         android:ems="10"
         android:includeFontPadding="true"
         android:inputType="text|textLongMessage"
@@ -51,9 +51,9 @@
     <EditText
         android:id="@+id/passwordEntry"
         android:layout_width="335dp"
-        android:layout_height="48dp"
+        android:layout_height="52dp"
         android:layout_marginTop="20dp"
-        android:background="#D9D9D9"
+        android:background="@color/md_theme_surfaceDim"
         android:ems="10"
         android:includeFontPadding="true"
         android:inputType="text|textPassword"
@@ -66,9 +66,9 @@
     <EditText
         android:id="@+id/confirmPasswordEntry"
         android:layout_width="335dp"
-        android:layout_height="48dp"
+        android:layout_height="52dp"
         android:layout_marginTop="20dp"
-        android:background="#D9D9D9"
+        android:background="@color/md_theme_surfaceDim"
         android:ems="10"
         android:includeFontPadding="true"
         android:inputType="text|textPassword"
@@ -81,9 +81,9 @@
     <EditText
         android:id="@+id/emailEntry"
         android:layout_width="335dp"
-        android:layout_height="48dp"
+        android:layout_height="52dp"
         android:layout_marginTop="20dp"
-        android:background="#D9D9D9"
+        android:background="@color/md_theme_surfaceDim"
         android:ems="10"
         android:includeFontPadding="true"
         android:inputType="text|textEmailAddress"
@@ -96,9 +96,9 @@
     <EditText
         android:id="@+id/phoneEntry"
         android:layout_width="335dp"
-        android:layout_height="48dp"
+        android:layout_height="52dp"
         android:layout_marginTop="20dp"
-        android:background="#D9D9D9"
+        android:background="@color/md_theme_surfaceDim"
         android:ems="10"
         android:includeFontPadding="true"
         android:inputType="phone"
@@ -126,11 +126,10 @@
         android:layout_height="42dp"
         android:layout_marginStart="12dp"
         android:layout_marginTop="14dp"
-        android:backgroundTint="#D9D9D9"
+        android:backgroundTint="@color/md_theme_surfaceDim"
         android:onClick="logInClick"
         android:text="@string/have_an_account_log_in"
-        android:textColor="#313131"
-        android:textColorLink="#FBFBFB"
+        android:textColor="@color/md_theme_scrim"
         android:textSize="12sp"
         app:layout_constraintStart_toEndOf="@+id/signUpButton"
         app:layout_constraintTop_toBottomOf="@+id/confirmPasswordEntry" />
@@ -142,6 +141,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="4dp"
         android:text="@string/bio"
+        android:textColor="@color/md_theme_onSurfaceVariant"
         android:textSize="12sp"
         app:layout_constraintStart_toStartOf="@+id/bioEntry"
         app:layout_constraintTop_toTopOf="@+id/bioEntry" />
@@ -153,6 +153,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="4dp"
         android:text="@string/password"
+        android:textColor="@color/md_theme_onSurfaceVariant"
         android:textSize="12sp"
         app:layout_constraintStart_toStartOf="@+id/passwordEntry"
         app:layout_constraintTop_toTopOf="@+id/passwordEntry" />
@@ -164,6 +165,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="4dp"
         android:text="@string/confirm_password"
+        android:textColor="@color/md_theme_onSurfaceVariant"
         android:textSize="12sp"
         app:layout_constraintStart_toStartOf="@+id/confirmPasswordEntry"
         app:layout_constraintTop_toTopOf="@+id/confirmPasswordEntry" />
@@ -175,6 +177,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="4dp"
         android:text="@string/phone_number"
+        android:textColor="@color/md_theme_onSurfaceVariant"
         android:textSize="12sp"
         app:layout_constraintStart_toStartOf="@+id/phoneEntry"
         app:layout_constraintTop_toTopOf="@+id/phoneEntry" />
@@ -186,6 +189,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="4dp"
         android:text="@string/email_address"
+        android:textColor="@color/md_theme_onSurfaceVariant"
         android:textSize="12sp"
         app:layout_constraintStart_toStartOf="@+id/emailEntry"
         app:layout_constraintTop_toTopOf="@+id/emailEntry" />
@@ -197,7 +201,9 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="4dp"
         android:text="@string/full_name"
+        android:textColor="@color/md_theme_onSurfaceVariant"
         android:textSize="12sp"
         app:layout_constraintStart_toStartOf="@+id/fullNameEntry"
         app:layout_constraintTop_toTopOf="@+id/fullNameEntry" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

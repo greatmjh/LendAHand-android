@@ -33,6 +33,14 @@ public class manageMyDonationsAdapter extends RecyclerView.Adapter<manageMyDonat
         holder.nameText.setText(donationItem.getItemName());
         holder.availableText.setText(String.format("%s unit%s available",
                 donationItem.getNumItemsAvailable(), (donationItem.getNumItemsAvailable() == 1 ? "" : "s")));
+
+        holder.deleteButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                itemList.remove(position);
+                manageMyDonationsAdapter.super.notifyDataSetChanged();
+            }
+        });
     }
 
     @Override
@@ -43,6 +51,7 @@ public class manageMyDonationsAdapter extends RecyclerView.Adapter<manageMyDonat
     // ViewHolder class
     public static class MyViewHolder extends RecyclerView.ViewHolder {
         TextView nameText, availableText;
+        ImageButton deleteButton;
 
         public MyViewHolder(@NonNull View itemView) {
 
@@ -50,6 +59,8 @@ public class manageMyDonationsAdapter extends RecyclerView.Adapter<manageMyDonat
 
             nameText = itemView.findViewById(R.id.itemName);
             availableText = itemView.findViewById(R.id.numAvailable);
+            deleteButton = itemView.findViewById(R.id.deleteButton);
+
         }
     }
 }
