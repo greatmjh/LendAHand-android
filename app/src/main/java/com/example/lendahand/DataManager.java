@@ -75,43 +75,13 @@ public class DataManager {
     public void APIRegister(RegisterRequest req, Runnable callback) {
         //Convert input into JSON
         String payloadJson = gson.toJson(req);
-
-        //Create OkHttp Request
-        OkHttpClient client = new OkHttpClient();
-        RequestBody body = RequestBody.create(payloadJson, MediaType.parse("application/json"));
-        Request httpReq = new Request.Builder()
-                .url(HttpUrl.parse(applicationContext.getString(R.string.apiServerAddr)).newBuilder().
-                        addPathSegment("register.php").build())
-                .post(body)
-                .build();
-
-        //Run the request
-        client.newCall(httpReq).enqueue(new Callback() {
+        makeApiRequest(payloadJson, "register.php", new ApiRequestCallback() {
             @Override
-            public void onFailure(@NonNull Call call, @NonNull IOException e) {
-                e.printStackTrace();
-                toast("Please check your internet connection");
-
-            }
-
-            @Override
-            public void onResponse(@NonNull Call call, @NonNull Response response) throws IOException {
-                try {
-                    String responseBody = response.body().string();
-                    //Handle errors from server
-                    if (!response.isSuccessful()) {
-                        handleHttpError(response, responseBody);
-                    }
-                    //Deserialise our response
-                    LogInResponse decodedResponse = gson.fromJson(responseBody, LogInResponse.class);
-
-                    //Log in
-                    handleLogInResponse(decodedResponse, callback);
-                } catch (IOException e) { //shouldn't really happen the way we are doing this
-                    e.printStackTrace();
-                }
-
-
+            public void onSuccessfulResponse(String responseBody) {
+                //Deserialise our response
+                LogInResponse decodedResponse = gson.fromJson(responseBody, LogInResponse.class);
+                //Log in
+                handleLogInResponse(decodedResponse, callback);
             }
         });
     }
@@ -120,40 +90,13 @@ public class DataManager {
     public void APILogin(LoginRequest req, Runnable callback) {
         String payloadJson = gson.toJson(req);
 
-        //Create OkHttp Request
-        OkHttpClient client = new OkHttpClient();
-        RequestBody body = RequestBody.create(payloadJson, MediaType.parse("application/json"));
-        Request httpReq = new Request.Builder()
-                .url(HttpUrl.parse(applicationContext.getString(R.string.apiServerAddr)).newBuilder().
-                        addPathSegment("login.php").build())
-                .post(body)
-                .build();
-
-        //Run the request
-        client.newCall(httpReq).enqueue(new Callback() {
+        makeApiRequest(payloadJson, "login.php", new ApiRequestCallback() {
             @Override
-            public void onFailure(@NonNull Call call, @NonNull IOException e) {
-                e.printStackTrace();
-                toast("Please check your internet connection");
-
-            }
-
-            @Override
-            public void onResponse(@NonNull Call call, @NonNull Response response) throws IOException {
-                try {
-                    String responseBody = response.body().string();
-                    //Handle errors from server
-                    if (!response.isSuccessful()) {
-                        handleHttpError(response, responseBody);
-                    }
-                    //Deserialise our response
-                    LogInResponse decodedResponse = gson.fromJson(responseBody, LogInResponse.class);
-
-                    //Log in
-                    handleLogInResponse(decodedResponse, callback);
-                } catch (IOException e) { //shouldn't really happen the way we are doing this
-                    e.printStackTrace();
-                }
+            public void onSuccessfulResponse(String responseBody) {
+                //Deserialise our response
+                LogInResponse decodedResponse = gson.fromJson(responseBody, LogInResponse.class);
+                //Log in
+                handleLogInResponse(decodedResponse, callback);
             }
         });
     }
@@ -169,92 +112,38 @@ public class DataManager {
 
             String payloadJson = jsonObj.toString();
 
-            //Create OkHttp Request
-            OkHttpClient client = new OkHttpClient();
-            RequestBody body = RequestBody.create(payloadJson, MediaType.parse("application/json"));
-            Request httpReq = new Request.Builder()
-                    .url(HttpUrl.parse(applicationContext.getString(R.string.apiServerAddr)).newBuilder().
-                            addPathSegment("change_password.php").build())
-                    .post(body)
-                    .build();
-
-            //Run the request
-            client.newCall(httpReq).enqueue(new Callback() {
+            makeApiRequest(payloadJson, "change_password.php", new ApiRequestCallback() {
                 @Override
-                public void onFailure(@NonNull Call call, @NonNull IOException e) {
-                    e.printStackTrace();
-                    toast("Please check your internet connection");
+                public void onSuccessfulResponse(String responseBody) {
+                    //Deserialise our response
+                    LogInResponse decodedResponse = gson.fromJson(responseBody, LogInResponse.class);
 
-                }
-
-                @Override
-                public void onResponse(@NonNull Call call, @NonNull Response response) throws IOException {
-                    try {
-                        String responseBody = response.body().string();
-                        //Handle errors from server
-                        if (!response.isSuccessful()) {
-                            handleHttpError(response, responseBody);
-                        }
-                        //Deserialise our response
-                        LogInResponse decodedResponse = gson.fromJson(responseBody, LogInResponse.class);
-
-                        //Check success
-                        if (decodedResponse.success) {
-                            //save the new session key we got
-                            sessionKey = decodedResponse.sessionKey;
-                            updatePrefs();
-                            callback.run();
-                        } else {
-                            //display the error
-                            toast(decodedResponse.errorMessage);
-                        }
-                    } catch (IOException e) { //shouldn't really happen the way we are doing this
-                        e.printStackTrace();
+                    //Check success
+                    if (decodedResponse.success) {
+                        //save the new session key we got
+                        sessionKey = decodedResponse.sessionKey;
+                        updatePrefs();
+                        callback.run();
+                    } else {
+                        //display the error
+                        toast(decodedResponse.errorMessage);
                     }
                 }
             });
-
         } catch (JSONException e) {
             e.printStackTrace();
         }
     }
 
     public void APIGetProfileInfo(APIProfileInfoCallback callback) {
-        String payloadJson = getAuthenticatedRequestJSON();
-        //Create OkHttp Request
-        OkHttpClient client = new OkHttpClient();
-        RequestBody body = RequestBody.create(payloadJson, MediaType.parse("application/json"));
-        Request httpReq = new Request.Builder()
-                .url(HttpUrl.parse(applicationContext.getString(R.string.apiServerAddr)).newBuilder().
-                        addPathSegment("get_profile.php").build())
-                .post(body)
-                .build();
-
-        //Run the request
-        client.newCall(httpReq).enqueue(new Callback() {
+        makeApiRequest(getAuthenticatedRequestJSON(), "get_profile.php", new ApiRequestCallback() {
             @Override
-            public void onFailure(@NonNull Call call, @NonNull IOException e) {
-                e.printStackTrace();
-                toast("Please check your internet connection");
+            public void onSuccessfulResponse(String responseBody) {
+                //Deserialise our response
+                ProfileInfo decodedResponse = gson.fromJson(responseBody, ProfileInfo.class);
 
-            }
-
-            @Override
-            public void onResponse(@NonNull Call call, @NonNull Response response) throws IOException {
-                try {
-                    String responseBody = response.body().string();
-                    //Handle errors from server
-                    if (!response.isSuccessful()) {
-                        handleHttpError(response, responseBody);
-                    }
-                    //Deserialise our response
-                    ProfileInfo decodedResponse = gson.fromJson(responseBody, ProfileInfo.class);
-
-                    //Return our response to the callback
-                    callback.success(decodedResponse);
-                } catch (IOException e) { //shouldn't really happen the way we are doing this
-                    e.printStackTrace();
-                }
+                //Return our response to the callback
+                callback.success(decodedResponse);
             }
         });
     }
@@ -305,26 +194,6 @@ public class DataManager {
         });
     }
 
-    private void handleHttpError(Response response, String responseBody) {
-        if (response.code() == 500) {
-            toast("Internal server error");
-        } else if (response.code() == 400) {
-            toast("Bad input: " + responseBody);
-        } else if (response.code() == 401) {
-            toast("You have been logged out.");
-            //run logout on a new thread as to not break okhttp
-            new Thread(new Runnable() {
-                @Override
-                public void run() {
-                    logOut();
-                }
-            }).start();
-
-        }
-        else {
-            toast("Unexpected HTTP error:" + response.code());
-        }
-    }
 
     private void handleLogInResponse(LogInResponse decodedResponse, Runnable callback) {
         //Check if the response was successful and if so log in
@@ -347,6 +216,58 @@ public class DataManager {
             e.printStackTrace();
             return "";
         }
+    }
+
+    private void makeApiRequest(String reqJson, String endpointName, ApiRequestCallback callback) {
+        //Create OkHttp Request
+        OkHttpClient client = new OkHttpClient();
+        RequestBody body = RequestBody.create(reqJson, MediaType.parse("application/json"));
+        Request httpReq = new Request.Builder()
+                .url(HttpUrl.parse(applicationContext.getString(R.string.apiServerAddr)).newBuilder().
+                        addPathSegment(endpointName).build())
+                .post(body)
+                .build();
+
+        //Run the request
+        client.newCall(httpReq).enqueue(new Callback() {
+            @Override
+            public void onFailure(@NonNull Call call, @NonNull IOException e) {
+                e.printStackTrace();
+                toast("Please check your internet connection");
+
+            }
+
+            @Override
+            public void onResponse(@NonNull Call call, @NonNull Response response) throws IOException {
+                try {
+                    String responseBody = response.body().string();
+                    //Handle errors from server
+                    if (!response.isSuccessful()) {
+                        if (response.code() == 500) {
+                            toast("Internal server error");
+                        } else if (response.code() == 400) {
+                            toast("Bad input: " + responseBody);
+                        } else if (response.code() == 401) {
+                            toast("You have been logged out.");
+                            logOut();
+
+                        }
+                        else {
+                            toast("Unexpected HTTP error:" + response.code());
+                        }
+                    } else {
+                        //Send the successful response back
+                        callback.onSuccessfulResponse(responseBody);
+                    }
+                } catch (IOException e) { //shouldn't really happen the way we are doing this
+                    e.printStackTrace();
+                }
+
+            }
+        });
+    }
+    private interface ApiRequestCallback {
+        void onSuccessfulResponse(String responseBody);
     }
 
 }
