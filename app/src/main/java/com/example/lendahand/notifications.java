@@ -65,5 +65,15 @@ public class notifications extends AppCompatActivity {
 
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        RecyclerView recyclerView = findViewById(R.id.recyclerViewNotifications);
+        try {
+            recyclerView.getAdapter().notifyDataSetChanged();
+        } catch (NullPointerException ignored) {
 
+        }
+
+    }
 }

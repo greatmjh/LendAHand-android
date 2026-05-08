@@ -10,6 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 
 public class notificationAdapter extends RecyclerView.Adapter<notificationAdapter.MyViewHolder> {
@@ -47,8 +48,8 @@ public class notificationAdapter extends RecyclerView.Adapter<notificationAdapte
         holder.notificationTitle.setText(notifItem.getTitle());
         holder.notificationTime.setText(notifItem.getRelativeTime());
 
-        //handle onclicks
-        holder.onclick = notifItem.getOnclick();
+        //give holder a reference to actual notification item
+        holder.item = notifItem;
 
     }
 
@@ -60,7 +61,8 @@ public class notificationAdapter extends RecyclerView.Adapter<notificationAdapte
     // ViewHolder class
     public static class MyViewHolder extends RecyclerView.ViewHolder {
         TextView notificationTime, notificationTitle, notificationBody;
-        String onclick;
+
+        notificationItem item;
 
         public MyViewHolder(@NonNull View itemView) {
 
@@ -73,7 +75,10 @@ public class notificationAdapter extends RecyclerView.Adapter<notificationAdapte
             itemView.findViewById(R.id.notif_cardview).setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    switch (onclick) {
+                    //mark this notification as read
+                    DataManager.getInstance(null).APIMarkAsRead(item.getUuid());
+                    item.read = true;
+                    switch (item.getOnclick()) {
                         case "outgoingRequests":
                             Intent intentOut = new Intent(view.getContext(), manageRequests.class);
                             view.getContext().startActivity(intentOut);

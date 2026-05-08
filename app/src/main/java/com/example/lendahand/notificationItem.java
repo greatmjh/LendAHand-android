@@ -21,6 +21,7 @@ public class notificationItem {
         this.body = body;
         this.onclick = onclick;
         this.read = read;
+        this.uuid = id;
     }
 
     public String getRelativeTime() {
@@ -44,4 +45,5 @@ public class notificationItem {
     public boolean isRead() {
         return read;
     }
+    public UUID getUuid() { return uuid; }
 }

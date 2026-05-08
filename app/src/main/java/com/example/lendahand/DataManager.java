@@ -213,6 +213,34 @@ public class DataManager {
         public void onSuccess(List<notificationItem> items);
     }
 
+    //Mark notification as read
+    public void APIMarkAsRead(UUID notifId) {
+        JsonObject jsonObject = new JsonObject();
+        jsonObject.add("sessionKey", JsonParser.parseString(sessionKey));
+        jsonObject.add("notificationId", JsonParser.parseString(notifId.toString()));
+        String request = jsonObject.toString();
+        makeApiRequest(request, "mark_as_read.php", new ApiRequestCallback() {
+            @Override
+            public void onSuccessfulResponse(String responseBody) {
+                //pass
+            }
+        });
+    }
+
+    //Mark all notifications as read
+    public void APIMarkAllAsRead() {
+        JsonObject jsonObject = new JsonObject();
+        jsonObject.add("sessionKey", JsonParser.parseString(sessionKey));
+        jsonObject.add("notificationId", JsonParser.parseString("all"));
+        String request = jsonObject.toString();
+        makeApiRequest(request, "mark_as_read.php", new ApiRequestCallback() {
+            @Override
+            public void onSuccessfulResponse(String responseBody) {
+                //pass
+            }
+        });
+    }
+
     //==== Class internals ====
     static DataManager instance;
     final SharedPreferences sharedPreferences;
