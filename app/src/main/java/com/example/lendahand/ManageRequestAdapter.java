@@ -49,7 +49,7 @@ public class ManageRequestAdapter extends RecyclerView.Adapter<ManageRequestAdap
             @Override
             public void onClick(View v) {
                 itemList.remove(position);
-                ManageRequestAdapter.super.notifyDataSetChanged();
+                ManageRequestAdapter.super.notifyItemRemoved(position);
             }
         });
 

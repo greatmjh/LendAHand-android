@@ -36,7 +36,7 @@ public class makeGenRequestAdapter extends RecyclerView.Adapter<makeGenRequestAd
             itemList.remove(position);
             //tell the server to delete
             DataManager.getInstance(null).APIMakeGeneralRequest(requestItem.getItemId(), 0);
-            makeGenRequestAdapter.super.notifyDataSetChanged();
+            makeGenRequestAdapter.super.notifyItemRemoved(position);
         });
     }
 

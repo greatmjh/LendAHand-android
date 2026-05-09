@@ -38,7 +38,7 @@ public class manageMyDonationsAdapter extends RecyclerView.Adapter<manageMyDonat
             @Override
             public void onClick(View v) {
                 itemList.remove(position);
-                manageMyDonationsAdapter.super.notifyDataSetChanged();
+                manageMyDonationsAdapter.super.notifyItemRemoved(position);
             }
         });
     }

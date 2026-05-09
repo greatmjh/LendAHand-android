@@ -85,7 +85,9 @@ public class makeGenRequest extends AppCompatActivity {
             //Update with the item
             displayedItems.add(new HighlyRequestedItem(currentlySelectedItem.getItemName(), 1, currentlySelectedItem.getItemID()));
             RecyclerView recyclerView = findViewById(R.id.recyclerViewOnMakeGenRequest);
-            recyclerView.getAdapter().notifyDataSetChanged();
+            if (recyclerView.getAdapter() != null) {
+                recyclerView.getAdapter().notifyItemInserted(displayedItems.size() - 1);
+            }
         }
     }
 }
