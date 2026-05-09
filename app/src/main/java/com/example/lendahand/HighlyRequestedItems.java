@@ -13,6 +13,8 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
+import java.util.List;
+import java.util.UUID;
 
 public class HighlyRequestedItems extends AppCompatActivity {
 
@@ -33,16 +35,24 @@ public class HighlyRequestedItems extends AppCompatActivity {
         });
 
         RecyclerView recyclerView = findViewById(R.id.recyclerViewHighlyReq);
-        ArrayList<HighlyRequestedItem> sampleData = new ArrayList<>();
-        sampleData.add(new HighlyRequestedItem("Tinned Tuna", 18));
-        sampleData.add(new HighlyRequestedItem("R12 Airtime voucher", 15));
-        sampleData.add(new HighlyRequestedItem("Blanket", 10));
+        DataManager.getInstance(this).APIGetAllGeneralRequests(new DataManager.GenRequestCallback() {
+            @Override
+            public void onSuccess(ArrayList<HighlyRequestedItem> result) {
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        //set adapter
+                        HighlyRequestedItemsAdapter adapter = new HighlyRequestedItemsAdapter(result);
+                        recyclerView.setAdapter(adapter);
+                    }
+                });
+
+            }
+        });
 
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        //set adapter
-        HighlyRequestedItemsAdapter adapter = new HighlyRequestedItemsAdapter(sampleData);
-        recyclerView.setAdapter(adapter);
+
     }
 
 }

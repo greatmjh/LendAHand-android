@@ -1,19 +1,25 @@
 package com.example.lendahand;
 
-public class HighlyRequestedItem {
-    String itemName;
-    int qtyNeeded;
+import java.util.UUID;
 
-    public HighlyRequestedItem(String itemName, int qtyNeeded) {
-        this.itemName = itemName;
-        this.qtyNeeded = qtyNeeded;
+public class HighlyRequestedItem {
+    String itemTitle;
+    int quantity;
+    UUID itemId;
+
+    public HighlyRequestedItem(String itemName, int qtyNeeded, UUID itemId) {
+        this.itemTitle = itemName;
+        this.quantity = qtyNeeded;
+        this.itemId = itemId;
     }
 
     public String getItemName() {
-        return itemName;
+        return itemTitle;
     }
 
     public int getQtyNeeded() {
-        return qtyNeeded;
+        return quantity;
     }
+
+    public UUID getItemId() { return itemId; }
 }

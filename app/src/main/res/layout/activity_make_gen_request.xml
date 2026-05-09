@@ -62,9 +62,10 @@
         android:id="@+id/createGenRequestButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/create_general_request"
         android:layout_marginStart="24dp"
         android:layout_marginTop="12dp"
+        android:onClick="makeGenRequestClick"
+        android:text="@string/create_general_request"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/itemTypeText" />
 

@@ -17,6 +17,7 @@ import com.example.lendahand.apiclasses.RegisterRequest;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
+import com.google.gson.JsonSyntaxException;
 import com.google.gson.reflect.TypeToken;
 
 import org.json.JSONException;
@@ -27,6 +28,7 @@ import java.lang.reflect.Type;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.UUID;
 
@@ -253,6 +255,67 @@ public class DataManager {
     }
     public interface ItemTreeCallback {
         void onSuccess(ItemCategory[] roots);
+    }
+
+    //Get all general requests
+    public void APIGetAllGeneralRequests(GenRequestCallback callback) {
+        makeApiRequest(getAuthenticatedRequestJSON(), "get_universal_requests.php", new ApiRequestCallback() {
+            @Override
+            public void onSuccessfulResponse(String responseBody) {
+                try {
+                    //Decode response into correct type
+                    HighlyRequestedItem[] resultArr = gson.fromJson(responseBody, HighlyRequestedItem[].class);
+                    //Return in arraylist form
+                    callback.onSuccess(new ArrayList<>(Arrays.asList(resultArr)));
+                } catch (JsonSyntaxException e) {
+                    toast("Error processing response from server");
+                    e.printStackTrace();
+                }
+            }
+        });
+    }
+
+    //Get my general requests
+    public void APIGetMyGeneralRequests(GenRequestCallback callback) {
+        makeApiRequest(getAuthenticatedRequestJSON(), "get_my_universal_requests.php", new ApiRequestCallback() {
+            @Override
+            public void onSuccessfulResponse(String responseBody) {
+                try {
+                    //Decode response into correct type
+                    HighlyRequestedItem[] resultArr = gson.fromJson(responseBody, HighlyRequestedItem[].class);
+                    //Return in arraylist form
+                    callback.onSuccess(new ArrayList<>(Arrays.asList(resultArr)));
+                } catch (JsonSyntaxException e) {
+                    toast("Error processing response from server");
+                    e.printStackTrace();
+                }
+
+            }
+        });
+    }
+
+    //Used for both above
+    public interface GenRequestCallback {
+        public void onSuccess(ArrayList<HighlyRequestedItem> result);
+    }
+
+    //Make/update general request
+    public void APIMakeGeneralRequest(UUID itemId, int quantity) {
+        //Formulate request body
+        JsonObject jsonObject = new JsonObject();
+        jsonObject.add("sessionKey", JsonParser.parseString(sessionKey));
+        jsonObject.add("itemId", JsonParser.parseString(itemId.toString()));
+        jsonObject.add("qty", JsonParser.parseString(Integer.toString(quantity)));
+
+        String reqBody = jsonObject.toString();
+
+        //Send request
+        makeApiRequest(reqBody, "make_universal_request.php", new ApiRequestCallback() {
+            @Override
+            public void onSuccessfulResponse(String responseBody) {
+                //pass
+            }
+        });
     }
 
     //==== Class internals ====

@@ -11,9 +11,9 @@ import java.util.ArrayList;
 
 
 public class makeGenRequestAdapter extends RecyclerView.Adapter<makeGenRequestAdapter.MyViewHolder> {
-    private ArrayList<genRequestItem> itemList;
+    private ArrayList<HighlyRequestedItem> itemList;
 
-    public makeGenRequestAdapter(ArrayList<genRequestItem> itemList){
+    public makeGenRequestAdapter(ArrayList<HighlyRequestedItem> itemList){
         this.itemList = itemList;
     }
 
@@ -27,13 +27,15 @@ public class makeGenRequestAdapter extends RecyclerView.Adapter<makeGenRequestAd
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-        genRequestItem requestItem = itemList.get(position);
+        HighlyRequestedItem requestItem = itemList.get(position);
 
         holder.itemText.setText(requestItem.getItemName());
-        holder.deleteButton.setImageResource(requestItem.getImage());
+        holder.deleteButton.setImageResource(R.drawable.delete);
 
         holder.deleteButton.setOnClickListener(v -> {
             itemList.remove(position);
+            //tell the server to delete
+            DataManager.getInstance(null).APIMakeGeneralRequest(requestItem.getItemId(), 0);
             makeGenRequestAdapter.super.notifyDataSetChanged();
         });
     }
