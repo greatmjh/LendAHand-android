@@ -1,6 +1,7 @@
 package com.example.lendahand;
 
 
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -33,6 +34,7 @@ public class findDonationsAdapter extends RecyclerView.Adapter<findDonationsAdap
         holder.itemText.setText(donationItem.getItemName());
         holder.numText.setText(String.format("%s unit%s", donationItem.getNumUnits(), (donationItem.getNumUnits() == 1 ? "" : "s")));
         holder.distText.setText(String.format("%s km away", donationItem.getDistance()));
+        holder.item = donationItem;
     }
 
     @Override
@@ -43,6 +45,7 @@ public class findDonationsAdapter extends RecyclerView.Adapter<findDonationsAdap
     // ViewHolder class
     public static class MyViewHolder extends RecyclerView.ViewHolder {
         TextView itemText, numText, distText;
+        findDonationsItem item;
         public MyViewHolder(@NonNull View itemView) {
 
             super(itemView);
@@ -50,6 +53,19 @@ public class findDonationsAdapter extends RecyclerView.Adapter<findDonationsAdap
             itemText = itemView.findViewById(R.id.itemNameText);
             numText = itemView.findViewById(R.id.numUnitsText);
             distText = itemView.findViewById(R.id.distText);
+
+            itemView.findViewById(R.id.find_donation_cardview).setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(v.getContext(), MakeRequestPopup.class);
+                    intent.putExtra("donorName", item.getDonorName());
+                    intent.putExtra("offerID", item.offerID.toString());
+                    intent.putExtra("itemName", item.getItemName());
+                    intent.putExtra("distance", item.getDistance());
+                    intent.putExtra("qtyMaximum", item.getNumUnits());
+                    v.getContext().startActivity(intent);
+                }
+            });
         }
     }
 

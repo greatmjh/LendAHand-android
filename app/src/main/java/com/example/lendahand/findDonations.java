@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
+import java.util.UUID;
 
 public class findDonations extends AppCompatActivity {
 
@@ -94,12 +95,12 @@ public class findDonations extends AppCompatActivity {
 
         //add sample data
         {
-            itemList.add(new findDonationsItem("Baked Beans", "Essential", "Food",3,5));
-            itemList.add(new findDonationsItem("T-shirt", "Essential", "Clothes",1,2));
-            itemList.add(new findDonationsItem("Toothbrush","Essential", "Hygiene",3,5));
-            itemList.add(new findDonationsItem("Chair", "Essential", "Furniture",3,5));
-            itemList.add(new findDonationsItem("Kettle","Essential", "Appliances",3,5));
-            itemList.add(new findDonationsItem("Airtime Voucher","NonEssential", "Airtime",1,5));
+            itemList.add(new findDonationsItem("Baked Beans", "Essential", "Food",3,5, UUID.randomUUID(), "Richard Klein"));
+            itemList.add(new findDonationsItem("T-shirt", "Essential", "Clothes",1,2, UUID.randomUUID(), "Greg Owen"));
+            itemList.add(new findDonationsItem("Toothbrush","Essential", "Hygiene",3,5, UUID.randomUUID(), "Steve James"));
+            itemList.add(new findDonationsItem("Chair", "Essential", "Furniture",3,5, UUID.randomUUID(), "Yorick Hardy"));
+            itemList.add(new findDonationsItem("Kettle","Essential", "Appliances",3,5, UUID.randomUUID(), "Richard Klein"));
+            itemList.add(new findDonationsItem("Airtime Voucher","NonEssential", "Airtime",1,5, UUID.randomUUID(), "Ritesh Ajoodha"));
         }
 
         adapterItems = new findDonationsAdapter(itemList);
