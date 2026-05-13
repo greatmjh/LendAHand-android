@@ -23,7 +23,7 @@
         android:layout_width="50dp"
         android:layout_height="44dp"
         android:layout_marginStart="12dp"
-        android:background="@android:color/transparent"
+        style="@style/icon"
         android:onClick="menuBtnClick"
         android:src="@drawable/menu_icon"
         app:layout_constraintBottom_toBottomOf="@+id/viewProfileHeader"
@@ -32,125 +32,104 @@
 
     <ImageButton
         android:id="@+id/imageButton2"
-        android:layout_width="50dp"
-        android:layout_height="44dp"
-        android:layout_marginEnd="12dp"
-        android:background="@android:color/transparent"
+        android:scaleType="fitCenter"
+        android:layout_width="36dp"
+        android:layout_height="36dp"
+        android:layout_marginEnd="20dp"
+        style="@style/icon"
         android:onClick="viewProfileOnClick"
         app:layout_constraintBottom_toBottomOf="@+id/viewProfileHeader"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/viewProfileHeader"
         tools:src="@drawable/defaultprofilepicture" />
 
-
-    <EditText
-        android:id="@+id/fullNameEntry"
-        android:layout_width="335dp"
-        android:layout_height="48dp"
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/outlineFullNameEntry"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
         android:layout_marginTop="100dp"
-        android:background="@color/md_theme_surfaceDim"
-        android:ems="10"
-        android:includeFontPadding="true"
-        android:inputType="text"
-        android:textAlignment="textStart"
-        android:textSize="14sp"
+        android:layout_marginEnd="32dp"
+        android:hint="@string/full_name"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent">
 
-    <TextView
-        android:id="@+id/nameText"
-        android:layout_width="wrap_content"
+        <!--this is the actual edit text which takes the input-->
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/fullNameEntry"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="14sp" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/outlineEmailEntry"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="4dp"
-        android:text="@string/full_name"
-        android:textColor="@color/md_theme_onSurfaceVariant"
-        android:textSize="12sp"
-        app:layout_constraintStart_toStartOf="@+id/fullNameEntry"
-        app:layout_constraintTop_toTopOf="@+id/fullNameEntry" />
-
-    <EditText
-        android:id="@+id/emailEntry"
-        android:layout_width="335dp"
-        android:layout_height="48dp"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_marginEnd="32dp"
+        android:layout_marginStart="32dp"
+        android:hint="@string/email_address"
         android:layout_marginTop="20dp"
-        android:background="@color/md_theme_surfaceDim"
-        android:ems="10"
-        android:includeFontPadding="true"
-        android:inputType="text|textEmailAddress"
-        android:textAlignment="textStart"
-        android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/fullNameEntry" />
+        app:layout_constraintTop_toBottomOf="@+id/outlineFullNameEntry">
 
-    <TextView
-        android:id="@+id/emailAddText"
-        android:layout_width="wrap_content"
+        <!--this is the actual edit text which takes the input-->
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/emailEntry"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="14sp" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/outlinePhoneEntry"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="4dp"
-        android:text="@string/email_address"
-        android:textColor="@color/md_theme_onSurfaceVariant"
-        android:textSize="12sp"
-        app:layout_constraintStart_toStartOf="@+id/emailEntry"
-        app:layout_constraintTop_toTopOf="@+id/emailEntry" />
-
-    <EditText
-        android:id="@+id/phoneEntry"
-        android:layout_width="335dp"
-        android:layout_height="48dp"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_marginEnd="32dp"
+        android:layout_marginStart="32dp"
+        android:hint="@string/phone_number"
         android:layout_marginTop="20dp"
-        android:background="@color/md_theme_surfaceDim"
-        android:ems="10"
-        android:includeFontPadding="true"
-        android:inputType="phone"
-        android:textAlignment="textStart"
-        android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/emailEntry" />
+        app:layout_constraintTop_toBottomOf="@+id/outlineEmailEntry">
 
-    <TextView
-        android:id="@+id/phoneNumText"
-        android:layout_width="wrap_content"
+        <!--this is the actual edit text which takes the input-->
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/phoneEntry"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="14sp" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/outlineBioEntry"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="4dp"
-        android:text="@string/phone_number"
-        android:textColor="@color/md_theme_onSurfaceVariant"
-        android:textSize="12sp"
-        app:layout_constraintStart_toStartOf="@+id/phoneEntry"
-        app:layout_constraintTop_toTopOf="@+id/phoneEntry" />
-
-    <EditText
-        android:id="@+id/bioEntry"
-        android:layout_width="335dp"
-        android:layout_height="48dp"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_marginEnd="32dp"
+        android:layout_marginStart="32dp"
+        android:hint="@string/bio"
         android:layout_marginTop="20dp"
-        android:background="@color/md_theme_surfaceDim"
-        android:ems="10"
-        android:includeFontPadding="true"
-        android:inputType="text|textLongMessage"
-        android:textAlignment="textStart"
-        android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/phoneEntry" />
+        app:layout_constraintTop_toBottomOf="@+id/outlinePhoneEntry">
 
-    <TextView
-        android:id="@+id/textBio"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="4dp"
-        android:text="@string/bio"
-        android:textColor="@color/md_theme_onSurfaceVariant"
-        android:textSize="12sp"
-        app:layout_constraintStart_toStartOf="@+id/bioEntry"
-        app:layout_constraintTop_toTopOf="@+id/bioEntry" />
+        <!--this is the actual edit text which takes the input-->
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/bioEntry"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="14sp" />
 
+    </com.google.android.material.textfield.TextInputLayout>
 
     <Button
         android:id="@+id/forgotPassButton"
@@ -160,10 +139,9 @@
         android:layout_marginTop="14dp"
         android:onClick="changePassClick"
         android:text="@string/change_password"
-        android:textColor="#FFFFFF"
         android:textSize="12sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/bioEntry" />
+        app:layout_constraintTop_toBottomOf="@+id/outlineBioEntry" />
 
     <Button
         android:id="@+id/updateHomeAddressButton"
@@ -173,7 +151,6 @@
         android:layout_marginTop="8dp"
         android:onClick="updateAddressClick"
         android:text="@string/update_home_address"
-        android:textColor="#FFFFFF"
         android:textSize="12sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/forgotPassButton" />
@@ -196,10 +173,9 @@
         android:layout_height="42dp"
         android:layout_marginEnd="36dp"
         android:layout_marginBottom="40dp"
-        android:backgroundTint="@color/md_theme_surfaceDim"
+        style="@style/AltButtonTheme"
         android:onClick="cancelClick"
         android:text="@string/cancel"
-        android:textColor="@color/md_theme_scrim"
         android:textSize="12sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />

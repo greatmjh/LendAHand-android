@@ -113,4 +113,7 @@
     <string name="view_request_about_donee">About %s</string>
     <string name="view_request_distance">%.1f km away</string>
     <string name="send_donation_request">Send Donation Request</string>
+    <string name="enter_current_password">Enter current password</string>
+    <string name="enter_new_password">Enter new password</string>
+    <string name="enter_a_short_bio">Enter a short bio</string>
 </resources>

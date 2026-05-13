@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <style name="Widget.MyApp.Chip" parent="Widget.Material3.Chip.Assist">
-        <item name="chipStyle">@drawable/chip_bg</item>
-        <item name="android:textColor">?attr/colorOnSurfaceVariant</item>
+    <style name="ChipTheme" parent="Widget.Material3.Chip.Assist">
+        <item name="chipBackgroundColor">@color/chip_color</item>
+
     </style>
     <style name="PopupTheme" parent="Theme.LendAHand">
         <item name="android:windowNoTitle">true</item>
@@ -10,6 +10,17 @@
         <item name="android:windowBackground">@android:color/transparent</item>
         <item name="android:windowContentOverlay">@null</item>
         <item name="android:backgroundDimEnabled">true</item>
-
+    </style>
+    <style name="AltButtonTheme" parent="Widget.Material3.Button">
+        <item name="backgroundTint">?attr/colorSurfaceContainerHigh</item>
+        <item name="android:textColor">?attr/colorOnSurface</item>
+        <item name="iconTint">?attr/colorOnSurface</item>
+    </style>
+    <style name="MainButtonTheme" parent="Widget.Material3.Button">
+        <item name="backgroundTint">@color/mainButton_bg</item>
+    </style>
+    <style name="icon">
+        <item name="tint">?attr/colorOnSurface</item>
+        <item name="android:background">@android:color/transparent</item>
     </style>
 </resources>
