@@ -61,7 +61,7 @@
     <Button
         android:id="@+id/createGenRequestButton"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="44dp"
         android:text="@string/create_general_request"
         android:layout_marginStart="24dp"
         android:layout_marginTop="12dp"
@@ -103,12 +103,13 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerViewOnMakeGenRequest"
-        android:layout_width="360dp"
-        android:layout_height="300dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:layout_marginTop="12dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/myGenRequestsBio" />
+        app:layout_constraintTop_toBottomOf="@+id/myGenRequestsBio"
+        app:layout_constraintBottom_toBottomOf="parent"/>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
