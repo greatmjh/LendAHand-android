@@ -24,11 +24,13 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.lang.reflect.Array;
 import java.lang.reflect.Type;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.UUID;
 
@@ -316,6 +318,31 @@ public class DataManager {
                 //pass
             }
         });
+    }
+
+    //Get requests received
+    public void APIGetRequestsReceived(RequestsReceivedCallback callback) {
+        makeApiRequest(getAuthenticatedRequestJSON(), "incoming_requests.php", new ApiRequestCallback() {
+            @Override
+            public void onSuccessfulResponse(String responseBody) {
+                IncomingReqItem[] decodedResponse = gson.fromJson(responseBody, IncomingReqItem[].class);
+                //Split into open and fulfilled;
+                LinkedList<IncomingReqItem> open = new LinkedList<>();
+                LinkedList<IncomingReqItem> fulfilled = new LinkedList<>();
+                for (IncomingReqItem item: decodedResponse) {
+                    if (item.isOpen()) {
+                        open.add(item);
+                    } else {
+                        fulfilled.add(item);
+                    }
+                }
+                //return to callback
+                callback.onSuccess(open, fulfilled);
+            }
+        });
+    }
+    public interface RequestsReceivedCallback {
+        void onSuccess(LinkedList<IncomingReqItem> open, LinkedList<IncomingReqItem> fulfilled);
     }
 
     //==== Class internals ====

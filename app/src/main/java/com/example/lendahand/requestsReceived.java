@@ -1,5 +1,6 @@
 package com.example.lendahand;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -18,7 +19,8 @@ import java.util.LinkedList;
 
 public class requestsReceived extends AppCompatActivity {
 
-    LinkedList<IncomingReqItem> openReqs, fulfilledReqs;
+    LinkedList<IncomingReqItem> openReqs = new LinkedList<>();
+    LinkedList<IncomingReqItem> fulfilledReqs = new LinkedList<>();
 
     requestsRecievedAdapter adapter;
     public void openOnClick(View v)  {
@@ -55,27 +57,31 @@ public class requestsReceived extends AppCompatActivity {
             return insets;
         });
 
-        openReqs = new LinkedList<>();
-        openReqs.add(new IncomingReqItem("Baked beans", "Greg Owen", "+27228621561", "mybio",
-                "", 8, true));
-        openReqs.add(new IncomingReqItem( "R12 Airtime Voucher","Mark Gibbons", "+27228621561", "mybio",
-                "", 1.5, true));
-        openReqs.add(new IncomingReqItem( "Shirt", "Dirk Schutte", "+27228621561", "mybio",
-                "", 6, true));
+        Activity parent = this;
+        //Load data from backend
+        DataManager.getInstance(this).APIGetRequestsReceived(new DataManager.RequestsReceivedCallback() {
+            @Override
+            public void onSuccess(LinkedList<IncomingReqItem> open, LinkedList<IncomingReqItem> fulfilled) {
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        openReqs = open;
+                        fulfilledReqs = fulfilled;
+                        Chip openChip = findViewById(R.id.chipOpen);
+                        if (openChip.isChecked()) {
+                            adapter = new requestsRecievedAdapter(openReqs);
+                        } else {
+                            adapter = new requestsRecievedAdapter(fulfilledReqs);
+                        }
 
-        fulfilledReqs = new LinkedList<>();
-        fulfilledReqs.add(new IncomingReqItem("Baked beans", "Greg Owen", "+27228621561", "mybio",
-                "", 8, true));
-        fulfilledReqs.add(new IncomingReqItem( "R12 Airtime Voucher","Mark Gibbons", "+27228621561", "mybio",
-                "", 1.5, true));
-        fulfilledReqs.add(new IncomingReqItem( "Shirt", "Dirk Schutte", "+27228621561", "mybio",
-                "", 6, true));
+                        RecyclerView rv = findViewById(R.id.recyclerViewRequestsReceived);
+                        rv.setLayoutManager(new LinearLayoutManager(parent));
+                        rv.setAdapter(adapter);
 
-        Chip openChip = findViewById(R.id.chipOpen);
-        if (openChip.isChecked()) {
-            adapter = new requestsRecievedAdapter(openReqs);
-        } else {
-            adapter = new requestsRecievedAdapter(fulfilledReqs);
-        }
+
+                    }
+                });
+            }
+        });
     }
 }

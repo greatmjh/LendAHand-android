@@ -38,7 +38,7 @@ public class requestsRecievedAdapter extends RecyclerView.Adapter<requestsReciev
     @Override
     public void onBindViewHolder(@NonNull requestsRecievedAdapter.MyViewHolder holder, int position) {
         IncomingReqItem requestItem = itemList.get(position);
-        holder.mainText.setText(requestItem.getItemName());
+        holder.mainText.setText(String.format("%s (%d)", requestItem.getItemName(), requestItem.getItemQty()));
         holder.subText.setText(requestItem.getSubtext());
         if (requestItem.isOpen()) {
             holder.threeButtons.setVisibility(VISIBLE);
