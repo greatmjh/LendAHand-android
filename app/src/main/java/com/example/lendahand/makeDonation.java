@@ -56,5 +56,7 @@ public class makeDonation extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+        TextView quantityText = findViewById(R.id.quantityValText);
+        quantityText.setText(Integer.toString(quantity));
     }
 }
