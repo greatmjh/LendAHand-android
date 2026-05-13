@@ -3,7 +3,9 @@ package com.example.lendahand;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -14,6 +16,7 @@ import androidx.core.view.WindowInsetsCompat;
 public class makeDonation extends AppCompatActivity {
 
     int quantity = 1;
+    ItemCategory pickedCategory;
     public void backOnClick(View v) {
         previousView.setPrevView(makeDonation.class);
 
@@ -40,9 +43,21 @@ public class makeDonation extends AppCompatActivity {
         ItemPickerUI.chooseFromScreen(this, new ItemPickerUI.ItemPickerCallback() {
             @Override
             public void onComplete(ItemCategory result) {
+                pickedCategory = result;
                 itemTypeText.setText(result.getItemName());
             }
         });
+    }
+
+    public void AddDonationOnClick(View v) {
+        if (pickedCategory == null) {
+            Toast.makeText(this, "Please select a category", Toast.LENGTH_SHORT).show();
+        } else {
+            EditText itemNameEntry = findViewById(R.id.itemNameEntry);
+            String itemName = itemNameEntry.getText().toString();
+            DataManager.getInstance(this).APIMakeDonation(pickedCategory.getItemID(), itemName, quantity);
+            finish();
+        }
     }
 
 

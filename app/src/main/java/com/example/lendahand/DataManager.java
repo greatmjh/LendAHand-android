@@ -345,6 +345,55 @@ public class DataManager {
         void onSuccess(LinkedList<IncomingReqItem> open, LinkedList<IncomingReqItem> fulfilled);
     }
 
+    //Make a new donation
+    public void APIMakeDonation(UUID itemCategory, String itemDesc, int newQty) {
+        JsonObject reqBody = new JsonObject();
+        reqBody.addProperty("sessionKey", sessionKey);
+        reqBody.addProperty("itemId", itemCategory.toString());
+        reqBody.addProperty("itemDesc", itemDesc);
+        reqBody.addProperty("newQty", newQty);
+
+        String reqJson = reqBody.toString();
+        makeApiRequest(reqJson, "edit_my_donation.php", new ApiRequestCallback() {
+            @Override
+            public void onSuccessfulResponse(String responseBody) {
+                //pass
+            }
+        });
+    }
+
+    //Edit donation quantity, i.e delete
+    public void APIEditDonationQty(UUID offerID, int newQty) {
+        JsonObject reqBody = new JsonObject();
+        reqBody.addProperty("sessionKey", sessionKey);
+        reqBody.addProperty("offerID", offerID.toString());
+        reqBody.addProperty("itemId", "");
+        reqBody.addProperty("itemDesc", "");
+        reqBody.addProperty("newQty", newQty);
+
+        String reqJson = reqBody.toString();
+        makeApiRequest(reqJson, "edit_my_donation.php", new ApiRequestCallback() {
+            @Override
+            public void onSuccessfulResponse(String responseBody) {
+                //pass
+            }
+        });
+    }
+
+    //Get your items up for donation
+    public void APIGetMyDonations(ManageMyDonationsCallback callback) {
+        makeApiRequest(getAuthenticatedRequestJSON(), "get_my_donations.php", new ApiRequestCallback() {
+            @Override
+            public void onSuccessfulResponse(String responseBody) {
+                manageMyDonationsItem[] decodedResponse = gson.fromJson(responseBody, manageMyDonationsItem[].class);
+                callback.onSuccess(new ArrayList<>(Arrays.asList(decodedResponse)));
+            }
+        });
+    }
+    public interface ManageMyDonationsCallback {
+        void onSuccess(ArrayList<manageMyDonationsItem> result);
+    }
+
     //==== Class internals ====
     static DataManager instance;
     final SharedPreferences sharedPreferences;

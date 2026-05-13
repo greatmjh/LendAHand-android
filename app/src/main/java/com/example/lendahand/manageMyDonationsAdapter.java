@@ -30,15 +30,17 @@ public class manageMyDonationsAdapter extends RecyclerView.Adapter<manageMyDonat
     public void onBindViewHolder(@NonNull manageMyDonationsAdapter.MyViewHolder holder, int position) {
         manageMyDonationsItem donationItem = itemList.get(position);
 
-        holder.nameText.setText(donationItem.getItemName());
+        holder.nameText.setText(donationItem.getItemDesc());
         holder.availableText.setText(String.format("%s unit%s available",
-                donationItem.getNumItemsAvailable(), (donationItem.getNumItemsAvailable() == 1 ? "" : "s")));
+                donationItem.getQty(), (donationItem.getQty() == 1 ? "" : "s")));
 
         holder.deleteButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                itemList.remove(position);
-                manageMyDonationsAdapter.super.notifyItemRemoved(position);
+                itemList.remove(holder.getBindingAdapterPosition());
+                manageMyDonationsAdapter.super.notifyItemRemoved(holder.getBindingAdapterPosition());
+                //delete server side
+                DataManager.getInstance(v.getContext()).APIEditDonationQty(donationItem.getOfferID(), 0);
             }
         });
     }

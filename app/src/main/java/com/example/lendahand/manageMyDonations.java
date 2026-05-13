@@ -41,17 +41,24 @@ public class manageMyDonations extends AppCompatActivity {
 
 
         RecyclerView recyclerView = findViewById(R.id.recyclerViewManageDonations);
-        ArrayList<manageMyDonationsItem> itemList = new ArrayList<>();
-
-        //sample data
-        itemList.add(new manageMyDonationsItem("Baked beans", 3));
-        itemList.add(new manageMyDonationsItem("Shirt", 1));
+        DataManager.getInstance(this).APIGetMyDonations(new DataManager.ManageMyDonationsCallback() {
+            @Override
+            public void onSuccess(ArrayList<manageMyDonationsItem> result) {
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        //set adapter
+                        manageMyDonationsAdapter adapter = new manageMyDonationsAdapter(result);
+                        recyclerView.setAdapter(adapter);
+                    }
+                });
+            }
+        });
 
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        //set adapter
-        manageMyDonationsAdapter adapter = new manageMyDonationsAdapter(itemList);
-        recyclerView.setAdapter(adapter);
+
+
     }
 
     public void newDonationButtonClick(View v) {
