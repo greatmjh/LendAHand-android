@@ -13,6 +13,7 @@ import androidx.core.view.WindowInsetsCompat;
 
 public class makeDonation extends AppCompatActivity {
 
+    int quantity = 0;
     public void backOnClick(View v) {
         previousView.setPrevView(makeDonation.class);
 
@@ -21,11 +22,17 @@ public class makeDonation extends AppCompatActivity {
     }
 
     public void plusOnClick(View v){
-
+        quantity ++;
+        TextView quantityText = findViewById(R.id.quantityValText);
+        quantityText.setText(Integer.toString(quantity));
     }
 
     public void minusOnClick(View v){
-
+        if (quantity > 0) {
+            quantity --;
+            TextView quantityText = findViewById(R.id.quantityValText);
+            quantityText.setText(Integer.toString(quantity));
+        }
     }
 
     public void selectItemOnClick(View v)   {
