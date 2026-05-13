@@ -9,6 +9,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 
+import com.example.lendahand.apiclasses.DonationOffer;
 import com.example.lendahand.apiclasses.LogInResponse;
 import com.example.lendahand.apiclasses.LoginRequest;
 import com.example.lendahand.apiclasses.ProfileInfo;
@@ -439,6 +440,41 @@ public class DataManager {
         reqBody.addProperty("requestID", requestID.toString());
         String reqJson = reqBody.toString();
         makeApiRequest(reqJson, "respond_to_request.php", new ApiRequestCallback() {
+            @Override
+            public void onSuccessfulResponse(String responseBody) {
+                //pass
+            }
+        });
+    }
+
+    //Load donation offers
+    public void APILoadDonationOffers(double latitude, double longitude, DonationOffersCallback callback) {
+        JsonObject reqBody = new JsonObject();
+        reqBody.addProperty("sessionKey", sessionKey);
+        reqBody.addProperty("latitude", latitude);
+        reqBody.addProperty("longitude", longitude);
+
+        String reqJson = reqBody.toString();
+        makeApiRequest(reqJson, "load_donation_offers.php", new ApiRequestCallback() {
+            @Override
+            public void onSuccessfulResponse(String responseBody) {
+                DonationOffer[] decodedResponse = gson.fromJson(responseBody, DonationOffer[].class);
+                callback.onSuccess(new ArrayList<>(Arrays.asList(decodedResponse)));
+            }
+        });
+    }
+    public interface DonationOffersCallback {
+        void onSuccess(ArrayList<DonationOffer> result);
+    }
+
+    public void APIRespondToOffer(UUID offerID, int qty) {
+        JsonObject reqBody = new JsonObject();
+        reqBody.addProperty("sessionKey", sessionKey);
+        reqBody.addProperty("qty", qty);
+        reqBody.addProperty("offerID", offerID.toString());
+
+        String reqJson = reqBody.toString();
+        makeApiRequest(reqJson, "respond_to_offer.php", new ApiRequestCallback() {
             @Override
             public void onSuccessfulResponse(String responseBody) {
                 //pass

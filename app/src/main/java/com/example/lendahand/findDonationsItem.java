@@ -5,6 +5,7 @@ public class findDonationsItem {
     int numUnits;
     double distance;
 
+
     public findDonationsItem(String itemName, String mainCategory, String subcategory, int numUnits, double distance){
         this.itemName = itemName;
         this.numUnits = numUnits;
