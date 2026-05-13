@@ -37,8 +37,9 @@
         android:layout_marginStart="24dp"
         android:layout_marginTop="14dp"
         android:backgroundTint="@color/md_theme_secondaryContainer"
-        android:textColor="@color/md_theme_scrim"
+        android:onClick="acceptOnClick"
         android:text="@string/accept"
+        android:textColor="@color/md_theme_scrim"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/viewReqSubtitle" />
 
@@ -49,6 +50,7 @@
         android:layout_marginStart="24dp"
         android:layout_marginTop="14dp"
         android:backgroundTint="@color/md_theme_secondaryContainer_highContrast"
+        android:onClick="rejectOnClick"
         android:text="@string/reject"
         app:layout_constraintStart_toEndOf="@+id/acceptDoneeButton"
         app:layout_constraintTop_toBottomOf="@+id/viewReqSubtitle" />

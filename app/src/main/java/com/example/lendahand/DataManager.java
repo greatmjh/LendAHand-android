@@ -394,6 +394,58 @@ public class DataManager {
         void onSuccess(ArrayList<manageMyDonationsItem> result);
     }
 
+    //Get outgoing requests
+    public void APIGetOutgoingRequests(OutgoingRequestsCallback callback) {
+        makeApiRequest(getAuthenticatedRequestJSON(), "get_outgoing_requests.php", new ApiRequestCallback() {
+            @Override
+            public void onSuccessfulResponse(String responseBody) {
+                OutgoingReqItem[] decodedResponse = gson.fromJson(responseBody, OutgoingReqItem[].class);
+                LinkedList<OutgoingReqItem> open = new LinkedList<>();
+                LinkedList<OutgoingReqItem> closed = new LinkedList<>();
+                for (OutgoingReqItem item : decodedResponse) {
+                    if (item.isOpen()) {
+                        open.add(item);
+                    } else {
+                        closed.add(item);
+                    }
+                }
+                callback.onSuccess(open, closed);
+            }
+        });
+    }
+    public interface OutgoingRequestsCallback {
+        void onSuccess(LinkedList<OutgoingReqItem> open, LinkedList<OutgoingReqItem> closed);
+    }
+
+    //Cancel outgoing requests
+    public void APICancelOutgoingRequest(UUID requestID) {
+        JsonObject reqBody = new JsonObject();
+        reqBody.addProperty("sessionKey", sessionKey);
+        reqBody.addProperty("requestID", requestID.toString());
+        String reqJson = reqBody.toString();
+        makeApiRequest(reqJson, "cancel_outgoing_request.php", new ApiRequestCallback() {
+            @Override
+            public void onSuccessfulResponse(String responseBody) {
+                //pass
+            }
+        });
+    }
+
+    //Respond to request
+    public void APIRespondToRequest(UUID requestID, boolean accepted) {
+        JsonObject reqBody = new JsonObject();
+        reqBody.addProperty("sessionKey", sessionKey);
+        reqBody.addProperty("accepted", accepted);
+        reqBody.addProperty("requestID", requestID.toString());
+        String reqJson = reqBody.toString();
+        makeApiRequest(reqJson, "respond_to_request.php", new ApiRequestCallback() {
+            @Override
+            public void onSuccessfulResponse(String responseBody) {
+                //pass
+            }
+        });
+    }
+
     //==== Class internals ====
     static DataManager instance;
     final SharedPreferences sharedPreferences;

@@ -49,27 +49,32 @@ public class manageRequests extends AppCompatActivity {
             return insets;
         });
 
-        openReqs = new LinkedList<>();
-        openReqs.add(new OutgoingReqItem("Baked beans", "Greg Owen", "", "", "open"));
-        openReqs.add(new OutgoingReqItem( "R12 Airtime Voucher","Mark Gibbons",  "", "", "open"));
-        openReqs.add(new OutgoingReqItem( "Shirt", "Dirk Schutte","", "", "open"));
-
-        closedReqs = new LinkedList<>();
-        closedReqs.add(new OutgoingReqItem( "Baked beans", "Greg Owen","+27 83 123 8718", "", "accepted"));
-        closedReqs.add(new OutgoingReqItem( "R12 Airtime Voucher","Mark Gibbons", "", "", "rejected"));
-        closedReqs.add(new OutgoingReqItem( "Shirt", "Dirk Schutte","+27 62 817 1281", "", "accepted"));
-
-        Chip openChip = findViewById(R.id.chipOpen);
-        if (openChip.isChecked()) {
-            adapter = new ManageRequestAdapter(openReqs);
-        } else {
-            adapter = new ManageRequestAdapter(closedReqs);
-        }
-
         RecyclerView rv = findViewById(R.id.recyclerViewManageRequests);
         rv.setLayoutManager(new LinearLayoutManager(this));
-        rv.setAdapter(adapter);
-        adapter.notifyDataSetChanged();
+        DataManager.getInstance(this).APIGetOutgoingRequests(new DataManager.OutgoingRequestsCallback() {
+            @Override
+            public void onSuccess(LinkedList<OutgoingReqItem> open, LinkedList<OutgoingReqItem> closed) {
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        openReqs = open;
+                        closedReqs = closed;
+
+                        Chip openChip = findViewById(R.id.chipOpen);
+                        if (openChip.isChecked()) {
+                            adapter = new ManageRequestAdapter(openReqs);
+                        } else {
+                            adapter = new ManageRequestAdapter(closedReqs);
+                        }
+
+
+                        rv.setAdapter(adapter);
+                        adapter.notifyDataSetChanged();
+                    }
+                });
+            }
+        });
+
     }
 
     public void onOpenClick(View v) {

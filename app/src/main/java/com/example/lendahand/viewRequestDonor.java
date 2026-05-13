@@ -12,8 +12,11 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import java.util.UUID;
+
 public class viewRequestDonor extends AppCompatActivity {
 
+    UUID requestID;
     public void backOnClick (View v)    {
         //Intent intent = new Intent(this, requestsReceived.class);
         //startActivity(intent);
@@ -46,9 +49,22 @@ public class viewRequestDonor extends AppCompatActivity {
             doneeBio.setText(reqData.getDoneeBio());
             doneeDistance.setText(String.format(getString(R.string.view_request_distance), reqData.getDoneeDistance()));
             doneePhone.setText(reqData.getDoneePhone());
+
+            //Set the request ID so we can respond to it
+            requestID = UUID.fromString(reqData.getRequestID());
         } catch (NullPointerException e) {
             Log.e("viewRequestDonor", "Unable to get data from intent");
             //just leave the screen as default if we can't get the data
         }
+    }
+
+    public void acceptOnClick(View v) {
+        DataManager.getInstance(this).APIRespondToRequest(requestID, true);
+        finish();
+    }
+
+    public void rejectOnClick(View v) {
+        DataManager.getInstance(this).APIRespondToRequest(requestID, true);
+        finish();
     }
 }

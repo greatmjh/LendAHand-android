@@ -1,12 +1,16 @@
 package com.example.lendahand;
 
-public class OutgoingReqItem {
-    private String itemName, donorName, phoneNumber, requestID, state;
+import java.util.UUID;
 
-    public OutgoingReqItem(String itemName, String donorName, String phoneNumber, String requestID, String state) {
+public class OutgoingReqItem {
+    private String itemName, donorName, donorPhoneNumber, state;
+    private UUID requestID;
+    int itemQty;
+
+    public OutgoingReqItem(String itemName, String donorName, String phoneNumber, UUID requestID, String state) {
         this.itemName = itemName;
         this.donorName = donorName;
-        this.phoneNumber = phoneNumber;
+        this.donorPhoneNumber = phoneNumber;
         this.requestID = requestID;
         this.state = state;
     }
@@ -20,7 +24,7 @@ public class OutgoingReqItem {
             case "open":
                 return String.format("Requested to %s", donorName);
             case "accepted":
-                return String.format("Accepted by %s (%s)", donorName, phoneNumber);
+                return String.format("Accepted by %s (%s)", donorName, donorPhoneNumber);
             case "rejected":
                 return String.format("Rejected by %s", donorName);
             default:
@@ -31,4 +35,6 @@ public class OutgoingReqItem {
     public boolean isOpen() {
         return state.equals("open");
     }
+
+    public UUID getRequestID() { return requestID; }
 }

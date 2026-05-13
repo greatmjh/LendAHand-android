@@ -39,6 +39,8 @@ public class IncomingReqItem implements Parcelable {
 
     public String getDoneePhone() { return requesterPhoneNumber; }
 
+    public String getRequestID() { return requestID; }
+
     public int getItemQty() { return itemQty; }
 
 

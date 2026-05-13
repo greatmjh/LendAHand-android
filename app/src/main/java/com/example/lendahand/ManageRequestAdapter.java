@@ -48,8 +48,9 @@ public class ManageRequestAdapter extends RecyclerView.Adapter<ManageRequestAdap
         holder.deleteButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                itemList.remove(position);
-                ManageRequestAdapter.super.notifyItemRemoved(position);
+                itemList.remove(holder.getBindingAdapterPosition());
+                ManageRequestAdapter.super.notifyItemRemoved(holder.getBindingAdapterPosition());
+                DataManager.getInstance(v.getContext()).APICancelOutgoingRequest(requestItem.getRequestID());
             }
         });
 
