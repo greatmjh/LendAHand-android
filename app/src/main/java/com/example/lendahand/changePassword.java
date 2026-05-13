@@ -12,10 +12,7 @@ import androidx.core.view.WindowInsetsCompat;
 
 public class changePassword extends AppCompatActivity {
 
-    public void backOnClick(View view) {
-        Intent intent = new Intent(this, profileSettings.class);
-        startActivity(intent);
-    }
+    public void backOnClick(View view) { finish(); }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

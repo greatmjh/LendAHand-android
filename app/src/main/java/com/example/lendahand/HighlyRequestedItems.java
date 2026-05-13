@@ -16,10 +16,7 @@ import java.util.ArrayList;
 
 public class HighlyRequestedItems extends AppCompatActivity {
 
-    public void goBacktoManage(View v)  {
-        Intent intent = new Intent(this, manageMyDonations.class);
-        startActivity(intent);
-    }
+    public void goBackOnClick(View v)  { finish(); }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
