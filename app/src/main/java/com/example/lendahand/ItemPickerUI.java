@@ -3,6 +3,7 @@ package com.example.lendahand;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -16,6 +17,10 @@ public class ItemPickerUI {
     public static void chooseFromScreen(Context context, ItemPickerCallback callback) {
         //build list of options
         ItemCategory[] roots = ItemCategory.getRoots();
+        if (roots == null) {
+            Toast.makeText(context, "Item tree not loaded yet", Toast.LENGTH_SHORT).show();
+            return;
+        }
         String[] options = new String[roots.length];
         for (int i = 0; i < roots.length; i++) {
             options[i] = roots[i].getItemName();
