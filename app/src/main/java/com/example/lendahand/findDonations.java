@@ -16,35 +16,15 @@ import java.util.ArrayList;
 import java.util.UUID;
 
 public class findDonations extends AppCompatActivity {
-
-    ArrayList<String> essentialSubcategories;
-    ArrayList<String> nonEssentialSubcategories;
-
-    ArrayList<String> visibleSubcategories;
+    ArrayList<RVLevelItem> visibleSubcategories; //takes in parentIds
 
     ArrayList<findDonationsItem> itemList = new ArrayList<>(); //TODO: receive available items from server
     ArrayList<findDonationsItem> filteredItemList = new ArrayList<>();
 
     findDonationsSubcategoryAdapter adapter;
-    findDonationsAdapter adapterItems;
+    findDonationsAdapter itemsAdapter;
 
-    public void essentialsOnClick(View v)   {
-        essentialList();
-        adapter.updateData(essentialSubcategories);
-        //"deselect" subcategories
-        adapter.resetPosition();
-        //also reset item filter
-        updateMainCategoryItemList("Essential");
-    }
-
-    public void nonEssentialsOnClick(View v) {
-        nonEssentialList();
-        adapter.updateData(nonEssentialSubcategories);
-        //"deselect" subcategories
-        adapter.resetPosition();
-        //also reset item filter
-        updateMainCategoryItemList("NonEssential");
-    }
+    FindDonationsRVAdapter rvAdapter;
 
 
     public void menuBtnClick(View v){
@@ -70,69 +50,66 @@ public class findDonations extends AppCompatActivity {
             return insets;
         });
 
-        essentialList();
-        visibleSubcategories = essentialSubcategories;
+        visibleSubcategories.add(new RVLevelItem(UUID.fromString("20eca463-47f1-401c-b978-bfd2eb68548c"))); //essentials
+        visibleSubcategories.add(new RVLevelItem(UUID.fromString("b41df440-fb36-4936-b289-caca4965762a"))); //non-essentials
 
-        //SUBCATEGORIES RECYCLERVIEW
-        RecyclerView recyclerView = findViewById(R.id.subcategoryRecyclerView);
-        //make view horizontal
-        recyclerView.setLayoutManager(
-                new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
-        );
+        RecyclerView recyclerView = findViewById(R.id.allCategoriesRecyclerView);
 
-
-        adapter = new findDonationsSubcategoryAdapter(visibleSubcategories);
+        rvAdapter = new FindDonationsRVAdapter(visibleSubcategories, this);
 
         //set on click listener
-        adapter.setOnSubcategoryClickListener(this::updateSubcategoryItemList);
+        rvAdapter.setOnSubcategoryClickListener(this::updateAllCategoriesRV);
 
         recyclerView.setAdapter(adapter);
         //--------------------------
 
         //ITEM LIST RECYCLERVIEW
-        RecyclerView itemRecyclerView = findViewById(R.id.findDonationsRecyclerView);
-        itemRecyclerView.setLayoutManager(new LinearLayoutManager(this));
-
-        //add sample data
         {
-            itemList.add(new findDonationsItem("Baked Beans", "Essential", "Food",3,5, UUID.randomUUID(), "Richard Klein"));
-            itemList.add(new findDonationsItem("T-shirt", "Essential", "Clothes",1,2, UUID.randomUUID(), "Richard Klein"));
-            itemList.add(new findDonationsItem("Toothbrush","Essential", "Hygiene",3,5, UUID.randomUUID(), "Richard Klein"));
-            itemList.add(new findDonationsItem("Chair", "Essential", "Furniture",3,5, UUID.randomUUID(), "Richard Klein"));
-            itemList.add(new findDonationsItem("Kettle","Essential", "Appliances",3,5, UUID.randomUUID(), "Richard Klein"));
-            itemList.add(new findDonationsItem("Airtime Voucher","NonEssential", "Airtime",1,5, UUID.randomUUID(), "Richard Klein"));
-        }
+            RecyclerView itemRecyclerView = findViewById(R.id.findDonationsRecyclerView);
+            itemRecyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        adapterItems = new findDonationsAdapter(itemList);
-
-        itemRecyclerView.setAdapter(adapterItems);
-        //----------------------------
-
-    }
-
-    public void updateSubcategoryItemList(String subcategory){
-        filteredItemList.clear();
-
-        for (findDonationsItem item:itemList){
-            if (item.getSubcategory().equals(subcategory)){
-                filteredItemList.add(item);
+            //add sample data
+            {
+                itemList.add(new findDonationsItem("Baked Beans", "Essential", "Food", 3, 5, UUID.randomUUID(), "Richard Klein"));
+                itemList.add(new findDonationsItem("T-shirt", "Essential", "Clothes", 1, 2, UUID.randomUUID(), "Richard Klein"));
+                itemList.add(new findDonationsItem("Toothbrush", "Essential", "Hygiene", 3, 5, UUID.randomUUID(), "Richard Klein"));
+                itemList.add(new findDonationsItem("Chair", "Essential", "Furniture", 3, 5, UUID.randomUUID(), "Richard Klein"));
+                itemList.add(new findDonationsItem("Kettle", "Essential", "Appliances", 3, 5, UUID.randomUUID(), "Richard Klein"));
+                itemList.add(new findDonationsItem("Airtime Voucher", "NonEssential", "Airtime", 1, 5, UUID.randomUUID(), "Richard Klein"));
             }
+
+            itemsAdapter = new findDonationsAdapter(itemList);
+
+            itemRecyclerView.setAdapter(itemsAdapter);
         }
 
-        adapterItems.updateData(filteredItemList);
     }
 
-    public void updateMainCategoryItemList(String mainCategory){
-        filteredItemList.clear();
-
-        for (findDonationsItem item:itemList){
-            if (item.getMainCategory().equals(mainCategory)){
-                filteredItemList.add(item);
-            }
-        }
-
-        adapterItems.updateData(filteredItemList);
+    public void updateAllCategoriesRV(RVLevelItem subcategory){
+        //TODO: make this do something effective?
     }
 
+//    public void updateMainCategoryItemList(String mainCategory){
+//        filteredItemList.clear();
+//
+//        for (findDonationsItem item:itemList){
+//            if (item.getMainCategory().equals(mainCategory)){
+//                filteredItemList.add(item);
+//            }
+//        }
+//
+//        adapterItems.updateData(filteredItemList);
+//    }
+//    public void updateSubcategoryItemList(String subcategory){
+//        filteredItemList.clear();
+//
+//        for (findDonationsItem item:itemList){
+//            if (item.getSubcategory().equals(subcategory)){
+//                filteredItemList.add(item);
+//            }
+//        }
+//
+//        adapterItems.updateData(filteredItemList);
+//    }
 
 }

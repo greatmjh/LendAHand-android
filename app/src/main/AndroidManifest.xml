@@ -75,7 +75,8 @@
             android:exported="true" />
         <activity
             android:name=".SignUpPage"
-            android:exported="true" />
+            android:exported="true"
+            android:windowSoftInputMode="adjustPan"/>
         <activity
             android:name=".menuActivity"
             android:exported="true" />
