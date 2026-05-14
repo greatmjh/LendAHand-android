@@ -110,26 +110,6 @@ public class findDonations extends AppCompatActivity {
 
     }
 
-    public void essentialList() {
-        essentialSubcategories = new ArrayList<>();
-
-        essentialSubcategories.add("Food");
-        essentialSubcategories.add("Clothes");
-        essentialSubcategories.add("Hygiene");
-        essentialSubcategories.add("Furniture");
-        essentialSubcategories.add("Appliances");
-    }
-
-    public void nonEssentialList()  {
-        nonEssentialSubcategories = new ArrayList<>();
-
-        nonEssentialSubcategories.add("Data");
-        nonEssentialSubcategories.add("Airtime");
-        nonEssentialSubcategories.add("Recreation + Sports");
-        nonEssentialSubcategories.add("Decor");
-        nonEssentialSubcategories.add("Electronics");
-    }
-
     public void updateSubcategoryItemList(String subcategory){
         filteredItemList.clear();
 
