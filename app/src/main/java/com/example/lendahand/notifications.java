@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.view.View;
+import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -44,7 +45,7 @@ public class notifications extends AppCompatActivity {
         });
 
         RecyclerView recyclerView = findViewById(R.id.recyclerViewNotifications);
-
+        TextView statusTV = findViewById(R.id.notificationsStatus);
 
         //Load data from server
         DataManager.getInstance(this).APIGetNotifications(new DataManager.NotificationsCallback() {
@@ -53,9 +54,14 @@ public class notifications extends AppCompatActivity {
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
+                        if (items.size() > 0) {
+                            notificationAdapter adapter = new notificationAdapter(items);
+                            recyclerView.setAdapter(adapter);
+                            statusTV.setVisibility(View.GONE);
+                        } else {
+                            statusTV.setText("You have not received any notifications yet.");
+                        }
 
-                        notificationAdapter adapter = new notificationAdapter(items);
-                        recyclerView.setAdapter(adapter);
                     }
                 });
             }

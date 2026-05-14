@@ -3,6 +3,7 @@ package com.example.lendahand;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -41,6 +42,7 @@ public class topDonors extends AppCompatActivity {
         });
 
         RecyclerView recyclerView = findViewById(R.id.recyclerViewTopDonors);
+        TextView txtStatus = findViewById(R.id.topDonorsStatus);
         //Load items from server
         DataManager.getInstance(this).APIGetTopDonors(new DataManager.TopDonorsCallback() {
             @Override
@@ -48,9 +50,15 @@ public class topDonors extends AppCompatActivity {
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        //set adapter
-                        topDonorsAdapter adapter = new topDonorsAdapter(items);
-                        recyclerView.setAdapter(adapter);
+                        if (items.size() > 0) {
+                            //set adapter
+                            topDonorsAdapter adapter = new topDonorsAdapter(items);
+                            recyclerView.setAdapter(adapter);
+                            txtStatus.setVisibility(View.GONE);
+                        } else {
+                            txtStatus.setText("There are no top donors yet.");
+                        }
+
                     }
                 });
 

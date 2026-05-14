@@ -57,6 +57,9 @@ public class makeDonation extends AppCompatActivity {
             EditText itemNameEntry = findViewById(R.id.itemNameEntry);
             String itemName = itemNameEntry.getText().toString();
             DataManager.getInstance(this).APIMakeDonation(pickedCategory.getItemID(), itemName, quantity);
+            Intent intent = new Intent(this, manageMyDonations.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            startActivity(intent);
             finish();
         }
     }

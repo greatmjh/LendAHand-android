@@ -3,6 +3,7 @@ package com.example.lendahand;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -32,6 +33,7 @@ public class HighlyRequestedItems extends AppCompatActivity {
         });
 
         RecyclerView recyclerView = findViewById(R.id.recyclerViewHighlyReq);
+        TextView statusTV = findViewById(R.id.highlyRequestedItemsStatus);
         DataManager.getInstance(this).APIGetAllGeneralRequests(new DataManager.GenRequestCallback() {
             @Override
             public void onSuccess(ArrayList<HighlyRequestedItem> result) {
@@ -41,6 +43,12 @@ public class HighlyRequestedItems extends AppCompatActivity {
                         //set adapter
                         HighlyRequestedItemsAdapter adapter = new HighlyRequestedItemsAdapter(result);
                         recyclerView.setAdapter(adapter);
+                        if (result.isEmpty()) {
+                            statusTV.setText("There are no highly requested items");
+                            recyclerView.setVisibility(View.GONE);
+                        } else {
+                            statusTV.setVisibility(View.GONE);
+                        }
                     }
                 });
 

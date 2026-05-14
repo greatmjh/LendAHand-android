@@ -3,6 +3,7 @@ package com.example.lendahand;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -50,6 +51,7 @@ public class manageRequests extends AppCompatActivity {
         });
 
         RecyclerView rv = findViewById(R.id.recyclerViewManageRequests);
+        TextView statusTV = findViewById(R.id.manageRequestsStatus);
         rv.setLayoutManager(new LinearLayoutManager(this));
         DataManager.getInstance(this).APIGetOutgoingRequests(new DataManager.OutgoingRequestsCallback() {
             @Override
@@ -63,8 +65,18 @@ public class manageRequests extends AppCompatActivity {
                         Chip openChip = findViewById(R.id.chipOpen);
                         if (openChip.isChecked()) {
                             adapter = new ManageRequestAdapter(openReqs);
+                            if (open.isEmpty()) {
+                                statusTV.setText("You do not have any open requests.");
+                            } else {
+                                statusTV.setVisibility(View.GONE);
+                            }
                         } else {
                             adapter = new ManageRequestAdapter(closedReqs);
+                            if (closed.isEmpty()) {
+                                statusTV.setText("You do not have any closed requests.");
+                            } else {
+                                statusTV.setVisibility(View.GONE);
+                            }
                         }
 
 
@@ -80,10 +92,24 @@ public class manageRequests extends AppCompatActivity {
     public void onOpenClick(View v) {
         adapter.setItemList(openReqs);
         adapter.notifyDataSetChanged();
+        TextView statusTV = findViewById(R.id.manageRequestsStatus);
+        if (openReqs.isEmpty()) {
+            statusTV.setVisibility(View.VISIBLE);
+            statusTV.setText("You do not have any open requests.");
+        } else {
+            statusTV.setVisibility(View.GONE);
+        }
     }
 
     public void onCloseClick(View v) {
         adapter.setItemList(closedReqs);
         adapter.notifyDataSetChanged();
+        TextView statusTV = findViewById(R.id.manageRequestsStatus);
+        if (closedReqs.isEmpty()) {
+            statusTV.setVisibility(View.VISIBLE);
+            statusTV.setText("You do not have any closed requests.");
+        } else {
+            statusTV.setVisibility(View.GONE);
+        }
     }
 }

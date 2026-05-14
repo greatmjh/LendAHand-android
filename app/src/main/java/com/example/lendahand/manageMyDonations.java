@@ -3,6 +3,7 @@ package com.example.lendahand;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -41,6 +42,7 @@ public class manageMyDonations extends AppCompatActivity {
 
 
         RecyclerView recyclerView = findViewById(R.id.recyclerViewManageDonations);
+        TextView statusTV = findViewById(R.id.manageMyDonationsStatus);
         DataManager.getInstance(this).APIGetMyDonations(new DataManager.ManageMyDonationsCallback() {
             @Override
             public void onSuccess(ArrayList<manageMyDonationsItem> result) {
@@ -50,6 +52,11 @@ public class manageMyDonations extends AppCompatActivity {
                         //set adapter
                         manageMyDonationsAdapter adapter = new manageMyDonationsAdapter(result);
                         recyclerView.setAdapter(adapter);
+                        if (result.isEmpty()) {
+                            statusTV.setText("You don't have any items up for donation.");
+                        } else {
+                            statusTV.setVisibility(View.GONE);
+                        }
                     }
                 });
             }

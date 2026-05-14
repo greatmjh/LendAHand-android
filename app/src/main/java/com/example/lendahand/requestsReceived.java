@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -25,11 +26,25 @@ public class requestsReceived extends AppCompatActivity {
     public void openOnClick(View v)  {
         adapter.setItemList(openReqs);
         adapter.notifyDataSetChanged();
+        TextView statusTV = findViewById(R.id.requestsReceivedStatus);
+        if (openReqs.isEmpty()) {
+            statusTV.setVisibility(View.VISIBLE);
+            statusTV.setText("You do not have any open requests.");
+        } else {
+            statusTV.setVisibility(View.GONE);
+        }
     }
 
     public void fulfillOnClick(View v)  {
         adapter.setItemList(fulfilledReqs);
         adapter.notifyDataSetChanged();
+        TextView statusTV = findViewById(R.id.requestsReceivedStatus);
+        if (fulfilledReqs.isEmpty()) {
+            statusTV.setVisibility(View.VISIBLE);
+            statusTV.setText("You do not have any fulfilled requests.");
+        } else {
+            statusTV.setVisibility(View.GONE);
+        }
     }
 
 
@@ -57,6 +72,7 @@ public class requestsReceived extends AppCompatActivity {
         });
 
         Activity parent = this;
+        TextView statusTV = findViewById(R.id.requestsReceivedStatus);
         //Load data from backend
         DataManager.getInstance(this).APIGetRequestsReceived(new DataManager.RequestsReceivedCallback() {
             @Override
@@ -69,8 +85,18 @@ public class requestsReceived extends AppCompatActivity {
                         Chip openChip = findViewById(R.id.chipOpen);
                         if (openChip.isChecked()) {
                             adapter = new requestsRecievedAdapter(openReqs);
+                            if (open.isEmpty()) {
+                                statusTV.setText("You do not have any open requests.");
+                            } else {
+                                statusTV.setVisibility(View.GONE);
+                            }
                         } else {
                             adapter = new requestsRecievedAdapter(fulfilledReqs);
+                            if (fulfilled.isEmpty()) {
+                                statusTV.setText("You do not have any fulfilled requests.");
+                            } else {
+                                statusTV.setVisibility(View.GONE);
+                            }
                         }
 
                         RecyclerView rv = findViewById(R.id.recyclerViewRequestsReceived);
