@@ -164,7 +164,17 @@ public class DataManager {
     }
 
     //Update profile endpoint -- No callback as no data comes back with it
+
     public void APIUpdateProfileInfo(ProfileInfo newProfileInfo) {
+        APIUpdateProfileInfo(newProfileInfo, new Runnable() {
+            @Override
+            public void run() {
+                //pass
+            }
+        });
+    }
+    //Override that has a callback so we know its done
+    public void APIUpdateProfileInfo(ProfileInfo newProfileInfo, Runnable callback) {
         JsonObject jsonObject = new JsonObject();
         jsonObject.add("sessionKey", JsonParser.parseString(sessionKey));
         jsonObject.add("profileInfo", gson.toJsonTree(newProfileInfo));
@@ -173,7 +183,9 @@ public class DataManager {
 
         makeApiRequest(payloadJson, "update_profile.php", new ApiRequestCallback() {
             @Override
-            public void onSuccessfulResponse(String responseBody) {} //needs to be here even if we don't use it
+            public void onSuccessfulResponse(String responseBody) {
+                callback.run();
+            }
         });
     }
 

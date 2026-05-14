@@ -4,11 +4,14 @@ import android.Manifest;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.location.Address;
+import android.location.Geocoder;
 import android.location.Location;
 import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.activity.ActivityViewModelLazyKt;
@@ -29,6 +32,8 @@ import com.google.i18n.phonenumbers.NumberParseException;
 import com.google.i18n.phonenumbers.PhoneNumberUtil;
 import com.google.i18n.phonenumbers.Phonenumber;
 
+import java.io.IOException;
+import java.util.List;
 import java.util.Locale;
 
 public class profileSettings extends AppCompatActivity {
@@ -63,7 +68,22 @@ public class profileSettings extends AppCompatActivity {
                     //Now that we have location, proceed
                     try {
                         ProfileInfo newProfile = new ProfileInfo(serverSideProfile.fullName, serverSideProfile.email, serverSideProfile.phoneNumber, serverSideProfile.bio, location.getLatitude(), location.getLongitude());
-                        DataManager.getInstance(parent).APIUpdateProfileInfo(newProfile);
+                        DataManager.getInstance(parent).APIUpdateProfileInfo(newProfile, new Runnable() {
+                            @Override
+                            public void run() {
+                                Geocoder geocoder = new Geocoder(parent, Locale.getDefault());
+                                try {
+                                    List<Address> addresses = geocoder.getFromLocation(location.getLatitude(), location.getLongitude(), 1);
+                                    if (addresses != null && !addresses.isEmpty()) {
+                                        Address address = addresses.get(0);
+                                        TextView homeAddressTV = findViewById(R.id.profileSettingsCurrAddress);
+                                        homeAddressTV.setText(String.format("Current home address: near %s, %s", address.getSubLocality(), address.getLocality()));
+                                    }
+                                } catch (IOException e) {
+                                    e.printStackTrace();
+                                }
+                            }
+                        });
                     } catch (NullPointerException e) {
                         e.printStackTrace();
                         Toast.makeText(parent, "Please check your internet connection", Toast.LENGTH_SHORT).show();
@@ -134,7 +154,7 @@ public class profileSettings extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
-
+        Activity parent = this;
         //Load current profile from server
         DataManager.getInstance(this).APIGetProfileInfo(new DataManager.APIProfileInfoCallback() {
             @Override
@@ -148,6 +168,18 @@ public class profileSettings extends AppCompatActivity {
                         ((EditText)findViewById(R.id.phoneEntry)).setText(p.phoneNumber);
                         ((EditText)findViewById(R.id.bioEntry)).setText(p.bio);
 
+                        //Get home address
+                        Geocoder geocoder = new Geocoder(parent, Locale.getDefault());
+                        try {
+                            List<Address> addresses = geocoder.getFromLocation(p.homeLat, p.homeLong, 1);
+                            if (addresses != null && !addresses.isEmpty()) {
+                                Address address = addresses.get(0);
+                                TextView homeAddressTV = findViewById(R.id.profileSettingsCurrAddress);
+                                homeAddressTV.setText(String.format("Current home address: near %s, %s", address.getSubLocality(), address.getLocality()));
+                            }
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
                     }
                 });
             }

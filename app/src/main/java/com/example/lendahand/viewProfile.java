@@ -1,6 +1,9 @@
 package com.example.lendahand;
 
+import android.app.Activity;
 import android.content.Intent;
+import android.location.Address;
+import android.location.Geocoder;
 import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.view.View;
@@ -16,6 +19,10 @@ import com.example.lendahand.apiclasses.ProfileInfo;
 import com.google.i18n.phonenumbers.NumberParseException;
 import com.google.i18n.phonenumbers.PhoneNumberUtil;
 import com.google.i18n.phonenumbers.Phonenumber;
+
+import java.io.IOException;
+import java.util.List;
+import java.util.Locale;
 
 public class viewProfile extends AppCompatActivity {
 
@@ -46,7 +53,7 @@ public class viewProfile extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
-
+        Activity parent = this;
         //Load profile info from server
         DataManager.getInstance(this).APIGetProfileInfo(new DataManager.APIProfileInfoCallback() {
             @Override
@@ -72,6 +79,19 @@ public class viewProfile extends AppCompatActivity {
                         usersName.setText(p.fullName);
                         usersBio.setText(p.bio);
                         usersEmail.setText(p.email);
+
+                        //Get home address
+                        Geocoder geocoder = new Geocoder(parent, Locale.getDefault());
+                        try {
+                            List<Address> addresses = geocoder.getFromLocation(p.homeLat, p.homeLong, 1);
+                            if (addresses != null && !addresses.isEmpty()) {
+                                Address address = addresses.get(0);
+                                TextView homeAddressTV = findViewById(R.id.userHomeAddress);
+                                homeAddressTV.setText(String.format("Home address: near %s, %s", address.getSubLocality(), address.getLocality()));
+                            }
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
 
                     }
                 });
