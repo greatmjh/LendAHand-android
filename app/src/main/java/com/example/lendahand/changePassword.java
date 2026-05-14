@@ -3,6 +3,7 @@ package com.example.lendahand;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 import android.view.View;
@@ -15,10 +16,7 @@ import androidx.core.view.WindowInsetsCompat;
 
 public class changePassword extends AppCompatActivity {
 
-    public void backOnClick(View view) {
-        Intent intent = new Intent(this, profileSettings.class);
-        startActivity(intent);
-    }
+    public void backOnClick(View view) { finish(); }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

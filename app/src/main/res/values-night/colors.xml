@@ -1,8 +1,11 @@
 <resources>
     <color name="white">#FFFFFF</color>
     <color name="black">#000000</color>
-    <color name="md_theme_primary">#FFB4AB</color>
-    <color name="md_theme_onPrimary">#561E19</color>
+
+    <color name="mainButton_bg">#7F605A</color>
+
+    <color name="md_theme_primary">#7F605A</color>
+    <color name="md_theme_onPrimary">#1A1110</color>
     <color name="md_theme_primaryContainer">#73332D</color>
     <color name="md_theme_onPrimaryContainer">#FFDAD6</color>
     <color name="md_theme_secondary">#FFB4AA</color>
@@ -17,11 +20,11 @@
     <color name="md_theme_onError">#561F0E</color>
     <color name="md_theme_errorContainer">#723522</color>
     <color name="md_theme_onErrorContainer">#FFDBD1</color>
-    <color name="md_theme_background">#1A1110</color>
+    <color name="md_theme_background">#191616</color>
     <color name="md_theme_onBackground">#F1DEDC</color>
-    <color name="md_theme_surface">#1A1111</color>
+    <color name="md_theme_surface">#191616</color>
     <color name="md_theme_onSurface">#F0DEDD</color>
-    <color name="md_theme_surfaceVariant">#534341</color>
+    <color name="md_theme_surfaceVariant">#4A4646</color>
     <color name="md_theme_onSurfaceVariant">#D8C2BF</color>
     <color name="md_theme_outline">#A08C8A</color>
     <color name="md_theme_outlineVariant">#534341</color>

@@ -19,8 +19,7 @@ import java.util.LinkedList;
 
 public class requestsReceived extends AppCompatActivity {
 
-    LinkedList<IncomingReqItem> openReqs = new LinkedList<>();
-    LinkedList<IncomingReqItem> fulfilledReqs = new LinkedList<>();
+    LinkedList<IncomingReqItem> openReqs, fulfilledReqs;
 
     requestsRecievedAdapter adapter;
     public void openOnClick(View v)  {

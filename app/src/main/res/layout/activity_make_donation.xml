@@ -24,40 +24,34 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:layout_marginTop="36dp"
-        android:background="@android:color/transparent"
+        style="@style/icon"
         android:onClick="backOnClick"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="?attr/actionModeCloseDrawable" />
 
-    <EditText
-        android:id="@+id/itemNameEntry"
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/outlineItemNameEntry"
         android:layout_width="match_parent"
-        android:layout_height="52dp"
+        android:layout_height="wrap_content"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:hint="@string/item_name"
         android:layout_marginTop="20dp"
-        android:background="@color/md_theme_surfaceDim"
-        android:ems="10"
-        android:includeFontPadding="true"
-        android:inputType="text"
-        android:textAlignment="textStart"
-        android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/viewProfileHeader" />
+        app:layout_constraintTop_toBottomOf="@+id/viewProfileHeader">
 
-    <TextView
-        android:id="@+id/itemNameText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="4dp"
-        android:text="@string/item_name"
-        android:textColor="@color/md_theme_onSurfaceVariant"
-        android:textSize="12sp"
-        app:layout_constraintStart_toStartOf="@+id/itemNameEntry"
-        app:layout_constraintTop_toTopOf="@+id/itemNameEntry" />
+        <!--this is the actual edit text which takes the input-->
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/itemNameEntry"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="14sp" />
+
+    </com.google.android.material.textfield.TextInputLayout>
 
     <TextView
         android:id="@+id/itemPromptText"
@@ -67,7 +61,7 @@
         android:textStyle="italic"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/itemNameEntry" />
+        app:layout_constraintTop_toBottomOf="@+id/outlineItemNameEntry" />
 
 
     <TextView
@@ -117,40 +111,45 @@
         app:layout_constraintStart_toEndOf="@+id/minusChip"
         app:layout_constraintTop_toTopOf="@+id/minusChip" />
 
-    <TextView
-        android:id="@+id/itemTypeText"
+    <Button
+        android:id="@+id/itemTypeButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_gravity="start"
         android:layout_marginTop="156dp"
+        android:background="@android:color/transparent"
+        android:maxLines="1"
         android:onClick="selectItemOnClick"
         android:paddingStart="24dp"
         android:paddingTop="16dp"
+        android:paddingEnd="0dp"
         android:paddingBottom="16dp"
         android:text="@string/select_item_type"
+        android:textAlignment="viewStart"
+        android:textAppearance="@style/TextAppearance.AppCompat.Small"
         android:textColor="@color/md_theme_onSurfaceVariant"
-        app:layout_constraintStart_toStartOf="@+id/itemNameEntry"
-        app:layout_constraintTop_toBottomOf="@+id/itemNameEntry"
-        tools:ignore="RtlSymmetry" />
+        android:textSize="14sp"
+        app:layout_constraintStart_toStartOf="@+id/outlineItemNameEntry"
+        app:layout_constraintTop_toBottomOf="@+id/outlineItemNameEntry" />
 
     <ImageButton
         android:id="@+id/selectItemButton"
         android:layout_width="20dp"
         android:layout_height="20dp"
-        android:backgroundTint="@android:color/transparent"
+        style="@style/icon"
         android:onClick="selectItemOnClick"
         android:src="@drawable/arrowleft"
-        app:layout_constraintBottom_toBottomOf="@+id/itemTypeText"
-        app:layout_constraintEnd_toEndOf="@+id/itemNameEntry"
-        app:layout_constraintTop_toTopOf="@+id/itemTypeText" />
+        app:layout_constraintBottom_toBottomOf="@+id/itemTypeButton"
+        app:layout_constraintEnd_toEndOf="@+id/outlineItemNameEntry"
+        app:layout_constraintTop_toTopOf="@+id/itemTypeButton" />
 
     <Button
         android:id="@+id/makeDonationButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="30dp"
         android:layout_marginLeft="32dp"
         android:layout_marginRight="32dp"
-        android:layout_marginBottom="30dp"
-        android:onClick="AddDonationOnClick"
         android:text="@string/add_donation"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

@@ -26,6 +26,11 @@
             </intent-filter>
         </activity>
         <activity
+            android:name=".MakeRequestPopup"
+            android:exported="false"
+            android:theme="@style/PopupTheme"
+            android:noHistory="true"/>
+        <activity
             android:name=".HighlyRequestedItems"
             android:exported="true" />
         <activity

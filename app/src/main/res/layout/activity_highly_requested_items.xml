@@ -25,8 +25,8 @@
         android:layout_height="31dp"
         android:layout_marginStart="24dp"
         android:layout_marginTop="36dp"
-        android:background="@android:color/transparent"
-        android:onClick="goBacktoManage"
+        style="@style/icon"
+        android:onClick="goBackOnClick"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="?attr/actionModeCloseDrawable" />

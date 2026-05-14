@@ -24,7 +24,7 @@
         android:layout_height="31dp"
         android:layout_marginStart="24dp"
         android:layout_marginTop="36dp"
-        android:background="@android:color/transparent"
+        style="@style/icon"
         android:onClick="backOnClick"
         android:contentDescription="@string/back_button"
         app:layout_constraintStart_toStartOf="parent"
@@ -61,11 +61,10 @@
     <Button
         android:id="@+id/createGenRequestButton"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="44dp"
+        android:text="@string/create_general_request"
         android:layout_marginStart="24dp"
         android:layout_marginTop="12dp"
-        android:onClick="makeGenRequestClick"
-        android:text="@string/create_general_request"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/itemTypeText" />
 
@@ -73,7 +72,7 @@
         android:id="@+id/selectItemButton"
         android:layout_width="20dp"
         android:layout_height="20dp"
-        android:backgroundTint="@android:color/transparent"
+        style="@style/icon"
         android:onClick="selectItemOnClick"
         android:src="@drawable/arrowleft"
         app:layout_constraintBottom_toBottomOf="@+id/itemTypeText"
@@ -104,12 +103,13 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerViewOnMakeGenRequest"
-        android:layout_width="360dp"
-        android:layout_height="300dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:layout_marginTop="12dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/myGenRequestsBio" />
+        app:layout_constraintTop_toBottomOf="@+id/myGenRequestsBio"
+        app:layout_constraintBottom_toBottomOf="parent"/>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

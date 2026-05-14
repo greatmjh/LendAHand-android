@@ -24,6 +24,7 @@
         android:layout_height="31dp"
         android:layout_marginStart="24dp"
         android:layout_marginTop="36dp"
+        style="@style/icon"
         android:onClick="backOnClick"
         android:background="@android:color/transparent"
         app:layout_constraintStart_toStartOf="parent"

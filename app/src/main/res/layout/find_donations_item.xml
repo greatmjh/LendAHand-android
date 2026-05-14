@@ -7,6 +7,7 @@
     android:layout_height="wrap_content">
 
     <com.google.android.material.card.MaterialCardView
+        android:id="@+id/find_donation_cardview"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:cardCornerRadius="0dp"
@@ -24,7 +25,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="24dp"
                 android:text="@string/x_units"
-                android:textColor="#454545"
+                android:textColor="@color/md_theme_onBackground"
                 app:layout_constraintBottom_toTopOf="@+id/itemNameText"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -45,6 +46,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="15dp"
                 android:text="15km away"
+                android:textColor="@color/md_theme_onBackground"
                 android:textSize="12sp"
                 app:layout_constraintBottom_toTopOf="@+id/itemNameText"
                 app:layout_constraintEnd_toEndOf="parent"

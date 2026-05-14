@@ -1,10 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="white">#FFFFFF</color>
     <color name="black">#000000</color>
-    <color name="md_theme_primary">#904A43</color>
+
+    <color name="mainButton_bg">#754944</color>
+
+    <color name="md_theme_primary">#613935</color>
     <color name="md_theme_onPrimary">#FFFFFF</color>
     <color name="md_theme_primaryContainer">#FFDAD6</color>
-    <color name="md_theme_onPrimaryContainer">#73332D</color>
+    <color name="md_theme_onPrimaryContainer">#754944</color>
     <color name="md_theme_secondary">#904A42</color>
     <color name="md_theme_onSecondary">#FFFFFF</color>
     <color name="md_theme_secondaryContainer">#FFDAD5</color>

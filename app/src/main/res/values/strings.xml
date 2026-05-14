@@ -94,7 +94,7 @@
     <string name="log_out">Log out</string>
     <string name="requests_sent">Requests sent</string>
     <string name="find_donations_header">Find Donations</string>
-    <string name="highly_requested_items_header">Highly requested items</string>
+    <string name="highly_requested_items_header">Highly Requested Items</string>
     <string name="essentials">Essentials</string>
     <string name="non_essentials">Non-Essentials</string>
     <string name="x_units">x units</string>
@@ -112,4 +112,8 @@
     <string name="view_request_top_line">%s would like %s</string>
     <string name="view_request_about_donee">About %s</string>
     <string name="view_request_distance">%.1f km away</string>
+    <string name="send_donation_request">Send Donation Request</string>
+    <string name="enter_current_password">Enter current password</string>
+    <string name="enter_new_password">Enter new password</string>
+    <string name="enter_a_short_bio">Enter a short bio</string>
 </resources>
