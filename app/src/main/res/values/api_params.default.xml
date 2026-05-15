@@ -1,5 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!-- COPY THIS TO api_params.xml AND UNCOMMENT BELOW -->
-<resources>
-    <!-- <string name="apiServerAddr">http://1.2.3.4/api/</string> -->
-</resources>
