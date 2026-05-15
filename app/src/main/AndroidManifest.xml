@@ -17,7 +17,7 @@
         android:theme="@style/Theme.LendAHand"
         android:usesCleartextTraffic="true">
         <activity
-            android:name=".AppLauncher"
+            android:name=".screens.AppLauncher"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -26,63 +26,63 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".MakeRequestPopup"
+            android:name=".screens.find_donations.MakeRequestPopup"
             android:exported="false"
             android:theme="@style/PopupTheme"
             android:noHistory="true"/>
         <activity
-            android:name=".HighlyRequestedItems"
+            android:name=".screens.highly_requested_items.HighlyRequestedItems"
             android:exported="true" />
         <activity
-            android:name=".findDonations"
+            android:name=".screens.find_donations.FindDonations"
             android:exported="false" />
         <activity
-            android:name=".notifications"
+            android:name=".screens.notifications.Notifications"
             android:exported="true" />
         <activity
-            android:name=".makeGenRequest"
+            android:name=".screens.make_gen_requests.MakeGenRequest"
             android:exported="true" />
         <activity
-            android:name=".manageRequests"
+            android:name=".screens.manage_requests.ManageRequests"
             android:exported="true" />
         <activity
-            android:name=".makeDonation"
+            android:name=".screens.manage_my_donations.MakeDonation"
             android:exported="true" />
         <activity
-            android:name=".manageMyDonations"
+            android:name=".screens.manage_my_donations.ManageMyDonations"
             android:exported="true" />
         <activity
-            android:name=".requestsReceived"
+            android:name=".screens.requests_received.RequestsReceived"
             android:exported="true" />
         <activity
-            android:name=".viewProfile"
+            android:name=".screens.ViewProfile"
             android:exported="true" />
         <activity
-            android:name=".profileSettings"
+            android:name=".screens.ProfileSettings"
             android:exported="true"
             android:theme="@style/Theme.LendAHand" />
         <activity
-            android:name=".viewRequestDonor"
+            android:name=".screens.requests_received.ViewRequestDonor"
             android:exported="true" />
         <activity
-            android:name=".topDonors"
+            android:name=".screens.top_donors.topDonors"
             android:exported="true" />
         <activity
-            android:name=".changePassword"
+            android:name=".screens.ChangePassword"
             android:exported="true" />
         <activity
-            android:name=".loginPage"
+            android:name=".screens.LoginPage"
             android:exported="true"
             android:windowSoftInputMode="adjustResize"/>
         <activity
-            android:name=".SignUpPage"
+            android:name=".screens.SignUpPage"
             android:exported="true"
             android:windowSoftInputMode="adjustResize"/>
         <activity
-            android:name=".menuActivity"
+            android:name=".screens.MenuActivity"
             android:exported="true" />
         <activity
-            android:name=".WelcomePage"
+            android:name=".screens.find_donations.WelcomePage"
             android:exported="true">
 
         </activity>

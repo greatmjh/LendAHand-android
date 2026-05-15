@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:background="@android:color/transparent"
     android:isScrollContainer="false"
-    tools:context=".findDonations"
+    tools:context=".screens.find_donations.FindDonations"
     android:backgroundTint="@null">
 
     <TextView

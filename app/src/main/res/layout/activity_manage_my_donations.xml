@@ -5,7 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".manageMyDonations">
+    tools:context=".screens.manage_my_donations.ManageMyDonations">
 
     <TextView
         android:id="@+id/viewProfileHeader"
