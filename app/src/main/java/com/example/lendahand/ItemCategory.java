@@ -42,6 +42,15 @@ public class ItemCategory {
             }
         });
     }
+    public static void loadTreeFromServer(Runnable callback) {
+        DataManager.getInstance(null).APILoadItemTree(new DataManager.ItemTreeCallback() {
+            @Override
+            public void onSuccess(ItemCategory[] response) {
+                roots = response;
+                callback.run();
+            }
+        });
+    }
 
     public HashSet<UUID> getAllChildren() {
         HashSet<UUID> result = new HashSet<>();

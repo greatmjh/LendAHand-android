@@ -1,11 +1,21 @@
 package com.example.lendahand;
 
+import android.Manifest;
+import android.app.Activity;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.location.Address;
+import android.location.Geocoder;
+import android.location.Location;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
@@ -13,72 +23,25 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.lendahand.apiclasses.DonationOffer;
+import com.example.lendahand.apiclasses.ProfileInfo;
 import com.example.lendahand.databinding.FindDonationsNestedRvBinding;
+import com.google.android.gms.location.FusedLocationProviderClient;
+import com.google.android.gms.location.LocationServices;
+import com.google.android.gms.tasks.OnSuccessListener;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
+import java.util.List;
+import java.util.Locale;
 import java.util.UUID;
 
 public class findDonations extends AppCompatActivity {
     ArrayList<RVLevelItem> visibleLevels = new ArrayList<>();
     ItemCategory[] visibleSubcategoriesPerLvl;
 
-    ArrayList<DonationOffer> itemList = new ArrayList<>(Arrays.asList(
-            new DonationOffer(
-                    UUID.fromString("99075aab-2948-43e1-af8d-a22fc7283ad0"),
-                    UUID.fromString("3a5080c9-c4b5-41c1-9804-adb3767c44e0"),
-                    "PS5",
-                    "Mel Higgs",
-                    15,
-                    135.99797099070514
-            ),
-
-            new DonationOffer(
-                    UUID.fromString("93b9b4c0-5bd9-4fdd-9ab0-7e00fe6ee8cb"),
-                    UUID.fromString("6c673ea5-a028-447e-b17d-cd9c2f66c694"),
-                    "Wagyu Beef",
-                    "Mel Higgs",
-                    14,
-                    135.99797099070514
-            ),
-
-            new DonationOffer(
-                    UUID.fromString("dbd2d22f-4cc9-4101-821f-947a6df45825"),
-                    UUID.fromString("e88f6e97-eb9e-4184-b013-83af3bb3b983"),
-                    "R1 million rand Vodacom airtime voucher ",
-                    "Mel Higgs",
-                    35,
-                    135.99797099070514
-            ),
-
-            new DonationOffer(
-                    UUID.fromString("4105c72c-1fdc-460a-8ccb-a1eea6fe21da"),
-                    UUID.fromString("7ac906f3-bed7-4c8b-a17e-417a86bbefb7"),
-                    "Designer soap",
-                    "Mel Higgs",
-                    5,
-                    135.99797099070514
-            ),
-
-            new DonationOffer(
-                    UUID.fromString("24b89a0d-3a70-4064-96e9-491bae22ba03"),
-                    UUID.fromString("5f55cecc-9449-4697-b670-12881d4ce800"),
-                    "Gold plated condoms ",
-                    "Mel Higgs",
-                    16,
-                    135.99797099070514
-            ),
-
-            new DonationOffer(
-                    UUID.fromString("f88fbe22-f4e0-44cd-b279-74f394ca3d3d"),
-                    UUID.fromString("f8d42427-7bb1-4e8f-bd9c-ef5533442cb0"),
-                    "Champagne ",
-                    "Mel Higgs",
-                    9,
-                    135.99797099070514
-            )
-    ));
+    ArrayList<DonationOffer> itemList = new ArrayList<>();
     ArrayList<DonationOffer> filteredItemList = new ArrayList<>();
 
     FindDonationsRVAdapter rvAdapter;
@@ -109,7 +72,58 @@ public class findDonations extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+        TextView statusTV = findViewById(R.id.findDonationsStatus);
+        Activity parent = this;
 
+        //Load item categoriesWW
+        ItemCategory.loadTreeFromServer(new Runnable() {
+            @Override
+            public void run() {
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        //Check location permission
+                        if (!requestLocationPermission()) {
+                            //don't have location permission
+                            statusTV.setText("Please enable location permission.");
+                            return; //when the user clicks the button next we should have permission if they said yes
+                        }
+
+                        //Get location
+                        FusedLocationProviderClient fusedLocationClient = LocationServices.getFusedLocationProviderClient(parent);
+                        try {
+                            fusedLocationClient.getLastLocation().addOnSuccessListener(parent, new OnSuccessListener<Location>() {
+                                @Override
+                                public void onSuccess(Location location) {
+                                    //Get item list from server
+                                    DataManager.getInstance(parent).APILoadDonationOffers(location.getLatitude(), location.getLongitude(), new DataManager.DonationOffersCallback() {
+                                        @Override
+                                        public void onSuccess(ArrayList<DonationOffer> result) {
+                                            runOnUiThread(new Runnable() {
+                                                @Override
+                                                public void run() {
+                                                    statusTV.setVisibility(View.GONE);
+                                                    itemList = result;
+                                                    loadRecyclerViews();
+                                                }
+                                            });
+                                        }
+                                    });
+                                }
+                            });
+                        } catch (SecurityException e) {
+                            e.printStackTrace();
+                            statusTV.setText("Please enable location permission.");
+                        }
+                    }
+                });
+
+            }
+        });
+
+    }
+
+    public void loadRecyclerViews() {
         ///MAIN TREE ITEM RECYCLERVIEW
         {
             visibleLevels.add(new RVLevelItem());
@@ -137,7 +151,6 @@ public class findDonations extends AppCompatActivity {
             itemAdapter = new FindDonationsItemAdapter(itemList);
             itemRecyclerView.setAdapter(itemAdapter);
         }
-
     }
 
     public void updateAllCategoriesRV(ItemCategory subcategory, int parentPosition){
@@ -172,6 +185,23 @@ public class findDonations extends AppCompatActivity {
             if (childrenIds.contains(item.getItemID())) {
                 filteredItemList.add(item);
             }
+        }
+    }
+
+    private boolean requestLocationPermission() {
+        // Check if permissions are already granted
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION)
+                == PackageManager.PERMISSION_GRANTED) {
+            // Permission is already granted, so return true
+            return true;
+        } else {
+            // Request Coarse location (Recommended for Android 12+)
+            ActivityCompat.requestPermissions(this,
+                    new String[]{
+                            Manifest.permission.ACCESS_COARSE_LOCATION
+                    },
+                    100);
+            return false;
         }
     }
 
