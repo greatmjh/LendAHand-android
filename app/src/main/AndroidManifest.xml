@@ -72,10 +72,12 @@
             android:exported="true" />
         <activity
             android:name=".loginPage"
-            android:exported="true" />
+            android:exported="true"
+            android:windowSoftInputMode="adjustResize"/>
         <activity
             android:name=".SignUpPage"
-            android:exported="true" />
+            android:exported="true"
+            android:windowSoftInputMode="adjustResize"/>
         <activity
             android:name=".menuActivity"
             android:exported="true" />

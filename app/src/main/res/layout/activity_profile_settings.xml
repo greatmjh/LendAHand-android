@@ -1,11 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:fillViewport="true"
+    android:fitsSystemWindows="true">
+<androidx.constraintlayout.widget.ConstraintLayout
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".profileSettings">
+    tools:context=".profileSettings"
+    android:fitsSystemWindows="true">
 
     <TextView
         android:id="@+id/viewProfileHeader"
@@ -162,25 +170,25 @@
         android:layout_width="wrap_content"
         android:layout_height="42dp"
         android:layout_marginStart="36dp"
-        android:layout_marginBottom="40dp"
+        android:layout_marginTop="48dp"
         android:onClick="saveChangesClick"
         android:text="@string/save_changes"
         android:textSize="12sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/profileSettingsCurrAddress" />
 
     <Button
         android:id="@+id/cancelButton"
+        style="@style/AltButtonTheme"
         android:layout_width="wrap_content"
         android:layout_height="42dp"
+        android:layout_marginTop="48dp"
         android:layout_marginEnd="36dp"
-        android:layout_marginBottom="40dp"
-        style="@style/AltButtonTheme"
         android:onClick="cancelClick"
         android:text="@string/cancel"
         android:textSize="12sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/profileSettingsCurrAddress" />
 
     <TextView
         android:id="@+id/profileSettingsCurrAddress"
@@ -196,3 +204,4 @@
         app:layout_constraintTop_toBottomOf="@+id/updateHomeAddressButton" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>
