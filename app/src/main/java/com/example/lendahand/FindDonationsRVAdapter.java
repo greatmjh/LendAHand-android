@@ -45,7 +45,7 @@ public class FindDonationsRVAdapter extends RecyclerView.Adapter<FindDonationsRV
 
     @Override
     public void onBindViewHolder(@NonNull FindDonationsRVAdapter.MyViewHolder holder, int position){
-        parent.setInnerRecyclerView(holder.recyclerView);
+        parent.setInnerRecyclerView(holder.recyclerView, position);
 
         RVLevelItem filterName = subcategory.get(position);
 

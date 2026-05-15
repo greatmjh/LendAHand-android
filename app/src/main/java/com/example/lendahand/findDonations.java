@@ -83,7 +83,7 @@ public class findDonations extends AppCompatActivity {
 
     FindDonationsRVAdapter rvAdapter;
 
-    findDonationsSubcategoryAdapter subcategoryAdapter;
+    ArrayList<findDonationsSubcategoryAdapter> subcategoryAdapters = new ArrayList<>();
     FindDonationsItemAdapter itemAdapter;
 
 
@@ -118,7 +118,7 @@ public class findDonations extends AppCompatActivity {
             RecyclerView recyclerView = findViewById(R.id.allCategoriesRecyclerView);
             recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-            subcategoryAdapter = new findDonationsSubcategoryAdapter(visibleLevels.get(0).subcategories);
+            subcategoryAdapters.add(new findDonationsSubcategoryAdapter(visibleLevels.get(0).subcategories, 0));
 
             rvAdapter = new FindDonationsRVAdapter(visibleLevels, this, this);
 
@@ -140,26 +140,29 @@ public class findDonations extends AppCompatActivity {
 
     }
 
-    public void updateAllCategoriesRV(ItemCategory subcategory){
+    public void updateAllCategoriesRV(ItemCategory subcategory, int parentPosition){
         //TODO: make this do something effective?
         if (subcategory.getItemChildren().length > 0){
             RVLevelItem toAdd = new RVLevelItem();
             toAdd.setSubcategories(subcategory.getItemChildren());
+            visibleLevels.subList(parentPosition+1, visibleLevels.size()).clear();
             visibleLevels.add(toAdd);
 
             rvAdapter.updateData(visibleLevels);
-            subcategoryAdapter.updateData(subcategory.getItemChildren());
+            findDonationsSubcategoryAdapter newSCA =  new findDonationsSubcategoryAdapter(subcategory.getItemChildren(), parentPosition + 1);
+            subcategoryAdapters.subList(parentPosition+1, subcategoryAdapters.size()).clear();
+            subcategoryAdapters.add(newSCA);
         }
         filterItems(subcategory);
         itemAdapter.updateData(filteredItemList);
     }
 
-    public void setInnerRecyclerView(RecyclerView subcategory){
+    public void setInnerRecyclerView(RecyclerView subcategory, int position){
         subcategory.setLayoutManager(
                 new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL,false)
         );
-        subcategoryAdapter.setOnSubcategoryClickListener(this::updateAllCategoriesRV);
-        subcategory.setAdapter(subcategoryAdapter);
+        subcategoryAdapters.get(position).setOnSubcategoryClickListener(this::updateAllCategoriesRV);
+        subcategory.setAdapter(subcategoryAdapters.get(position));
     }
 
     public void filterItems(ItemCategory parentCategory) {

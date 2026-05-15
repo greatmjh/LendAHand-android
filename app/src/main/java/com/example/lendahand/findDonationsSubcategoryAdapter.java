@@ -17,12 +17,15 @@ public class findDonationsSubcategoryAdapter extends RecyclerView.Adapter<findDo
     private OnSubcategoryClickListener listener;
     private int selectedPosition = -1;
 
+    int parentPosition;
+
     public interface OnSubcategoryClickListener {
-        void onClick(ItemCategory subcategory);
+        void onClick(ItemCategory subcategory, int parentPosition);
     }
 
-    public findDonationsSubcategoryAdapter(ItemCategory[] subcategories){
+    public findDonationsSubcategoryAdapter(ItemCategory[] subcategories, int parentPosition){
         this.subcategories = subcategories;
+        this.parentPosition = parentPosition;
 
     }
 
@@ -51,7 +54,7 @@ public class findDonationsSubcategoryAdapter extends RecyclerView.Adapter<findDo
             notifyItemChanged(selectedPosition);
 
             if (listener != null){
-                listener.onClick(filterName);
+                listener.onClick(filterName, parentPosition);
             }
         });
 
