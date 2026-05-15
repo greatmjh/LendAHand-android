@@ -67,7 +67,7 @@ public class ViewRequestDonor extends AppCompatActivity {
     }
 
     public void rejectOnClick(View v) {
-        DataManager.getInstance(this).APIRespondToRequest(requestID, true);
+        DataManager.getInstance(this).APIRespondToRequest(requestID, false);
         finish();
     }
 }
