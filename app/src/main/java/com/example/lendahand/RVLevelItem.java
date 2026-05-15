@@ -1,14 +1,13 @@
 package com.example.lendahand;
 
+import java.util.ArrayList;
 import java.util.UUID;
 
 public class RVLevelItem {
-    public UUID parentId;
+    public ArrayList<ItemCategory> subcategories;
 
-    public RVLevelItem(UUID parentId){
-        this.parentId = parentId;
+    private void setSubcategories(){
+
     }
-
-    public UUID getParentId() { return parentId; }
 
 }

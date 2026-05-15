@@ -12,17 +12,16 @@ import androidx.core.view.WindowInsetsCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.lendahand.apiclasses.DonationOffer;
+
 import java.util.ArrayList;
 import java.util.UUID;
 
 public class findDonations extends AppCompatActivity {
     ArrayList<RVLevelItem> visibleSubcategories; //takes in parentIds
 
-    ArrayList<findDonationsItem> itemList = new ArrayList<>(); //TODO: receive available items from server
-    ArrayList<findDonationsItem> filteredItemList = new ArrayList<>();
-
-    findDonationsSubcategoryAdapter adapter;
-    findDonationsAdapter itemsAdapter;
+    ArrayList<DonationOffer> itemList = new ArrayList<>(); //TODO: receive available items from server
+    ArrayList<DonationOffer> filteredItemList = new ArrayList<>();
 
     FindDonationsRVAdapter rvAdapter;
 
@@ -50,18 +49,19 @@ public class findDonations extends AppCompatActivity {
             return insets;
         });
 
-        visibleSubcategories.add(new RVLevelItem(UUID.fromString("20eca463-47f1-401c-b978-bfd2eb68548c"))); //essentials
-        visibleSubcategories.add(new RVLevelItem(UUID.fromString("b41df440-fb36-4936-b289-caca4965762a"))); //non-essentials
+        ///MAIN TREE ITEM RECYCLERVIEW
+        {
+            visibleSubcategories.add(new RVLevelItem());
 
-        RecyclerView recyclerView = findViewById(R.id.allCategoriesRecyclerView);
+            RecyclerView recyclerView = findViewById(R.id.allCategoriesRecyclerView);
 
-        rvAdapter = new FindDonationsRVAdapter(visibleSubcategories, this);
+            rvAdapter = new FindDonationsRVAdapter(visibleSubcategories, this);
 
-        //set on click listener
-        rvAdapter.setOnSubcategoryClickListener(this::updateAllCategoriesRV);
+            //set on click listener
+            rvAdapter.setOnSubcategoryClickListener(this::updateAllCategoriesRV);
 
-        recyclerView.setAdapter(adapter);
-        //--------------------------
+            recyclerView.setAdapter(rvAdapter);
+        }
 
         //ITEM LIST RECYCLERVIEW
         {
@@ -70,17 +70,10 @@ public class findDonations extends AppCompatActivity {
 
             //add sample data
             {
-                itemList.add(new findDonationsItem("Baked Beans", "Essential", "Food", 3, 5, UUID.randomUUID(), "Richard Klein"));
-                itemList.add(new findDonationsItem("T-shirt", "Essential", "Clothes", 1, 2, UUID.randomUUID(), "Richard Klein"));
-                itemList.add(new findDonationsItem("Toothbrush", "Essential", "Hygiene", 3, 5, UUID.randomUUID(), "Richard Klein"));
-                itemList.add(new findDonationsItem("Chair", "Essential", "Furniture", 3, 5, UUID.randomUUID(), "Richard Klein"));
-                itemList.add(new findDonationsItem("Kettle", "Essential", "Appliances", 3, 5, UUID.randomUUID(), "Richard Klein"));
-                itemList.add(new findDonationsItem("Airtime Voucher", "NonEssential", "Airtime", 1, 5, UUID.randomUUID(), "Richard Klein"));
+
             }
 
-            itemsAdapter = new findDonationsAdapter(itemList);
-
-            itemRecyclerView.setAdapter(itemsAdapter);
+            //TODO: make + set adapter
         }
 
     }
@@ -88,28 +81,5 @@ public class findDonations extends AppCompatActivity {
     public void updateAllCategoriesRV(RVLevelItem subcategory){
         //TODO: make this do something effective?
     }
-
-//    public void updateMainCategoryItemList(String mainCategory){
-//        filteredItemList.clear();
-//
-//        for (findDonationsItem item:itemList){
-//            if (item.getMainCategory().equals(mainCategory)){
-//                filteredItemList.add(item);
-//            }
-//        }
-//
-//        adapterItems.updateData(filteredItemList);
-//    }
-//    public void updateSubcategoryItemList(String subcategory){
-//        filteredItemList.clear();
-//
-//        for (findDonationsItem item:itemList){
-//            if (item.getSubcategory().equals(subcategory)){
-//                filteredItemList.add(item);
-//            }
-//        }
-//
-//        adapterItems.updateData(filteredItemList);
-//    }
 
 }
