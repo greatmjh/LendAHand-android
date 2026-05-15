@@ -49,7 +49,15 @@ public class SignUpPage extends AppCompatActivity {
         String password = passwordInput.getText().toString();
         String confirmPassword = confirmPasswordInput.getText().toString();
 
-        //TODO: input validation confirm password checking
+        //Validation
+        if (fullName.isEmpty() || email.isEmpty() || phoneUnformatted.isEmpty() || bio.isEmpty() || password.isEmpty()) {
+            Toast.makeText(this, "Please fill in all the fields", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        if (!password.equals(confirmPassword)) {
+            Toast.makeText(this, "Passwords do not match!", Toast.LENGTH_SHORT).show();
+            return;
+        }
 
         //Reformat phone number
         PhoneNumberUtil phoneUtil = PhoneNumberUtil.getInstance();
