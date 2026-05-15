@@ -4,6 +4,7 @@
 
     <color name="mainButton_bg">#7F605A</color>
 
+    <color name="divider">#272424</color>
     <color name="md_theme_primary">#7F605A</color>
     <color name="md_theme_onPrimary">#1A1110</color>
     <color name="md_theme_primaryContainer">#73332D</color>

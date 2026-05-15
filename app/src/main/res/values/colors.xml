@@ -5,6 +5,7 @@
 
     <color name="mainButton_bg">#754944</color>
 
+    <color name="divider">#e2d1ce</color>
     <color name="md_theme_primary">#613935</color>
     <color name="md_theme_onPrimary">#FFFFFF</color>
     <color name="md_theme_primaryContainer">#FFDAD6</color>

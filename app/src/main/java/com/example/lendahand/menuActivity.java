@@ -51,6 +51,10 @@ public class menuActivity extends AppCompatActivity {
             openScreen(topDonors.class);
         } else if (id  ==  R.id.logOutMenu) {
             DataManager.getInstance(this).logOut();
+        } else if (id == R.id.highlyRequestedItemsMenu) {
+            openScreen(HighlyRequestedItems.class);
+        } else if (id == R.id.manageUniversalRequestsMenu) {
+            openScreen(makeGenRequest.class);
         }
     }
 

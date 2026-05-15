@@ -73,14 +73,14 @@
     <string name="open">Open</string>
     <string name="requests_received_info">Fulfill requests and see a history of what you have fulfilled in the past</string>
     <string name="requested_items">Requested items</string>
-    <string name="manage_my_donations">Manage my Donations</string>
+    <string name="manage_my_donations">Manage my donations</string>
     <string name="make_donation">Make donation</string>
     <string name="make_a_donation">Make a Donation</string>
     <string name="item_prompt_text">Enter a brief descriptor of the item you are donating</string>
     <string name="item_name">Item name</string>
     <string name="select_item_type">Select Item Type</string>
     <string name="view_request">View Request</string>
-    <string name="manage_my_requests">Manage my Requests</string>
+    <string name="manage_my_requests">Manage my requests</string>
     <string name="make_general_request">Make a General Request</string>
     <string name="make_gen_request_bio">If you need something that is currently not being donated, request it here so that the donors can see that people need this. When it is made available, you will receive a notification.</string>
     <string name="back_button">back button</string>
@@ -90,7 +90,7 @@
     <string name="notifications">Notifications</string>
     <string name="closed">Closed</string>
     <string name="requests_received">Requests received</string>
-    <string name="find_donations">Find donations</string>
+    <string name="find_donations">Find donation offers</string>
     <string name="log_out">Log out</string>
     <string name="requests_sent">Requests sent</string>
     <string name="find_donations_header">Find Donations</string>
@@ -118,4 +118,11 @@
     <string name="enter_a_short_bio">Enter a short bio</string>
     <string name="loading">Loading...</string>
     <string name="home_address_filler">Home address: Near xxxx</string>
+    <string name="menu_subtitle_general">General</string>
+    <string name="make_donations">Make donations</string>
+    <string name="manage_my_incoming_requests">Manage my incoming requests</string>
+    <string name="view_highly_requested_items">View highly requested items</string>
+    <string name="receive_donations">Receive donations</string>
+    <string name="manage_my_outgoing_requests">Manage my outgoing requests</string>
+    <string name="manage_my_universal_requests">Manage my universal requests</string>
 </resources>

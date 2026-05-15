@@ -21,131 +21,235 @@
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="?attr/actionModeCloseDrawable" />
 
-    <Button
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingHorizontal="18dp"
+        android:paddingVertical="9dp"
+        android:text="@string/menu_subtitle_general"
+        android:textColor="@color/md_theme_outline"
+        android:textStyle="bold" />
+
+    <View
+        android:id="@+id/divider12"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:background="@color/divider"
+        android:paddingHorizontal="18dp" />
+
+    <TextView
         android:id="@+id/notificationMenu"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="start"
-        android:background="@android:color/transparent"
-        android:maxLines="1"
+        android:clickable="true"
         android:onClick="menuClick"
-        android:paddingStart="20dp"
-        android:paddingTop="16dp"
-        android:paddingEnd="0dp"
-        android:paddingBottom="16dp"
+        android:paddingHorizontal="24dp"
+        android:paddingVertical="12dp"
         android:text="@string/notifications"
-        android:textAlignment="viewStart"
-        android:textAppearance="@style/TextAppearance.AppCompat.Small"
-        android:textColor="?android:attr/textColorPrimary"
         android:textSize="14sp" />
 
-    <Button
-        android:id="@+id/reqReceivedMenu"
+    <View
+        android:id="@+id/divider5"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="start"
-        android:background="@android:color/transparent"
-        android:maxLines="1"
-        android:onClick="menuClick"
-        android:paddingStart="20dp"
-        android:paddingTop="16dp"
-        android:paddingEnd="0dp"
-        android:paddingBottom="16dp"
-        android:text="@string/requests_received"
-        android:textAlignment="viewStart"
-        android:textAppearance="@style/TextAppearance.AppCompat.Small"
-        android:textColor="?android:attr/textColorPrimary"
-        android:textSize="14sp" />
+        android:layout_height="1dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:background="@color/divider"
+        android:paddingHorizontal="18dp" />
 
-    <Button
-        android:id="@+id/manageRequestsMenu"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="start"
-        android:background="@android:color/transparent"
-        android:maxLines="1"
-        android:onClick="menuClick"
-        android:paddingStart="20dp"
-        android:paddingTop="16dp"
-        android:paddingEnd="0dp"
-        android:paddingBottom="16dp"
-        android:text="@string/requests_sent"
-        android:textAlignment="viewStart"
-        android:textAppearance="@style/TextAppearance.AppCompat.Small"
-        android:textColor="?android:attr/textColorPrimary"
-        android:textSize="14sp" />
-
-    <Button
-        android:id="@+id/manageDonationsMenu"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="start"
-        android:background="@android:color/transparent"
-        android:maxLines="1"
-        android:onClick="menuClick"
-        android:paddingStart="20dp"
-        android:paddingTop="16dp"
-        android:paddingEnd="0dp"
-        android:paddingBottom="16dp"
-        android:text="@string/manage_my_donations"
-        android:textAlignment="viewStart"
-        android:textAppearance="@style/TextAppearance.AppCompat.Small"
-        android:textColor="?android:attr/textColorPrimary"
-        android:textSize="14sp" />
-
-    <Button
-        android:id="@+id/findDonationsMenu"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="start"
-        android:background="@android:color/transparent"
-        android:maxLines="1"
-        android:onClick="menuClick"
-        android:paddingStart="20dp"
-        android:paddingTop="16dp"
-        android:paddingEnd="0dp"
-        android:paddingBottom="16dp"
-        android:text="@string/find_donations"
-        android:textAlignment="viewStart"
-        android:textAppearance="@style/TextAppearance.AppCompat.Small"
-        android:textColor="?android:attr/textColorPrimary"
-        android:textSize="14sp" />
-
-    <Button
+    <TextView
         android:id="@+id/topDonorsMenu"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="start"
-        android:background="@android:color/transparent"
-        android:maxLines="1"
+        android:clickable="true"
         android:onClick="menuClick"
-        android:paddingStart="20dp"
-        android:paddingTop="16dp"
-        android:paddingEnd="0dp"
-        android:paddingBottom="16dp"
+        android:paddingHorizontal="24dp"
+        android:paddingVertical="12dp"
         android:text="@string/top_donors"
-        android:textAlignment="viewStart"
-        android:textAppearance="@style/TextAppearance.AppCompat.Small"
-        android:textColor="?android:attr/textColorPrimary"
         android:textSize="14sp" />
 
-    <Button
+    <View
+        android:id="@+id/divider9"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:background="@color/divider"
+        android:paddingHorizontal="18dp" />
+
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingHorizontal="18dp"
+        android:paddingTop="24dp"
+        android:paddingBottom="9dp"
+        android:text="@string/make_donations"
+        android:textColor="@color/md_theme_outline"
+        android:textStyle="bold" />
+
+    <View
+        android:id="@+id/divider6"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:background="@color/divider"
+        android:paddingHorizontal="18dp" />
+
+    <TextView
+        android:id="@+id/manageDonationsMenu"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:onClick="menuClick"
+        android:paddingHorizontal="24dp"
+        android:paddingVertical="12dp"
+        android:text="@string/manage_my_donations"
+        android:textSize="14sp" />
+
+    <View
+        android:id="@+id/divider13"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:background="@color/divider"
+        android:paddingHorizontal="18dp" />
+
+    <TextView
+        android:id="@+id/reqReceivedMenu"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:onClick="menuClick"
+        android:paddingHorizontal="24dp"
+        android:paddingVertical="12dp"
+        android:text="@string/manage_my_incoming_requests"
+        android:textSize="14sp" />
+
+    <View
+        android:id="@+id/divider7"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:background="@color/divider"
+        android:paddingHorizontal="18dp" />
+
+    <TextView
+        android:id="@+id/highlyRequestedItemsMenu"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:onClick="menuClick"
+        android:paddingHorizontal="24dp"
+        android:paddingVertical="12dp"
+        android:text="@string/view_highly_requested_items"
+        android:textSize="14sp" />
+
+    <View
+        android:id="@+id/divider10"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:background="@color/divider"
+        android:paddingHorizontal="18dp" />
+
+    <TextView
+        android:id="@+id/textView10"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingHorizontal="18dp"
+        android:paddingTop="24dp"
+        android:paddingBottom="9dp"
+        android:text="@string/receive_donations"
+        android:textColor="@color/md_theme_outline"
+        android:textStyle="bold" />
+
+    <View
+        android:id="@+id/divider14"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:background="@color/divider"
+        android:paddingHorizontal="18dp" />
+
+    <TextView
+        android:id="@+id/findDonationsMenu"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:onClick="menuClick"
+        android:paddingHorizontal="24dp"
+        android:paddingVertical="12dp"
+        android:text="@string/find_donations"
+        android:textSize="14sp" />
+
+    <View
+        android:id="@+id/divider8"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:background="@color/divider"
+        android:paddingHorizontal="18dp" />
+
+    <TextView
+        android:id="@+id/manageRequestsMenu"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:onClick="menuClick"
+        android:paddingHorizontal="24dp"
+        android:paddingVertical="12dp"
+        android:text="@string/manage_my_outgoing_requests"
+        android:textSize="14sp" />
+
+    <View
+        android:id="@+id/divider"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:background="@color/divider"
+        android:paddingHorizontal="18dp" />
+
+    <TextView
+        android:id="@+id/manageUniversalRequestsMenu"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:onClick="menuClick"
+        android:paddingHorizontal="24dp"
+        android:paddingVertical="12dp"
+        android:text="@string/manage_my_universal_requests"
+        android:textSize="14sp" />
+
+    <View
+        android:id="@+id/divider11"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:background="@color/divider"
+        android:paddingHorizontal="18dp" />
+
+    <TextView
         android:id="@+id/logOutMenu"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="start"
-        android:background="@android:color/transparent"
-        android:maxLines="1"
+        android:clickable="true"
         android:onClick="menuClick"
-        android:paddingStart="20dp"
-        android:paddingTop="16dp"
-        android:paddingEnd="0dp"
-        android:paddingBottom="16dp"
+        android:paddingHorizontal="24dp"
+        android:paddingVertical="40dp"
         android:text="@string/log_out"
-        android:textAlignment="viewStart"
-        android:textAppearance="@style/TextAppearance.AppCompat.Small"
-        android:textColor="?android:attr/textColorPrimary"
         android:textSize="14sp"
-        android:textStyle="bold|italic" />
+        android:textStyle="bold" />
 
 </LinearLayout>
