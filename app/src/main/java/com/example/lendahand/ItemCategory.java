@@ -1,5 +1,6 @@
 package com.example.lendahand;
 
+import java.util.HashSet;
 import java.util.UUID;
 
 public class ItemCategory {
@@ -40,6 +41,19 @@ public class ItemCategory {
                 roots = response;
             }
         });
+    }
+
+    public HashSet<UUID> getAllChildren() {
+        HashSet<UUID> result = new HashSet<>();
+        getAllChildrenRecurse(result);
+        return result;
+    }
+
+    private void getAllChildrenRecurse(HashSet<UUID> result) {
+        result.add(this.itemID);
+        for (ItemCategory child: itemChildren) {
+            child.getAllChildrenRecurse(result);
+        }
     }
 
 
