@@ -151,7 +151,7 @@ public class findDonations extends AppCompatActivity {
         subcategory.setLayoutManager(
                 new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL,false)
         );
-
+        subcategoryAdapter.setOnSubcategoryClickListener(this::filterItems);
         subcategory.setAdapter(subcategoryAdapter);
     }
 
