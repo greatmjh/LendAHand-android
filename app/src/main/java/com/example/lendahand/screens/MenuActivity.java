@@ -19,7 +19,7 @@ import com.example.lendahand.screens.highly_requested_items.HighlyRequestedItems
 import com.example.lendahand.screens.make_gen_requests.MakeGenRequest;
 import com.example.lendahand.screens.manage_my_donations.ManageMyDonations;
 import com.example.lendahand.screens.manage_requests.ManageRequests;
-import com.example.lendahand.screens.top_donors.topDonors;
+import com.example.lendahand.screens.top_donors.TopDonors;
 
 public class MenuActivity extends AppCompatActivity {
 
@@ -59,7 +59,7 @@ public class MenuActivity extends AppCompatActivity {
         }else if (id  ==  R.id.findDonationsMenu) {
             openScreen(FindDonations.class);
         }else if (id  ==  R.id.topDonorsMenu) {
-            openScreen(topDonors.class);
+            openScreen(TopDonors.class);
         } else if (id  ==  R.id.logOutMenu) {
             DataManager.getInstance(this).logOut();
         } else if (id == R.id.highlyRequestedItemsMenu) {

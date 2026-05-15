@@ -22,10 +22,10 @@ import com.example.lendahand.screens.ViewProfile;
 
 import java.util.List;
 
-public class topDonors extends AppCompatActivity {
+public class TopDonors extends AppCompatActivity {
 
     public void menuBtnClick(View v){
-        PreviousView.setPrevView(topDonors.class);
+        PreviousView.setPrevView(TopDonors.class);
 
         Intent intent = new Intent(this, MenuActivity.class);
         startActivity(intent);
@@ -58,7 +58,7 @@ public class topDonors extends AppCompatActivity {
                     public void run() {
                         if (items.size() > 0) {
                             //set adapter
-                            topDonorsAdapter adapter = new topDonorsAdapter(items);
+                            TopDonorsAdapter adapter = new TopDonorsAdapter(items);
                             recyclerView.setAdapter(adapter);
                             txtStatus.setVisibility(View.GONE);
                         } else {

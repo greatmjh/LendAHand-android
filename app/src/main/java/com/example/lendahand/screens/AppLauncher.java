@@ -8,7 +8,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.lendahand.helpers.DataManager;
 import com.example.lendahand.helpers.ItemCategory;
 import com.example.lendahand.screens.find_donations.WelcomePage;
-import com.example.lendahand.screens.top_donors.topDonors;
+import com.example.lendahand.screens.top_donors.TopDonors;
 
 public class AppLauncher extends AppCompatActivity {
 
@@ -19,7 +19,7 @@ public class AppLauncher extends AppCompatActivity {
         if (dataManager.isLoggedIn()) {
             DataManager.getInstance(this); //make sure data manager is up
             ItemCategory.getRoots(); // load these from server so we have them when necessary
-            startActivity(new Intent(this, topDonors.class));
+            startActivity(new Intent(this, TopDonors.class));
         } else {
             startActivity(new Intent(this, WelcomePage.class));
         }

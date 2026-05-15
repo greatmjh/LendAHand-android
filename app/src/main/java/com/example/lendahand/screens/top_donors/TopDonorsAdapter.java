@@ -13,10 +13,10 @@ import com.example.lendahand.apiclasses.TopDonorItem;
 import java.util.List;
 
 
-public class topDonorsAdapter extends RecyclerView.Adapter<topDonorsAdapter.MyViewHolder> {
+public class TopDonorsAdapter extends RecyclerView.Adapter<TopDonorsAdapter.MyViewHolder> {
     private List<TopDonorItem> itemList;
 
-    public topDonorsAdapter(List<TopDonorItem> itemList){
+    public TopDonorsAdapter(List<TopDonorItem> itemList){
         this.itemList = itemList;
     }
 

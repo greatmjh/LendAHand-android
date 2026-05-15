@@ -65,7 +65,7 @@
             android:name=".screens.requests_received.ViewRequestDonor"
             android:exported="true" />
         <activity
-            android:name=".screens.top_donors.topDonors"
+            android:name=".screens.top_donors.TopDonors"
             android:exported="true" />
         <activity
             android:name=".screens.ChangePassword"

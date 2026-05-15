@@ -17,7 +17,7 @@ import androidx.core.view.WindowInsetsCompat;
 import com.example.lendahand.helpers.DataManager;
 import com.example.lendahand.R;
 import com.example.lendahand.apiclasses.LoginRequest;
-import com.example.lendahand.screens.top_donors.topDonors;
+import com.example.lendahand.screens.top_donors.TopDonors;
 import com.google.gson.Gson;
 
 public class LoginPage extends AppCompatActivity {
@@ -62,7 +62,7 @@ public class LoginPage extends AppCompatActivity {
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        Intent intent = new Intent(parent, topDonors.class);
+                        Intent intent = new Intent(parent, TopDonors.class);
                         //make it so you can't go back from here
                         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                         parent.startActivity(intent);
