@@ -124,5 +124,5 @@
     <string name="view_highly_requested_items">View highly requested items</string>
     <string name="receive_donations">Receive donations</string>
     <string name="manage_my_outgoing_requests">Manage my outgoing requests</string>
-    <string name="manage_my_universal_requests">Manage my universal requests</string>
+    <string name="manage_my_universal_requests">Manage my general requests</string>
 </resources>

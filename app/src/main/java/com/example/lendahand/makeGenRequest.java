@@ -33,8 +33,7 @@ public class makeGenRequest extends AppCompatActivity {
     }
 
     public void backOnClick(View view) {
-        Intent intent = new Intent(this, manageRequests.class);
-        startActivity(intent);
+        finish();
     }
 
     @Override
