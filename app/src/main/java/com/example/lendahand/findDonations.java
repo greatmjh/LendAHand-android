@@ -13,9 +13,11 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.lendahand.apiclasses.DonationOffer;
+import com.example.lendahand.databinding.FindDonationsNestedRvBinding;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.UUID;
 
 public class findDonations extends AppCompatActivity {
@@ -151,6 +153,16 @@ public class findDonations extends AppCompatActivity {
         );
 
         subcategory.setAdapter(subcategoryAdapter);
+    }
+
+    public void filterItems(ItemCategory parentCategory) {
+        HashSet<UUID> childrenIds = parentCategory.getAllChildren();
+        filteredItemList = new ArrayList<>();
+        for (DonationOffer item: itemList) {
+            if (childrenIds.contains(item.getItemID())) {
+                filteredItemList.add(item);
+            }
+        }
     }
 
 }
