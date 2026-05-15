@@ -19,7 +19,8 @@ import java.util.Arrays;
 import java.util.UUID;
 
 public class findDonations extends AppCompatActivity {
-    ArrayList<RVLevelItem> visibleSubcategories = new ArrayList<>(); //takes in parentIds
+    ArrayList<RVLevelItem> visibleLevels = new ArrayList<>();
+    ItemCategory[] visibleSubcategoriesPerLvl;
 
     ArrayList<DonationOffer> itemList = new ArrayList<>(Arrays.asList(
             new DonationOffer(
@@ -80,6 +81,8 @@ public class findDonations extends AppCompatActivity {
 
     FindDonationsRVAdapter rvAdapter;
 
+    findDonationsSubcategoryAdapter subcategoryAdapter;
+
 
     public void menuBtnClick(View v){
         previousView.setPrevView(findDonations.class);
@@ -106,12 +109,15 @@ public class findDonations extends AppCompatActivity {
 
         ///MAIN TREE ITEM RECYCLERVIEW
         {
-            visibleSubcategories.add(new RVLevelItem());
-            visibleSubcategories.get(0).initialSet();
+            visibleLevels.add(new RVLevelItem());
+            visibleLevels.get(0).initialSet();
 
             RecyclerView recyclerView = findViewById(R.id.allCategoriesRecyclerView);
+            recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-            rvAdapter = new FindDonationsRVAdapter(visibleSubcategories, this);
+            subcategoryAdapter = new findDonationsSubcategoryAdapter(visibleLevels.get(0).subcategories);
+
+            rvAdapter = new FindDonationsRVAdapter(visibleLevels, this, this);
 
             //set on click listener
             rvAdapter.setOnSubcategoryClickListener(this::updateAllCategoriesRV);
@@ -119,10 +125,6 @@ public class findDonations extends AppCompatActivity {
             recyclerView.setAdapter(rvAdapter);
         }
 
-        //HORIZONTAL RECYCLERVIEW
-        {
-
-        }
 
         //ITEM LIST RECYCLERVIEW
         {
@@ -141,6 +143,14 @@ public class findDonations extends AppCompatActivity {
 
     public void updateAllCategoriesRV(RVLevelItem subcategory){
         //TODO: make this do something effective?
+    }
+
+    public void setInnerRecyclerView(RecyclerView subcategory){
+        subcategory.setLayoutManager(
+                new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL,false)
+        );
+
+        subcategory.setAdapter(subcategoryAdapter);
     }
 
 }

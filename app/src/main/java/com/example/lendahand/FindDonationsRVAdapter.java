@@ -13,19 +13,22 @@ import java.util.ArrayList;
 
 public class FindDonationsRVAdapter extends RecyclerView.Adapter<FindDonationsRVAdapter.MyViewHolder>{
 
-    ArrayList<RVLevelItem> subcategory = new ArrayList<>();
+    ArrayList<RVLevelItem> subcategory;
     private FindDonationsRVAdapter.OnSubcategoryClickListener listener;
     private int selectedPosition = -1;
 
     private Context context;
 
+    private findDonations parent;
+
     public interface OnSubcategoryClickListener {
         void onClick(RVLevelItem subcategory);
     }
 
-    public FindDonationsRVAdapter(ArrayList<RVLevelItem> subcategories, Context context){
+    public FindDonationsRVAdapter(ArrayList<RVLevelItem> subcategories, Context context, findDonations parent){
         this.subcategory = subcategories;
         this.context = context;
+        this.parent = parent;
     }
 
     public void setOnSubcategoryClickListener(FindDonationsRVAdapter.OnSubcategoryClickListener listener){
@@ -42,8 +45,7 @@ public class FindDonationsRVAdapter extends RecyclerView.Adapter<FindDonationsRV
 
     @Override
     public void onBindViewHolder(@NonNull FindDonationsRVAdapter.MyViewHolder holder, int position){
-        //holder.recyclerView.setAdapter();
-        holder.recyclerView.setLayoutManager(new LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false));
+        parent.setInnerRecyclerView(holder.recyclerView);
 
         RVLevelItem filterName = subcategory.get(position);
 
@@ -58,6 +60,8 @@ public class FindDonationsRVAdapter extends RecyclerView.Adapter<FindDonationsRV
                 listener.onClick(filterName);
             }
         });
+
+
     }
 
     @Override

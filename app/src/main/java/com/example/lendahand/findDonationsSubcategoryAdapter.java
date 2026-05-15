@@ -13,16 +13,17 @@ import java.util.List;
 
 public class findDonationsSubcategoryAdapter extends RecyclerView.Adapter<findDonationsSubcategoryAdapter.MyViewHolder>{
 
-    private ArrayList<String> subcategories;
+    private ItemCategory[] subcategories;
     private OnSubcategoryClickListener listener;
     private int selectedPosition = -1;
 
     public interface OnSubcategoryClickListener {
-        void onClick(String subcategory);
+        void onClick(ItemCategory subcategory);
     }
 
-    public findDonationsSubcategoryAdapter(ArrayList<String> subcategories){
+    public findDonationsSubcategoryAdapter(ItemCategory[] subcategories){
         this.subcategories = subcategories;
+
     }
 
     public void setOnSubcategoryClickListener(OnSubcategoryClickListener listener){
@@ -39,8 +40,8 @@ public class findDonationsSubcategoryAdapter extends RecyclerView.Adapter<findDo
 
     @Override
     public void onBindViewHolder(@NonNull findDonationsSubcategoryAdapter.MyViewHolder holder, int position){
-        String filterName = subcategories.get(position);
-        holder.textView.setText(filterName);
+        ItemCategory filterName = subcategories[position];
+        holder.textView.setText(filterName.getItemName());
 
         holder.itemView.setOnClickListener(v -> {
             int previousPosition = selectedPosition;
@@ -63,7 +64,7 @@ public class findDonationsSubcategoryAdapter extends RecyclerView.Adapter<findDo
 
     @Override
     public int getItemCount(){
-        return subcategories.size();
+        return subcategories.length;
     }
 
     // ViewHolder class
@@ -76,7 +77,7 @@ public class findDonationsSubcategoryAdapter extends RecyclerView.Adapter<findDo
         }
     }
 
-    public void updateData(ArrayList<String> newList){
+    public void updateData( ItemCategory[] newList){
         this.subcategories = newList;
         notifyDataSetChanged();
     }
@@ -86,4 +87,7 @@ public class findDonationsSubcategoryAdapter extends RecyclerView.Adapter<findDo
         notifyItemChanged(selectedPosition);
     }
 
+    public void updateItemList(ItemCategory subcategory){
+        //TODO: based on what is clicked, update itemlist recyclerview
+    }
 }
