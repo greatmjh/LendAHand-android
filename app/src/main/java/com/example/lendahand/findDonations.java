@@ -84,6 +84,7 @@ public class findDonations extends AppCompatActivity {
     FindDonationsRVAdapter rvAdapter;
 
     findDonationsSubcategoryAdapter subcategoryAdapter;
+    FindDonationsItemAdapter itemAdapter;
 
 
     public void menuBtnClick(View v){
@@ -122,7 +123,7 @@ public class findDonations extends AppCompatActivity {
             rvAdapter = new FindDonationsRVAdapter(visibleLevels, this, this);
 
             //set on click listener
-            rvAdapter.setOnSubcategoryClickListener(this::updateAllCategoriesRV);
+            //rvAdapter.setOnSubcategoryClickListener(this::updateAllCategoriesRV);
 
             recyclerView.setAdapter(rvAdapter);
         }
@@ -133,25 +134,23 @@ public class findDonations extends AppCompatActivity {
             RecyclerView itemRecyclerView = findViewById(R.id.findDonationsRecyclerView);
             itemRecyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-            //add sample data
-            {
-
-            }
-
-            //TODO: make + set adapter
+            itemAdapter = new FindDonationsItemAdapter(itemList);
+            itemRecyclerView.setAdapter(itemAdapter);
         }
 
     }
 
-    public void updateAllCategoriesRV(RVLevelItem subcategory){
+    public void updateAllCategoriesRV(ItemCategory subcategory){
         //TODO: make this do something effective?
+        filterItems(subcategory);
+        itemAdapter.updateData(filteredItemList);
     }
 
     public void setInnerRecyclerView(RecyclerView subcategory){
         subcategory.setLayoutManager(
                 new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL,false)
         );
-        subcategoryAdapter.setOnSubcategoryClickListener(this::filterItems);
+        subcategoryAdapter.setOnSubcategoryClickListener(this::updateAllCategoriesRV);
         subcategory.setAdapter(subcategoryAdapter);
     }
 

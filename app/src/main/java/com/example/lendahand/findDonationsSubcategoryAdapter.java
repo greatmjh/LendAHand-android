@@ -77,7 +77,7 @@ public class findDonationsSubcategoryAdapter extends RecyclerView.Adapter<findDo
         }
     }
 
-    public void updateData( ItemCategory[] newList){
+    public void updateData(ItemCategory[] newList){
         this.subcategories = newList;
         notifyDataSetChanged();
     }
@@ -89,5 +89,6 @@ public class findDonationsSubcategoryAdapter extends RecyclerView.Adapter<findDo
 
     public void updateItemList(ItemCategory subcategory){
         //TODO: based on what is clicked, update itemlist recyclerview
+
     }
 }

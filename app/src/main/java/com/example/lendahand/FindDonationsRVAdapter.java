@@ -22,7 +22,7 @@ public class FindDonationsRVAdapter extends RecyclerView.Adapter<FindDonationsRV
     private findDonations parent;
 
     public interface OnSubcategoryClickListener {
-        void onClick(RVLevelItem subcategory);
+        void onClick(RVLevelItem subcategory, int selectedPosition);
     }
 
     public FindDonationsRVAdapter(ArrayList<RVLevelItem> subcategories, Context context, findDonations parent){
@@ -57,7 +57,7 @@ public class FindDonationsRVAdapter extends RecyclerView.Adapter<FindDonationsRV
             notifyItemChanged(selectedPosition);
 
             if (listener != null){
-                listener.onClick(filterName);
+                listener.onClick(filterName, selectedPosition);
             }
         });
 
