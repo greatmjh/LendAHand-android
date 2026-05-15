@@ -13,7 +13,7 @@ public class RVLevelItem {
 
     }
 
-     private void setSubcategories(ItemCategory[] subcategories){
+     public void setSubcategories(ItemCategory[] subcategories){
         this.subcategories = subcategories;
     }
 

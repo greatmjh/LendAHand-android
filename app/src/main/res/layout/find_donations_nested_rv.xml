@@ -10,7 +10,8 @@
         android:layout_height="wrap_content"
         android:overScrollMode="never"
         android:scrollbars="none"
-        tools:layout_editor_absoluteX="20dp">
+        tools:layout_editor_absoluteX="20dp"
+        android:paddingBottom="8dp">
 
     </androidx.recyclerview.widget.RecyclerView>
 

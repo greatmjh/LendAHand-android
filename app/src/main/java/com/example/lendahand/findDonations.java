@@ -142,6 +142,14 @@ public class findDonations extends AppCompatActivity {
 
     public void updateAllCategoriesRV(ItemCategory subcategory){
         //TODO: make this do something effective?
+        if (subcategory.getItemChildren().length > 0){
+            RVLevelItem toAdd = new RVLevelItem();
+            toAdd.setSubcategories(subcategory.getItemChildren());
+            visibleLevels.add(toAdd);
+
+            rvAdapter.updateData(visibleLevels);
+            subcategoryAdapter.updateData(subcategory.getItemChildren());
+        }
         filterItems(subcategory);
         itemAdapter.updateData(filteredItemList);
     }
