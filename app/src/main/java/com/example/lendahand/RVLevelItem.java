@@ -1,13 +1,23 @@
 package com.example.lendahand;
 
+import android.content.ClipData;
+
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.UUID;
 
 public class RVLevelItem {
-    public ArrayList<ItemCategory> subcategories;
+    public ItemCategory[] subcategories;
 
-    private void setSubcategories(){
+    public RVLevelItem(){
 
     }
 
+     private void setSubcategories(ItemCategory[] subcategories){
+        this.subcategories = subcategories;
+    }
+
+    public void initialSet(){
+         setSubcategories(ItemCategory.getRoots());
+    }
 }

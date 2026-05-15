@@ -19,7 +19,7 @@ import java.util.Arrays;
 import java.util.UUID;
 
 public class findDonations extends AppCompatActivity {
-    ArrayList<RVLevelItem> visibleSubcategories; //takes in parentIds
+    ArrayList<RVLevelItem> visibleSubcategories = new ArrayList<>(); //takes in parentIds
 
     ArrayList<DonationOffer> itemList = new ArrayList<>(Arrays.asList(
             new DonationOffer(
@@ -107,6 +107,7 @@ public class findDonations extends AppCompatActivity {
         ///MAIN TREE ITEM RECYCLERVIEW
         {
             visibleSubcategories.add(new RVLevelItem());
+            visibleSubcategories.get(0).initialSet();
 
             RecyclerView recyclerView = findViewById(R.id.allCategoriesRecyclerView);
 
@@ -116,6 +117,11 @@ public class findDonations extends AppCompatActivity {
             rvAdapter.setOnSubcategoryClickListener(this::updateAllCategoriesRV);
 
             recyclerView.setAdapter(rvAdapter);
+        }
+
+        //HORIZONTAL RECYCLERVIEW
+        {
+
         }
 
         //ITEM LIST RECYCLERVIEW
