@@ -1,6 +1,7 @@
 package com.example.lendahand;
 
 
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,8 +18,10 @@ import java.util.ArrayList;
 public class FindDonationsItemAdapter extends RecyclerView.Adapter<FindDonationsItemAdapter.MyViewHolder> {
     private ArrayList<DonationOffer> itemList;
 
-    public FindDonationsItemAdapter(ArrayList<DonationOffer> itemList){
+    findDonations baseScreen;
+    public FindDonationsItemAdapter(ArrayList<DonationOffer> itemList, findDonations baseScreen){
         this.itemList = itemList;
+        this.baseScreen = baseScreen;
     }
 
     @NonNull
@@ -36,6 +39,7 @@ public class FindDonationsItemAdapter extends RecyclerView.Adapter<FindDonations
         holder.itemText.setText(donationItem.getItemName());
         holder.numText.setText(String.format("%s units", donationItem.getQty()));
         holder.distText.setText(String.format("%.1f km away", donationItem.getDistanceKm()));
+        holder.donationItem = donationItem;
     }
 
     @Override
@@ -46,6 +50,7 @@ public class FindDonationsItemAdapter extends RecyclerView.Adapter<FindDonations
     // ViewHolder class
     public static class MyViewHolder extends RecyclerView.ViewHolder {
         TextView itemText, numText, distText;
+        DonationOffer donationItem;
         public MyViewHolder(@NonNull View itemView) {
 
             super(itemView);
@@ -53,6 +58,18 @@ public class FindDonationsItemAdapter extends RecyclerView.Adapter<FindDonations
             itemText = itemView.findViewById(R.id.itemNameText);
             numText = itemView.findViewById(R.id.numUnitsText);
             distText = itemView.findViewById(R.id.distText);
+            itemView.findViewById(R.id.find_donation_cardview).setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(v.getContext(), MakeRequestPopup.class);
+                    intent.putExtra("donorName", donationItem.getDonorName());
+                    intent.putExtra("offerID", donationItem.getOfferID().toString());
+                    intent.putExtra("itemName", donationItem.getItemName());
+                    intent.putExtra("distance", donationItem.getDistanceKm());
+                    intent.putExtra("qtyMaximum", donationItem.getQty());
+                    v.getContext().startActivity(intent);
+                }
+            });
         }
     }
 

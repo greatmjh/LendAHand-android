@@ -479,7 +479,7 @@ public class DataManager {
         void onSuccess(ArrayList<DonationOffer> result);
     }
 
-    public void APIRespondToOffer(UUID offerID, int qty) {
+    public void APIRespondToOffer(UUID offerID, int qty, Runnable callback) {
         JsonObject reqBody = new JsonObject();
         reqBody.addProperty("sessionKey", sessionKey);
         reqBody.addProperty("qty", qty);
@@ -489,7 +489,7 @@ public class DataManager {
         makeApiRequest(reqJson, "respond_to_offer.php", new ApiRequestCallback() {
             @Override
             public void onSuccessfulResponse(String responseBody) {
-                //pass
+                callback.run();
             }
         });
     }

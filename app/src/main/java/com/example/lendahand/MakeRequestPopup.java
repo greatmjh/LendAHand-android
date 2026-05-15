@@ -75,7 +75,12 @@ public class MakeRequestPopup extends AppCompatActivity {
     }
 
     public void onRequestClick(View v) {
-        //TODO: implement API request
-        finish();
+        DataManager.getInstance(this).APIRespondToOffer(offerID, qtyRequested, new Runnable() {
+            @Override
+            public void run() {
+                finish();
+            }
+        });
+
     }
 }

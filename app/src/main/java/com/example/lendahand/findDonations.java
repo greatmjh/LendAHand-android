@@ -72,10 +72,15 @@ public class findDonations extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+        loadDataFromServer();
+
+    }
+
+    public void loadDataFromServer() {
         TextView statusTV = findViewById(R.id.findDonationsStatus);
         Activity parent = this;
 
-        //Load item categoriesWW
+        //Load item categories
         ItemCategory.loadTreeFromServer(new Runnable() {
             @Override
             public void run() {
@@ -120,7 +125,6 @@ public class findDonations extends AppCompatActivity {
 
             }
         });
-
     }
 
     public void loadRecyclerViews() {
@@ -148,7 +152,7 @@ public class findDonations extends AppCompatActivity {
             RecyclerView itemRecyclerView = findViewById(R.id.findDonationsRecyclerView);
             itemRecyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-            itemAdapter = new FindDonationsItemAdapter(itemList);
+            itemAdapter = new FindDonationsItemAdapter(itemList, this);
             itemRecyclerView.setAdapter(itemAdapter);
         }
     }
