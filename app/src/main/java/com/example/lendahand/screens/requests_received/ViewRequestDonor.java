@@ -20,9 +20,7 @@ import java.util.UUID;
 public class ViewRequestDonor extends AppCompatActivity {
 
     UUID requestID;
-    public void backOnClick (View v)    {
-        //Intent intent = new Intent(this, requestsReceived.class);
-        //startActivity(intent);
+    public void backOnClick (View v) {
         finish();
     }
 

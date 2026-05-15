@@ -16,7 +16,7 @@ import java.util.ArrayList;
 
 
 public class MakeGenRequestAdapter extends RecyclerView.Adapter<MakeGenRequestAdapter.MyViewHolder> {
-    private ArrayList<HighlyRequestedItem> itemList;
+    private final ArrayList<HighlyRequestedItem> itemList;
 
     public MakeGenRequestAdapter(ArrayList<HighlyRequestedItem> itemList){
         this.itemList = itemList;
@@ -52,8 +52,8 @@ public class MakeGenRequestAdapter extends RecyclerView.Adapter<MakeGenRequestAd
 
     // ViewHolder class
      public static class MyViewHolder extends RecyclerView.ViewHolder {
-        TextView itemText;
-        ImageButton deleteButton;
+        final TextView itemText;
+        final ImageButton deleteButton;
 
         public MyViewHolder(@NonNull View itemView) {
 

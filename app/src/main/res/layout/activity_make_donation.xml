@@ -70,7 +70,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
         android:layout_marginTop="28dp"
-        android:text="Quantity"
+        android:text="@string/quantity"
         android:textSize="14sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/itemPromptText" />
@@ -105,7 +105,7 @@
         android:id="@+id/quantityValText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="0"
+        android:text=""
         app:layout_constraintBottom_toBottomOf="@+id/minusChip"
         app:layout_constraintEnd_toStartOf="@+id/plusChip"
         app:layout_constraintStart_toEndOf="@+id/minusChip"

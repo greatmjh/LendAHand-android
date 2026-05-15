@@ -18,7 +18,7 @@ import java.util.ArrayList;
 
 
 public class HighlyRequestedItemsAdapter extends RecyclerView.Adapter<HighlyRequestedItemsAdapter.MyViewHolder>{
-    private ArrayList<HighlyRequestedItem> itemList;
+    private final ArrayList<HighlyRequestedItem> itemList;
 
     public HighlyRequestedItemsAdapter(ArrayList<HighlyRequestedItem> itemList){
         this.itemList = itemList;
@@ -48,9 +48,10 @@ public class HighlyRequestedItemsAdapter extends RecyclerView.Adapter<HighlyRequ
 
     // ViewHolder class
     public static class MyViewHolder extends RecyclerView.ViewHolder {
-        TextView nameText, availableText;
+        final TextView nameText;
+        final TextView availableText;
 
-        ImageButton deleteButton;
+        final ImageButton deleteButton;
 
         public MyViewHolder(@NonNull View itemView) {
 

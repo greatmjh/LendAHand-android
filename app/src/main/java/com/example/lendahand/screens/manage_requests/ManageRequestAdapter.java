@@ -66,8 +66,9 @@ public class ManageRequestAdapter extends RecyclerView.Adapter<ManageRequestAdap
 
     // ViewHolder class
     public static class MyViewHolder extends RecyclerView.ViewHolder {
-        TextView mainText, subText;
-        ImageButton deleteButton;
+        final TextView mainText;
+        final TextView subText;
+        final ImageButton deleteButton;
 
         public MyViewHolder(@NonNull View itemView) {
 

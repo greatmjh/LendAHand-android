@@ -18,9 +18,9 @@ public class FindDonationsRVAdapter extends RecyclerView.Adapter<FindDonationsRV
     private FindDonationsRVAdapter.OnSubcategoryClickListener listener;
     private int selectedPosition = -1;
 
-    private Context context;
+    private final Context context;
 
-    private FindDonations parent;
+    private final FindDonations parent;
 
     public interface OnSubcategoryClickListener {
         void onClick(RVLevelItem subcategory, int selectedPosition);
@@ -30,10 +30,6 @@ public class FindDonationsRVAdapter extends RecyclerView.Adapter<FindDonationsRV
         this.subcategory = subcategories;
         this.context = context;
         this.parent = parent;
-    }
-
-    public void setOnSubcategoryClickListener(FindDonationsRVAdapter.OnSubcategoryClickListener listener){
-        this.listener = listener;
     }
 
     @NonNull
@@ -72,7 +68,7 @@ public class FindDonationsRVAdapter extends RecyclerView.Adapter<FindDonationsRV
 
     // ViewHolder class
     public static class MyViewHolder extends RecyclerView.ViewHolder {
-        RecyclerView recyclerView;
+        final RecyclerView recyclerView;
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
             recyclerView = itemView.findViewById(R.id.subcategoryRV);
@@ -84,8 +80,4 @@ public class FindDonationsRVAdapter extends RecyclerView.Adapter<FindDonationsRV
         notifyDataSetChanged();
     }
 
-    public void resetPosition(){
-        selectedPosition = -1;
-        notifyItemChanged(selectedPosition);
-    }
 }

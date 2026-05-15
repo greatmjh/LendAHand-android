@@ -4,8 +4,8 @@ import java.util.HashSet;
 import java.util.UUID;
 
 public class ItemCategory {
-    private UUID itemID;
-    private String itemName;
+    private final UUID itemID;
+    private final String itemName;
     private ItemCategory[] itemChildren;
 
     private ItemCategory(UUID itemID, String itemName) {

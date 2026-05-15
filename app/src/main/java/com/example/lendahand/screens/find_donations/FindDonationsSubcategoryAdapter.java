@@ -16,7 +16,7 @@ public class FindDonationsSubcategoryAdapter extends RecyclerView.Adapter<FindDo
     private OnSubcategoryClickListener listener;
     private int selectedPosition = -1;
 
-    int parentPosition;
+    final int parentPosition;
 
     public interface OnSubcategoryClickListener {
         void onClick(ItemCategory subcategory, int parentPosition);
@@ -71,7 +71,7 @@ public class FindDonationsSubcategoryAdapter extends RecyclerView.Adapter<FindDo
 
     // ViewHolder class
     public static class MyViewHolder extends RecyclerView.ViewHolder {
-        TextView textView;
+        final TextView textView;
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
 
@@ -79,18 +79,4 @@ public class FindDonationsSubcategoryAdapter extends RecyclerView.Adapter<FindDo
         }
     }
 
-    public void updateData(ItemCategory[] newList){
-        this.subcategories = newList;
-        notifyDataSetChanged();
-    }
-
-    public void resetPosition(){
-        selectedPosition = -1;
-        notifyItemChanged(selectedPosition);
-    }
-
-    public void updateItemList(ItemCategory subcategory){
-        //TODO: based on what is clicked, update itemlist recyclerview
-
-    }
 }

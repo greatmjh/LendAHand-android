@@ -2,8 +2,8 @@ package com.example.lendahand.apiclasses;
 
 public class TopDonorItem {
 
-    private String name;
-    private int itemCount;
+    private final String name;
+    private final int itemCount;
 
     public TopDonorItem(String name, int itemCount){
         this.name = name;

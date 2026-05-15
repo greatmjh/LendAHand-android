@@ -3,10 +3,12 @@ package com.example.lendahand.apiclasses;
 import java.util.UUID;
 
 public class DonationOffer {
-    UUID offerID, itemID;
-    String itemName, donorName;
-    int qty;
-    double distanceKm;
+    final UUID offerID;
+    final UUID itemID;
+    final String itemName;
+    final String donorName;
+    final int qty;
+    final double distanceKm;
 
     public DonationOffer(UUID offerID, UUID itemID, String itemName, String donorName, int qty, double distanceKm) {
         this.offerID = offerID;

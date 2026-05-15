@@ -62,7 +62,7 @@ public class ProfileSettings extends AppCompatActivity {
         Activity parent = this; //for callback
         FusedLocationProviderClient fusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
         try {
-            fusedLocationClient.getLastLocation().addOnSuccessListener(this, new OnSuccessListener<Location>() {
+            fusedLocationClient.getLastLocation().addOnSuccessListener(this, new OnSuccessListener<>() {
                 @Override
                 public void onSuccess(Location location) {
                     //Now that we have location, proceed
@@ -121,7 +121,7 @@ public class ProfileSettings extends AppCompatActivity {
 
         //Reformat phone number
         PhoneNumberUtil phoneUtil = PhoneNumberUtil.getInstance();
-        String phoneFormatted = "";
+        String phoneFormatted;
         try {
             Phonenumber.PhoneNumber parsed = phoneUtil.parse(phoneUnformatted, Locale.getDefault().getCountry());
             phoneFormatted = phoneUtil.format(parsed, PhoneNumberUtil.PhoneNumberFormat.E164);

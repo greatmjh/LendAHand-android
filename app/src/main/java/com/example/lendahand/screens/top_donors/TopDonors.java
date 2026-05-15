@@ -56,7 +56,7 @@ public class TopDonors extends AppCompatActivity {
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        if (items.size() > 0) {
+                        if (!items.isEmpty()) {
                             //set adapter
                             TopDonorsAdapter adapter = new TopDonorsAdapter(items);
                             recyclerView.setAdapter(adapter);

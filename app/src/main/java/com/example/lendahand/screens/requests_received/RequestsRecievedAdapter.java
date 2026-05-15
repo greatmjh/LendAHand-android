@@ -67,8 +67,9 @@ public class RequestsRecievedAdapter extends RecyclerView.Adapter<RequestsReciev
 
     // ViewHolder class
     public static class MyViewHolder extends RecyclerView.ViewHolder {
-        TextView mainText, subText;
-        ImageButton threeButtons;
+        final TextView mainText;
+        final TextView subText;
+        final ImageButton threeButtons;
 
         public MyViewHolder(@NonNull View itemView) {
 

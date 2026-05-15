@@ -18,10 +18,8 @@ import java.util.ArrayList;
 public class FindDonationsItemAdapter extends RecyclerView.Adapter<FindDonationsItemAdapter.MyViewHolder> {
     private ArrayList<DonationOffer> itemList;
 
-    FindDonations baseScreen;
-    public FindDonationsItemAdapter(ArrayList<DonationOffer> itemList, FindDonations baseScreen){
+    public FindDonationsItemAdapter(ArrayList<DonationOffer> itemList){
         this.itemList = itemList;
-        this.baseScreen = baseScreen;
     }
 
     @NonNull
@@ -49,7 +47,9 @@ public class FindDonationsItemAdapter extends RecyclerView.Adapter<FindDonations
 
     // ViewHolder class
     public static class MyViewHolder extends RecyclerView.ViewHolder {
-        TextView itemText, numText, distText;
+        final TextView itemText;
+        final TextView numText;
+        final TextView distText;
         DonationOffer donationItem;
         public MyViewHolder(@NonNull View itemView) {
 

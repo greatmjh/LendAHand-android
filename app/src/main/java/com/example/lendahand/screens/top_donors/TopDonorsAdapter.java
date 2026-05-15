@@ -14,7 +14,7 @@ import java.util.List;
 
 
 public class TopDonorsAdapter extends RecyclerView.Adapter<TopDonorsAdapter.MyViewHolder> {
-    private List<TopDonorItem> itemList;
+    private final List<TopDonorItem> itemList;
 
     public TopDonorsAdapter(List<TopDonorItem> itemList){
         this.itemList = itemList;
@@ -44,7 +44,8 @@ public class TopDonorsAdapter extends RecyclerView.Adapter<TopDonorsAdapter.MyVi
 
     // ViewHolder class
     public static class MyViewHolder extends RecyclerView.ViewHolder {
-        TextView nameText, donatedText;
+        final TextView nameText;
+        final TextView donatedText;
 
 
         public MyViewHolder(@NonNull View itemView) {

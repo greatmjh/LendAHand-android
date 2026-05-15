@@ -14,9 +14,13 @@ import com.google.i18n.phonenumbers.PhoneNumberUtil;
 import com.google.i18n.phonenumbers.Phonenumber;
 
 public class IncomingReqItem implements Parcelable {
-    private String itemName, requesterName, requesterPhoneNumber, requestID, requesterBio;
-    double requesterDistanceKm;
-    boolean fulfilled;
+    private final String itemName;
+    private final String requesterName;
+    private final String requesterPhoneNumber;
+    private final String requestID;
+    private final String requesterBio;
+    final double requesterDistanceKm;
+    final boolean fulfilled;
 
     int itemQty;
 
@@ -101,7 +105,7 @@ public class IncomingReqItem implements Parcelable {
         fulfilled = in.readByte() != 0;
     }
 
-    public static final Creator<IncomingReqItem> CREATOR = new Creator<IncomingReqItem>() {
+    public static final Creator<IncomingReqItem> CREATOR = new Creator<>() {
         @Override
         public IncomingReqItem createFromParcel(Parcel in) {
             return new IncomingReqItem(in);

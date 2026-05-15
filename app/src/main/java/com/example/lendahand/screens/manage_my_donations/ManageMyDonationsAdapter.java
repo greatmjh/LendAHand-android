@@ -17,7 +17,7 @@ import java.util.ArrayList;
 
 
 public class ManageMyDonationsAdapter extends RecyclerView.Adapter<ManageMyDonationsAdapter.MyViewHolder>{
-    private ArrayList<ManageMyDonationsItem> itemList;
+    private final ArrayList<ManageMyDonationsItem> itemList;
 
     public ManageMyDonationsAdapter(ArrayList<ManageMyDonationsItem> itemList){
         this.itemList = itemList;
@@ -57,8 +57,9 @@ public class ManageMyDonationsAdapter extends RecyclerView.Adapter<ManageMyDonat
 
     // ViewHolder class
     public static class MyViewHolder extends RecyclerView.ViewHolder {
-        TextView nameText, availableText;
-        ImageButton deleteButton;
+        final TextView nameText;
+        final TextView availableText;
+        final ImageButton deleteButton;
 
         public MyViewHolder(@NonNull View itemView) {
 

@@ -4,10 +4,11 @@ import java.util.UUID;
 
 public class ManageMyDonationsItem {
 
-    private String itemDesc;
-    private int qty;
+    private final String itemDesc;
+    private final int qty;
 
-    private UUID offerID, itemId;
+    private UUID itemId;
+    private final UUID offerID;
 
     public ManageMyDonationsItem(String itemName, int qty, UUID offerID){
         this.itemDesc = itemName;

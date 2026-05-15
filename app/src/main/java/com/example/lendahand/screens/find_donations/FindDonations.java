@@ -35,15 +35,14 @@ import java.util.HashSet;
 import java.util.UUID;
 
 public class FindDonations extends AppCompatActivity {
-    ArrayList<RVLevelItem> visibleLevels = new ArrayList<>();
-    ItemCategory[] visibleSubcategoriesPerLvl;
+    final ArrayList<RVLevelItem> visibleLevels = new ArrayList<>();
 
     ArrayList<DonationOffer> itemList = new ArrayList<>();
     ArrayList<DonationOffer> filteredItemList = new ArrayList<>();
 
     FindDonationsRVAdapter rvAdapter;
 
-    ArrayList<FindDonationsSubcategoryAdapter> subcategoryAdapters = new ArrayList<>();
+    final ArrayList<FindDonationsSubcategoryAdapter> subcategoryAdapters = new ArrayList<>();
     FindDonationsItemAdapter itemAdapter;
 
 
@@ -94,7 +93,7 @@ public class FindDonations extends AppCompatActivity {
                         //Get location
                         FusedLocationProviderClient fusedLocationClient = LocationServices.getFusedLocationProviderClient(parent);
                         try {
-                            fusedLocationClient.getLastLocation().addOnSuccessListener(parent, new OnSuccessListener<Location>() {
+                            fusedLocationClient.getLastLocation().addOnSuccessListener(parent, new OnSuccessListener<>() {
                                 @Override
                                 public void onSuccess(Location location) {
                                     //Get item list from server
@@ -149,7 +148,7 @@ public class FindDonations extends AppCompatActivity {
             RecyclerView itemRecyclerView = findViewById(R.id.findDonationsRecyclerView);
             itemRecyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-            itemAdapter = new FindDonationsItemAdapter(itemList, this);
+            itemAdapter = new FindDonationsItemAdapter(itemList);
             itemRecyclerView.setAdapter(itemAdapter);
         }
     }

@@ -7,8 +7,11 @@ import com.google.i18n.phonenumbers.Phonenumber;
 import java.util.UUID;
 
 public class OutgoingReqItem {
-    private String itemName, donorName, donorPhoneNumber, state;
-    private UUID requestID;
+    private final String itemName;
+    private final String donorName;
+    private final String donorPhoneNumber;
+    private final String state;
+    private final UUID requestID;
     int itemQty;
 
     public OutgoingReqItem(String itemName, String donorName, String phoneNumber, UUID requestID, String state) {

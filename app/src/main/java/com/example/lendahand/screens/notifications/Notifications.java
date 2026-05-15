@@ -57,7 +57,7 @@ public class Notifications extends AppCompatActivity {
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        if (items.size() > 0) {
+                        if (!items.isEmpty()) {
                             NotificationAdapter adapter = new NotificationAdapter(items);
                             recyclerView.setAdapter(adapter);
                             statusTV.setVisibility(View.GONE);

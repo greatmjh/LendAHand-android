@@ -7,12 +7,12 @@ import java.time.ZoneId;
 import java.util.UUID;
 
 public class NotificationItem {
-    private LocalDateTime time;
-    private String title;
-    private String body;
-    private String onclick;
+    private final LocalDateTime time;
+    private final String title;
+    private final String body;
+    private final String onclick;
 
-    private UUID uuid;
+    private final UUID uuid;
     public boolean read;
 
     public NotificationItem(UUID id, LocalDateTime time, String title, String body, String onclick, boolean read) {

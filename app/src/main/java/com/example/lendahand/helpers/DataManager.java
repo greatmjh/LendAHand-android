@@ -197,7 +197,7 @@ public class DataManager {
     }
 
     public interface APIProfileInfoCallback{
-        public void success(ProfileInfo p);
+        void success(ProfileInfo p);
     }
 
     //Get top donors endpoint
@@ -213,7 +213,7 @@ public class DataManager {
         });
     }
     public interface TopDonorsCallback {
-        public void onSuccess(List<TopDonorItem> items);
+        void onSuccess(List<TopDonorItem> items);
     }
 
     //Load incoming notifications
@@ -234,7 +234,7 @@ public class DataManager {
         });
     }
     public interface NotificationsCallback {
-        public void onSuccess(List<NotificationItem> items);
+        void onSuccess(List<NotificationItem> items);
     }
 
     //Mark notification as read
@@ -318,7 +318,7 @@ public class DataManager {
 
     //Used for both above
     public interface GenRequestCallback {
-        public void onSuccess(ArrayList<HighlyRequestedItem> result);
+        void onSuccess(ArrayList<HighlyRequestedItem> result);
     }
 
     //Make/update general request
@@ -568,8 +568,6 @@ public class DataManager {
     }
 
     private void makeApiRequest(String reqJson, String endpointName, ApiRequestCallback callback) {
-        //Create OkHttp Request
-        OkHttpClient client = new OkHttpClient();
         RequestBody body = RequestBody.create(reqJson, MediaType.parse("application/json"));
         Request httpReq = new Request.Builder()
                 .url(HttpUrl.parse(applicationContext.getString(R.string.apiServerAddr)).newBuilder().
@@ -578,7 +576,7 @@ public class DataManager {
                 .build();
 
         //Run the request
-        client.newCall(httpReq).enqueue(new Callback() {
+        httpClient.newCall(httpReq).enqueue(new Callback() {
             @Override
             public void onFailure(@NonNull Call call, @NonNull IOException e) {
                 e.printStackTrace();

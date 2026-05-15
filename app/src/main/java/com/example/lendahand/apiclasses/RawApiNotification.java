@@ -1,8 +1,12 @@
 package com.example.lendahand.apiclasses;
 
 public class RawApiNotification {
-    public String heading, text, onClick, id, time;
-    public boolean isRead;
+    public final String heading;
+    public final String text;
+    public final String onClick;
+    public final String id;
+    public final String time;
+    public final boolean isRead;
 
     public RawApiNotification(String heading, String text, String onClick, String id, String time, boolean isRead) {
         this.heading = heading;

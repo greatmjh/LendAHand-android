@@ -1,8 +1,9 @@
 package com.example.lendahand.apiclasses;
 
 public class LogInResponse {
-    public boolean success;
-    public String sessionKey, errorMessage;
+    public final boolean success;
+    public final String sessionKey;
+    public final String errorMessage;
 
     public LogInResponse(boolean success, String sessionKey, String errorMessage) {
         this.success = success;

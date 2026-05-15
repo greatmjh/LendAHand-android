@@ -1,7 +1,8 @@
 package com.example.lendahand.apiclasses;
 
 public class LoginRequest {
-    public String email, password;
+    public final String email;
+    public final String password;
 
     public LoginRequest(String email, String password) {
         this.email = email;

@@ -3,9 +3,9 @@ package com.example.lendahand.apiclasses;
 import java.util.UUID;
 
 public class HighlyRequestedItem {
-    String itemTitle;
-    int quantity;
-    UUID itemId;
+    final String itemTitle;
+    final int quantity;
+    final UUID itemId;
 
     public HighlyRequestedItem(String itemName, int qtyNeeded, UUID itemId) {
         this.itemTitle = itemName;

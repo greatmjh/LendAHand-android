@@ -73,7 +73,6 @@ public class MakeGenRequest extends AppCompatActivity {
     public void makeGenRequestClick(View v) {
         if (currentlySelectedItem == null) {
             Toast.makeText(this, "Please select an item!", Toast.LENGTH_SHORT).show();
-            return;
         } else {
             //Make sure the item isn't already requested
             for (HighlyRequestedItem item : displayedItems) {

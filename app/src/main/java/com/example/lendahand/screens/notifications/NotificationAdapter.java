@@ -19,7 +19,7 @@ import java.util.List;
 
 
 public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapter.MyViewHolder> {
-    private List<NotificationItem> itemList;
+    private final List<NotificationItem> itemList;
 
     public NotificationAdapter(List<NotificationItem> itemList){
         this.itemList = itemList;
@@ -65,7 +65,9 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
 
     // ViewHolder class
     public static class MyViewHolder extends RecyclerView.ViewHolder {
-        TextView notificationTime, notificationTitle, notificationBody;
+        final TextView notificationTime;
+        final TextView notificationTitle;
+        final TextView notificationBody;
 
         NotificationItem item;
 
