@@ -1,5 +1,9 @@
 package com.example.lendahand.apiclasses;
 
+import com.google.i18n.phonenumbers.NumberParseException;
+import com.google.i18n.phonenumbers.PhoneNumberUtil;
+import com.google.i18n.phonenumbers.Phonenumber;
+
 import java.util.UUID;
 
 public class OutgoingReqItem {
@@ -24,11 +28,22 @@ public class OutgoingReqItem {
             case "open":
                 return String.format("Requested to %s", donorName);
             case "accepted":
-                return String.format("Accepted by %s (%s)", donorName, donorPhoneNumber);
+                return String.format("Accepted by %s (%s)", donorName, getFormattedPhone());
             case "rejected":
                 return String.format("Rejected by %s", donorName);
             default:
                 return "";
+        }
+    }
+
+    public String getFormattedPhone() {
+        try {
+            PhoneNumberUtil phoneUtil = PhoneNumberUtil.getInstance();
+            Phonenumber.PhoneNumber parsed = phoneUtil.parse(donorPhoneNumber, null);
+            return phoneUtil.format(parsed, PhoneNumberUtil.PhoneNumberFormat.INTERNATIONAL);
+        } catch (NumberParseException e) {
+            e.printStackTrace();
+            return donorPhoneNumber;
         }
     }
 

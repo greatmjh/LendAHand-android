@@ -9,6 +9,10 @@ import android.text.style.StyleSpan;
 
 import androidx.annotation.NonNull;
 
+import com.google.i18n.phonenumbers.NumberParseException;
+import com.google.i18n.phonenumbers.PhoneNumberUtil;
+import com.google.i18n.phonenumbers.Phonenumber;
+
 public class IncomingReqItem implements Parcelable {
     private String itemName, requesterName, requesterPhoneNumber, requestID, requesterBio;
     double requesterDistanceKm;
@@ -37,7 +41,16 @@ public class IncomingReqItem implements Parcelable {
 
     public double getDoneeDistance() { return requesterDistanceKm; }
 
-    public String getDoneePhone() { return requesterPhoneNumber; }
+    public String getDoneePhone() {
+        try {
+            PhoneNumberUtil phoneUtil = PhoneNumberUtil.getInstance();
+            Phonenumber.PhoneNumber parsed = phoneUtil.parse(requesterPhoneNumber, null);
+            return phoneUtil.format(parsed, PhoneNumberUtil.PhoneNumberFormat.INTERNATIONAL);
+        } catch (NumberParseException e) {
+            e.printStackTrace();
+            return requesterPhoneNumber;
+        }
+    }
 
     public String getRequestID() { return requestID; }
 
