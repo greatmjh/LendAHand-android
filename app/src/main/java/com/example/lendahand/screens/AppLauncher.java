@@ -7,7 +7,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.lendahand.helpers.DataManager;
 import com.example.lendahand.helpers.ItemCategory;
-import com.example.lendahand.screens.find_donations.WelcomePage;
 import com.example.lendahand.screens.top_donors.TopDonors;
 
 public class AppLauncher extends AppCompatActivity {

@@ -22,7 +22,7 @@ import com.example.lendahand.apiclasses.RegisterRequest;
 import com.example.lendahand.apiclasses.ManageMyDonationsItem;
 import com.example.lendahand.apiclasses.NotificationItem;
 import com.example.lendahand.apiclasses.TopDonorItem;
-import com.example.lendahand.screens.find_donations.WelcomePage;
+import com.example.lendahand.screens.WelcomePage;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;

@@ -1,4 +1,4 @@
-package com.example.lendahand.screens.find_donations;
+package com.example.lendahand.screens;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,8 +11,6 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import com.example.lendahand.R;
-import com.example.lendahand.screens.SignUpPage;
-import com.example.lendahand.screens.LoginPage;
 
 public class WelcomePage extends AppCompatActivity {
 

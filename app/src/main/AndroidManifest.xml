@@ -81,7 +81,7 @@
             android:name=".screens.MenuActivity"
             android:exported="true" />
         <activity
-            android:name=".screens.find_donations.WelcomePage"
+            android:name=".screens.WelcomePage"
             android:exported="true">
 
         </activity>
